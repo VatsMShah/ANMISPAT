@@ -209,7 +209,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Custom slanted client strip card shape */
 .custom-client-strip {
-  /* Pure trapezoid polygon slant matching the Canva image */
   clip-path: polygon(
     35px 0%, 
     calc(100% - 35px) 0%, 
@@ -218,7 +217,30 @@ h1, h2, h3, h4, h5, h6 {
   );
 }
 
-/* Rotating Orange Gradient Ring Animations */
+/* Crisp 2px Outer Border Circle for Section 2 */
+.circle-outer-ring {
+  border: 2px solid #e2a179;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+/* Hollow Glowing Orange Ring (Masked Center) */
+.ring-glow-hollow {
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #e4642b 0%,
+    #ea7a38 25%,
+    #f0925c 50%,
+    #f6c6ac 75%,
+    #e4642b 100%
+  );
+  filter: blur(8px);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 52%, #000 62%, #000 76%, transparent 88%);
+          mask-image: radial-gradient(circle at 50% 50%, transparent 52%, #000 62%, #000 76%, transparent 88%);
+}
+
+/* Rotating Orange Gradient Ring Animation */
 @keyframes spin-ring {
   from {
     transform: rotate(0deg);
@@ -230,9 +252,4 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-spin-ring {
   animation: spin-ring 24s linear infinite;
-}
-
-.mask-radial-glow {
-  -webkit-mask-image: radial-gradient(circle closest-side at 50% 50%, #000 0%, #000 60%, transparent 80%);
-  mask-image: radial-gradient(circle closest-side at 50% 50%, #000 0%, #000 60%, transparent 80%);
 }

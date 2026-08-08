@@ -1,9 +1,18 @@
 import React from 'react';
 
+import bgImage from '../assets/images/about-overview-bg.png';
+import leftImg from '../assets/images/second-sec-left.png';
+import rightImg from '../assets/images/second-sec-right.png';
+import steelCoilImg from '../assets/images/steel-coil-second-sec.png';
+
 export default function AboutOverview() {
   return (
-    <section className="relative w-full bg-white py-16 lg:py-24 overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+    <section
+      className="relative w-full bg-cover bg-center pt-16 lg:pt-20 pb-0 overflow-hidden flex flex-col justify-between"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      {/* 1. Header Copy & Action Button */}
+      <div className="relative max-w-4xl mx-auto px-6 text-center z-10">
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#3b52a4] mb-4 tracking-tight">
           Leading the Steel Industry with Vision & Excellence
         </h2>
@@ -18,7 +27,7 @@ export default function AboutOverview() {
             <div className="w-2.5 h-2.5 rotate-45 bg-[#3b52a4]" />
           </div>
 
-<div className="button-borders">
+          <div className="button-borders">
             <a
               href="#about"
               className="primary-button block"
@@ -32,6 +41,63 @@ export default function AboutOverview() {
             <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#f25c2b]/40" />
           </div>
         </div>
+      </div>
+
+      {/* 2. Overlapping Visual Centerpiece - Flush to Bottom */}
+      <div className="max-w-[1280px] w-full mx-auto px-6 mt-12 relative flex items-end justify-center h-[280px] sm:h-[340px]">
+
+        {/* RADIAL GLOW RING - Orange arc/halo around top of coil (Layer 0) */}
+        <div
+          aria-hidden="true"
+          className="absolute left-1/2 -translate-x-1/2 top-[-80px] sm:top-[-120px] w-[800px] h-[600px] sm:w-[1000px] sm:h-[750px] lg:w-[1100px] lg:h-[820px] z-0 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse 500px 400px at 50% 100%,' +
+              'rgba(255, 92, 43, 0) 0%,' +
+              'rgba(255, 92, 43, 0) 30%,' +
+              'rgba(255, 146, 82, 0.12) 45%,' +
+              'rgba(255, 132, 74, 0.22) 55%,' +
+              'rgba(255, 116, 58, 0.50) 65%,' +
+              'rgba(255, 122, 62, 0.90) 75%,' +
+              '#ff8c3d 82%,' +
+              '#ff9a45 87%,' +
+              'rgba(255, 152, 92, 0.70) 92%,' +
+              'rgba(255, 206, 152, 0.25) 97%,' +
+              'rgba(255, 236, 212, 0) 100%)',
+          }}
+        />
+
+        {/* LEFT IMAGE (Layer 1 - z-10) */}
+        <div className="absolute left-0 bottom-4 z-10 w-[36%] max-w-[400px] hidden md:block">
+          <div className="rounded-2xl rounded-tl-[3rem] overflow-hidden shadow-2xl border-2 border-white">
+            <img
+              src={leftImg}
+              alt="Steel Rolling Mill"
+              className="w-full h-[240px] sm:h-[270px] object-cover"
+            />
+          </div>
+        </div>
+
+        {/* CENTRAL STEEL COIL (Layer 3 - z-30) - Grounded Flush to Bottom */}
+        <div className="relative z-30 pointer-events-none flex items-end justify-center h-full">
+          <img
+            src={steelCoilImg}
+            alt="Steel Coil"
+            className="w-[520px] sm:w-[620px] h-auto object-contain block leading-none drop-shadow-2xl translate-y-[2px]"
+          />
+        </div>
+
+        {/* RIGHT IMAGE (Layer 1 - z-10) */}
+        <div className="absolute right-0 bottom-4 z-10 w-[36%] max-w-[400px] hidden md:block">
+          <div className="rounded-2xl rounded-tr-[3rem] overflow-hidden shadow-2xl border-2 border-white">
+            <img
+              src={rightImg}
+              alt="Foundry Ladle"
+              className="w-full h-[240px] sm:h-[270px] object-cover"
+            />
+          </div>
+        </div>
+
       </div>
     </section>
   );
