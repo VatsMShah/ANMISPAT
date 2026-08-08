@@ -2,6 +2,7 @@ import React from 'react';
 import TopStrip from './components/TopStrip';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Footer from './components/Footer';
 
 export default function App() {
   return (
@@ -10,7 +11,7 @@ export default function App() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        {/* Section 4: About Us will go here */}
+        <Footer />
       </main>
     </div>
   );
