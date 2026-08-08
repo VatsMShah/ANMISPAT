@@ -119,3 +119,14 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 1rem;
   color: inherit;
 }
+
+/* Custom slanted client strip card shape */
+.custom-client-strip {
+  /* Pure trapezoid polygon slant matching the Canva image */
+  clip-path: polygon(
+    35px 0%, 
+    calc(100% - 35px) 0%, 
+    100% 100%, 
+    0% 100%
+  );
+}

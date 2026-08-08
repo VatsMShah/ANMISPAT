@@ -1,10 +1,17 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import heroVideo from '../assets/images/hero-video.mp4';
+import tataAstrumLogo from '../assets/images/tata-astrum.png';
+import galvanoLogo from '../assets/images/galvano.png';
+import tataAstrumSuperLogo from '../assets/images/tata-astrum-super.png';
+import tataSteeliumSuperLogo from '../assets/images/tata-steelium-super.png';
+import tataSteeliumLogo from '../assets/images/tata-steelium.png';
+import tataKoshLogo from '../assets/images/tata-kosh.png';
+import tataWironLogo from '../assets/images/tata-wiron.png';
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-[calc(100dvh-105px)] min-h-[580px] overflow-hidden bg-brand-dark">
+    <section className="relative w-full h-[calc(100dvh-105px)] min-h-[620px] overflow-hidden bg-brand-dark flex flex-col justify-between">
       {/* Background Video */}
       <video
         autoPlay
@@ -21,9 +28,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/60 z-10" />
 
       {/* Foreground Hero Content Container */}
-      <div className="relative z-20 max-w-[1400px] h-full mx-auto pl-6 pr-6 flex flex-col justify-between pt-10 pb-6">
-        
-        {/* Main Text Block */}
+      <div className="relative z-20 max-w-[1400px] w-full mx-auto pl-8 pr-6 pt-10">
         <div className="max-w-3xl mt-4 sm:mt-8">
           {/* Badge */}
           <p className="text-xs font-bold tracking-widest uppercase font-badge mb-4">
@@ -60,6 +65,62 @@ export default function Hero() {
             >
               Contact Us Today
             </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Pinned White Custom Slanted Client Logo Card */}
+      <div className="relative z-20 w-full max-w-[1400px] mx-auto px-2 sm:px-6">
+        <div className="bg-white custom-client-strip shadow-2xl px-8 sm:px-14 py-4">
+          <div className="flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm font-bold font-badge tracking-wider">
+            {/* Tata Astrum */}
+            <div className="flex flex-col items-center transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-110 cursor-pointer group">
+              <div className="h-10 sm:h-12 w-auto transition-all duration-300 group-hover:drop-shadow-lg">
+                <img src={tataAstrumLogo} alt="TATA ASTRUM" className="h-full w-auto object-contain" />
+              </div>
+            </div>
+            
+            {/* Galvano */}
+            <div className="flex flex-col items-center transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-110 cursor-pointer group">
+              <div className="h-10 sm:h-12 w-auto transition-all duration-300 group-hover:drop-shadow-lg">
+                <img src={galvanoLogo} alt="Galvano" className="h-full w-auto object-contain" />
+              </div>
+            </div>
+
+            {/* Tata Astrum Super */}
+            <div className="flex flex-col items-center transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-110 cursor-pointer group">
+              <div className="h-10 sm:h-12 w-auto transition-all duration-300 group-hover:drop-shadow-lg">
+                <img src={tataAstrumSuperLogo} alt="TATA ASTRUM SUPER" className="h-full w-auto object-contain" />
+              </div>
+            </div>
+
+            {/* Tata Steelium Super */}
+            <div className="flex flex-col items-center transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-110 cursor-pointer group">
+              <div className="h-10 sm:h-12 w-auto transition-all duration-300 group-hover:drop-shadow-lg">
+                <img src={tataSteeliumSuperLogo} alt="STEELIUM SUPER" className="h-full w-auto object-contain" />
+              </div>
+            </div>
+
+            {/* Tata Steelium */}
+            <div className="flex flex-col items-center transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-110 cursor-pointer group">
+              <div className="h-10 sm:h-12 w-auto transition-all duration-300 group-hover:drop-shadow-lg">
+                <img src={tataSteeliumLogo} alt="TATA STEELIUM" className="h-full w-auto object-contain" />
+              </div>
+            </div>
+
+            {/* Tata Kosh */}
+            <div className="flex flex-col items-center transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-110 cursor-pointer group">
+              <div className="h-10 sm:h-12 w-auto transition-all duration-300 group-hover:drop-shadow-lg">
+                <img src={tataKoshLogo} alt="TATA KOSH" className="h-full w-auto object-contain" />
+              </div>
+            </div>
+
+            {/* Tata Wiron */}
+            <div className="flex flex-col items-center transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-110 cursor-pointer group">
+              <div className="h-10 sm:h-12 w-auto transition-all duration-300 group-hover:drop-shadow-lg">
+                <img src={tataWironLogo} alt="TATA WIRON" className="h-full w-auto object-contain" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
