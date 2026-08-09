@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import AboutOverview from './components/AboutOverview';
+import MisVis from './components/MisVis';
 import ClientMarquee from './components/ClientMarquee';
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
         <Hero/>
         <AboutOverview/>
         <ClientMarquee/>
+        <MisVis/>
         <Footer/>
       </main>
     </div>
