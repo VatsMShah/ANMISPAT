@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import AboutOverview from './components/AboutOverview';
+import ClientMarquee from './components/ClientMarquee';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       <main className="flex-grow">
         <Hero/>
         <AboutOverview/>
+        <ClientMarquee/>
         <Footer/>
       </main>
     </div>

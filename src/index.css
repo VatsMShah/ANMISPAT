@@ -253,3 +253,38 @@ h1, h2, h3, h4, h5, h6 {
 .animate-spin-ring {
   animation: spin-ring 24s linear infinite;
 }
+
+/* Client logo marquee */
+@keyframes anm-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.anm-marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.anm-marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: anm-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.anm-marquee:hover .anm-marquee-track {
+  animation-play-state: paused;
+}
+
+.anm-marquee-logo {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.anm-marquee-logo:hover {
+  transform: translateY(-6px) scale(1.12);
+}
