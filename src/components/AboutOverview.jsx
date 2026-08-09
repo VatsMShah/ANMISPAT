@@ -7,6 +7,16 @@ import steelCoilImg from '../assets/images/steel-coil-second-sec.png';
 
 export default function AboutOverview() {
   return (
+    <>
+    <style>{`
+      @keyframes anm-fade-up {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .anm-load-fade-up {
+        animation: anm-fade-up 1.2s ease-out both;
+      }
+    `}</style>
     <section
       className="relative w-full bg-cover bg-center pt-16 lg:pt-20 pb-0 overflow-hidden flex flex-col justify-between"
       style={{ backgroundImage: `url(${bgImage})` }}
@@ -18,7 +28,7 @@ export default function AboutOverview() {
         </h2>
 
         <p className="text-sm md:text-base text-[#4c4c4c] leading-relaxed max-w-3xl mx-auto mb-6">
-          ANM's wide product range and end-to-end solutions have made it India's largest private sector dealer in the Iron and Steel Industry. ANM Ispat is a key distribution and sheet-metal processing arm of the Abhay Ispat Group — a 75+ year legacy enterprise in India's steel industry.
+          ANM's wide product range and end-to-end solutions have made it India's largest private sector dealer in the Iron and Steel Industry. ANM Ispat is a key distribution and sheet-metal processing arm of the Abhay Ispat Group - a 75+ year legacy enterprise in India's steel industry.
         </p>
 
         <div className="flex items-center justify-center gap-3 my-4">
@@ -44,7 +54,7 @@ export default function AboutOverview() {
       </div>
 
       {/* 2. Overlapping Visual Centerpiece - Flush to Bottom */}
-      <div className="max-w-[1280px] w-full mx-auto px-6 mt-12 relative flex items-end justify-center h-[280px] sm:h-[340px]">
+      <div className="max-w-[1280px] w-full mx-auto px-6 mt-12 relative flex items-end justify-center h-[280px] sm:h-[340px] anm-load-fade-up">
 
         {/* RADIAL GLOW RING - Orange arc/halo around top of coil (Layer 0) */}
         <div
@@ -67,38 +77,71 @@ export default function AboutOverview() {
           }}
         />
 
-        {/* LEFT IMAGE (Layer 1 - z-10) */}
-        <div className="absolute left-0 bottom-4 z-10 w-[36%] max-w-[400px] hidden md:block">
-          <div className="rounded-2xl rounded-tl-[3rem] overflow-hidden shadow-2xl border-2 border-white">
+        {/* LEFT IMAGE (Layer 1 - z-10) - positioned higher than right */}
+        <div className="absolute left-4 md:left-8 lg:left-12 bottom-12 sm:bottom-16 z-10 w-[36%] max-w-[400px] hidden md:block group anm-load-fade-up" style={{ animationDelay: '0.25s' }}>
+          <div className="rounded-3xl overflow-hidden shadow-2xl border-2 border-white transition-transform duration-500 ease-out group-hover:scale-[1.03] group-hover:-translate-y-2 group-hover:shadow-3xl">
             <img
               src={leftImg}
               alt="Steel Rolling Mill"
-              className="w-full h-[240px] sm:h-[270px] object-cover"
+              className="w-full h-[240px] sm:h-[270px] object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
         </div>
 
-        {/* CENTRAL STEEL COIL (Layer 3 - z-30) - Grounded Flush to Bottom */}
+        {/* CENTRAL STEEL COIL - Orange contour glow */}
         <div className="relative z-30 pointer-events-none flex items-end justify-center h-full">
+
+          {/* Orange glow behind the actual coil silhouette */}
           <img
             src={steelCoilImg}
             alt="Steel Coil"
-            className="w-[520px] sm:w-[620px] h-auto object-contain block leading-none drop-shadow-2xl translate-y-[2px]"
+            className="
+              absolute
+              w-[520px] sm:w-[620px]
+              h-auto
+              object-contain
+              opacity-90
+              blur-[1px]
+              drop-shadow-[0_0_8px_rgba(255,95,35,0.95)]
+              drop-shadow-[0_0_0px_rgba(255,110,45,1)]
+              drop-shadow-[0_0_24px_rgba(255,110,45,0.75)]
+              drop-shadow-[0_0_55px_rgba(255,135,65,0.45)]
+              scale-[1.015]
+            "
+            aria-hidden="true"
           />
+
+          {/* Actual steel coil */}
+          <img
+            src={steelCoilImg}
+            alt="Steel Coil"
+            className="
+              relative
+              w-[520px] sm:w-[620px]
+              h-auto
+              object-contain
+              block
+              leading-none
+              drop-shadow-2xl
+              translate-y-[2px]
+            "
+          />
+
         </div>
 
         {/* RIGHT IMAGE (Layer 1 - z-10) */}
-        <div className="absolute right-0 bottom-4 z-10 w-[36%] max-w-[400px] hidden md:block">
-          <div className="rounded-2xl rounded-tr-[3rem] overflow-hidden shadow-2xl border-2 border-white">
+        <div className="absolute right-4 md:right-8 lg:right-12 bottom-4 z-10 w-[36%] max-w-[400px] hidden md:block group anm-load-fade-up" style={{ animationDelay: '0.5s' }}>
+          <div className="rounded-3xl overflow-hidden shadow-2xl border-2 border-white transition-transform duration-500 ease-out group-hover:scale-[1.03] group-hover:-translate-y-2 group-hover:shadow-3xl">
             <img
               src={rightImg}
               alt="Foundry Ladle"
-              className="w-full h-[240px] sm:h-[270px] object-cover"
+              className="w-full h-[240px] sm:h-[270px] object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
         </div>
 
       </div>
     </section>
+    </>
   );
 }
