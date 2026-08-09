@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import AboutOverview from './components/AboutOverview';
 import MisVis from './components/MisVis';
 import ClientMarquee from './components/ClientMarquee';
+import WhyChooseUs from "./components/WhyChooseUs";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <AboutOverview/>
         <ClientMarquee/>
         <MisVis/>
+        <WhyChooseUs/>
         <Footer/>
       </main>
     </div>
