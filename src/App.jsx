@@ -8,6 +8,7 @@ import MisVis from './components/MisVis';
 import ClientMarquee from './components/ClientMarquee';
 import WhyChooseUs from "./components/WhyChooseUs";
 import SelectedWork from "./components/SelectedWork";
+import Services from "./components/Services";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <MisVis/>
         <WhyChooseUs/>
         <SelectedWork/>
+        <Services/>
         <Footer/>
       </main>
     </div>
