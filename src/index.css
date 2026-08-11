@@ -296,7 +296,7 @@ h1, h2, h3, h4, h5, h6 {
 .why-section {
   position: relative;
   width: 100%;
-  padding: 110px 5vw 130px;
+  padding: 90px 5vw 65px;
   background: var(--color-brand-footer);
   overflow: hidden;
 }
@@ -982,7 +982,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 900px) {
 
   .why-section {
-    padding: 80px 20px 90px;
+    padding: 70px 20px 50px;
   }
 
   .why-heading {
@@ -1059,7 +1059,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 520px) {
 
   .why-section {
-    padding: 65px 14px 75px;
+    padding: 55px 14px 40px;
   }
 
   .why-card-tall {

@@ -7,6 +7,7 @@ import AboutOverview from './components/AboutOverview';
 import MisVis from './components/MisVis';
 import ClientMarquee from './components/ClientMarquee';
 import WhyChooseUs from "./components/WhyChooseUs";
+import SelectedWork from "./components/SelectedWork";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <ClientMarquee/>
         <MisVis/>
         <WhyChooseUs/>
+        <SelectedWork/>
         <Footer/>
       </main>
     </div>
