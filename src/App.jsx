@@ -9,6 +9,7 @@ import ClientMarquee from './components/ClientMarquee';
 import WhyChooseUs from "./components/WhyChooseUs";
 import SelectedWork from "./components/SelectedWork";
 import Services from "./components/Services";
+import Certifications from "./components/Certifications";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <WhyChooseUs/>
         <SelectedWork/>
         <Services/>
+        <Certifications/>
         <Footer/>
       </main>
     </div>

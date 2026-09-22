@@ -123,7 +123,6 @@ export default function WhyChooseUs() {
               </div>
             </div>
 
-            <div className="why-card-corner">↘</div>
           </article>
 
           {/* TOP MIDDLE */}

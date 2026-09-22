@@ -12,6 +12,14 @@ import tataWironLogo from '../assets/images/tata-wiron.png';
 export default function Hero() {
   return (
     <section className="relative w-full h-[calc(100dvh-105px)] min-h-[620px] overflow-hidden bg-brand-dark flex flex-col justify-between">
+      {/* SVG clipPath for rounded slanted client strip */}
+      <svg width="0" height="0" aria-hidden="true" className="absolute">
+        <defs>
+          <clipPath id="clientStripRounded" clipPathUnits="objectBoundingBox">
+            <path d="M 0.037 0 H 0.963 A 0.012 0.16 0 0 1 0.975 0.03 L 1 1 H 0 L 0.025 0.03 A 0.012 0.16 0 0 1 0.037 0 Z" />
+          </clipPath>
+        </defs>
+      </svg>
       {/* Background Video */}
       <video
         autoPlay
@@ -32,8 +40,8 @@ export default function Hero() {
         <div className="max-w-3xl mt-4 sm:mt-8">
           {/* Badge */}
           <p className="text-xs font-bold tracking-widest uppercase font-badge mb-4">
-            <span className="text-white/80">AS A KEY ARM OF </span>
-            <span className="text-[#ff5c2b]">ABHAY ISPAT</span>
+            <span className="text-white/80">A KEY ARM OF </span>
+            <span className="text-[#ff5c2b]">ABHAY ISPAT GROUP</span>
           </p>
 
           {/* Main Heading */}

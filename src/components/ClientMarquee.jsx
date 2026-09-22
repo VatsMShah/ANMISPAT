@@ -1,21 +1,21 @@
 import React from 'react';
 
-import astrumLogo from '../assets/images/tata-astrum.png';
-import astrumSuperLogo from '../assets/images/tata-astrum-super.png';
-import steeliumLogo from '../assets/images/tata-steelium.png';
-import steeliumSuperLogo from '../assets/images/tata-steelium-super.png';
-import koshLogo from '../assets/images/tata-kosh.png';
-import wironLogo from '../assets/images/tata-wiron.png';
-import galvanoLogo from '../assets/images/galvano.png';
+import clientLogo1 from '../assets/clients-images/1.png';
+import clientLogo2 from '../assets/clients-images/2.png';
+import clientLogo3 from '../assets/clients-images/3.png';
+import clientLogo4 from '../assets/clients-images/4.png';
+import clientLogo5 from '../assets/clients-images/5.png';
+import clientLogo6 from '../assets/clients-images/6.png';
+import clientLogo7 from '../assets/clients-images/7.png';
 
 const clientLogos = [
-  { name: 'Tata Astrum', sub: 'HR SHEETS AND COILS', src: astrumLogo },
-  { name: 'Galvano', sub: 'COATED PRODUCTS', src: galvanoLogo },
-  { name: 'Tata Astrum Super', sub: 'HR SHEETS', src: astrumSuperLogo },
-  { name: 'Tata Steelium Super', sub: 'CR SHEETS', src: steeliumSuperLogo },
-  { name: 'Tata Steelium', sub: 'CR SHEETS AND COILS', src: steeliumLogo },
-  { name: 'Tata Kosh', sub: 'NAAM EK. KAAM ANEK.', src: koshLogo },
-  { name: 'Tata Wiron', sub: '#STRENGTHENINGTOMORROW', src: wironLogo },
+  { name: 'Tata Motors', src: clientLogo1 },
+  { name: 'Mahindra', src: clientLogo2 },
+  { name: 'Lodha', src: clientLogo3 },
+  { name: 'Maruti Suzuki', src: clientLogo4 },
+  { name: 'Adani Realty', src: clientLogo5 },
+  { name: 'Raymond Realty', src: clientLogo6 },
+  { name: 'Oberoi Realty', src: clientLogo7 },
 ];
 
 function MarqueeLogo({ logo }) {
@@ -24,7 +24,7 @@ function MarqueeLogo({ logo }) {
       <img
         src={logo.src}
         alt={logo.name}
-        className="anm-marquee-logo h-11 sm:h-14 lg:h-[4.5rem] w-auto object-contain"
+        className="anm-marquee-logo h-14 sm:h-20 lg:h-[6rem] w-auto object-contain"
       />
     </div>
   );
@@ -34,8 +34,8 @@ export default function ClientMarquee() {
   const doubledLogos = [...clientLogos, ...clientLogos];
 
   return (
-    <section className="anm-marquee relative bg-white pt-8 sm:pt-8 pb-12 sm:pb-16 overflow-hidden">
-      <h2 className="text-center text-sm sm:text-base font-light tracking-widest text-gray-500 mb-6">
+    <section className="anm-marquee relative bg-white pt-8 sm:pt-8 pb-6 sm:pb-8 overflow-hidden">
+      <h2 className="text-center text-sm sm:text-base font-light tracking-widest text-gray-500 mb-3">
         Our Clients
       </h2>
       <div className="anm-marquee-mask overflow-hidden">

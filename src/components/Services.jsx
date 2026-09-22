@@ -1,10 +1,10 @@
 //Services.jsx
 import React from 'react';
 
-import steelTradingImg from '../assets/images/steel-trading.png';
-import logisticsImg from '../assets/images/logistics.png';
-import processingImg from '../assets/images/steel-processing.png';
-import industrialSupplyImg from '../assets/images/industrial-supply.png';
+import constructionImg from '../assets/industry-images/CONSTRUCTION.jpg';
+import defenceImg from '../assets/industry-images/DEFENCE.jpg';
+import powerImg from '../assets/industry-images/POWER.jpg';
+import railwayImg from '../assets/industry-images/RAILWAY.jpg';
 
 export default function Services() {
   return (
@@ -105,7 +105,7 @@ export default function Services() {
         >
 
           {/* ===================================================
-              CARD 1 — STEEL TRADING
+              CARD 1 — CONSTRUCTION
           =================================================== */}
 
           <article
@@ -122,8 +122,8 @@ export default function Services() {
           >
 
             <img
-              src={steelTradingImg}
-              alt="Steel trading"
+              src={constructionImg}
+              alt="Construction industry"
               className="
                 anm-service-image
                 absolute
@@ -177,7 +177,7 @@ export default function Services() {
                   sm:text-3xl
                 "
               >
-                Steel Trading
+                Construction
               </h3>
 
               <a
@@ -188,8 +188,8 @@ export default function Services() {
                   items-center
                   gap-2.5
                   border
-                  border-brand-orange
-                  bg-brand-orange/90
+                  border-[#d85f10]
+                  bg-[#d85f10]
                   px-5
                   py-2.5
                   font-heading
@@ -226,9 +226,7 @@ export default function Services() {
               justify-center
               overflow-hidden
               bg-gradient-to-br
-              from-brand-accent
-              via-brand-orange
-              to-brand-orange
+              bg-[#fe7315]
               px-8
               py-14
               md:col-span-2
@@ -285,8 +283,8 @@ export default function Services() {
                   font-heading
                   text-[3rem]
                   font-extrabold
-                  leading-[0.88]
-                  tracking-[-0.06em]
+                  leading-[0.95]
+                  tracking-tight
                   text-white
                   sm:text-[3.5rem]
                   lg:text-[3rem]
@@ -313,7 +311,7 @@ export default function Services() {
                   font-body
                   mb-5
                   text-[11px]
-                  leading-[1.7]
+                  leading-relaxed
                   text-white/90
                 "
               >
@@ -327,7 +325,7 @@ export default function Services() {
                   font-body
                   mb-6
                   text-[11px]
-                  leading-[1.7]
+                  leading-relaxed
                   text-white/90
                 "
               >
@@ -372,7 +370,7 @@ export default function Services() {
 
 
           {/* ===================================================
-              CARD 2 — PROCESSING
+              CARD 2 — DEFENCE
           =================================================== */}
 
           <article
@@ -391,8 +389,8 @@ export default function Services() {
           >
 
             <img
-              src={processingImg}
-              alt="Steel processing"
+              src={defenceImg}
+              alt="Defence industry"
               className="
                 anm-service-image
                 absolute
@@ -446,7 +444,7 @@ export default function Services() {
                   sm:text-3xl
                 "
               >
-                Steel Processing
+                Defence
               </h3>
 
               <a
@@ -457,8 +455,8 @@ export default function Services() {
                   items-center
                   gap-2.5
                   border
-                  border-brand-orange
-                  bg-brand-orange/90
+                  border-[#d85f10]
+                  bg-[#d85f10]
                   px-5
                   py-2.5
                   font-heading
@@ -480,7 +478,7 @@ export default function Services() {
 
 
           {/* ===================================================
-              CARD 3 — LOGISTICS
+              CARD 3 — POWER
           =================================================== */}
 
           <article
@@ -499,8 +497,8 @@ export default function Services() {
           >
 
             <img
-              src={logisticsImg}
-              alt="Steel logistics"
+              src={powerImg}
+              alt="Power industry"
               className="
                 anm-service-image
                 absolute
@@ -554,7 +552,7 @@ export default function Services() {
                   sm:text-3xl
                 "
               >
-                Logistics
+                Power
               </h3>
 
               <a
@@ -565,8 +563,8 @@ export default function Services() {
                   items-center
                   gap-2.5
                   border
-                  border-brand-orange
-                  bg-brand-orange/90
+                  border-[#d85f10]
+                  bg-[#d85f10]
                   px-5
                   py-2.5
                   font-heading
@@ -588,7 +586,7 @@ export default function Services() {
 
 
           {/* ===================================================
-              CARD 4 — INDUSTRIAL SUPPLY
+              CARD 4 — RAILWAY
           =================================================== */}
 
           <article
@@ -607,8 +605,8 @@ export default function Services() {
           >
 
             <img
-              src={industrialSupplyImg}
-              alt="Industrial steel supply"
+              src={railwayImg}
+              alt="Railway industry"
               className="
                 anm-service-image
                 absolute
@@ -662,7 +660,7 @@ export default function Services() {
                   sm:text-3xl
                 "
               >
-                Industrial Supply
+                Railway
               </h3>
 
               <a
@@ -673,8 +671,8 @@ export default function Services() {
                   items-center
                   gap-2.5
                   border
-                  border-brand-orange
-                  bg-brand-orange/90
+                  border-[#d85f10]
+                  bg-[#d85f10]
                   px-5
                   py-2.5
                   font-heading

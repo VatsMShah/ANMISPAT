@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowRight } from 'lucide-react';
 
 import bgImage from '../assets/images/about-overview-bg.png';
 import leftImg from '../assets/images/second-sec-left.png';
@@ -37,14 +38,13 @@ export default function AboutOverview() {
             <div className="w-2.5 h-2.5 rotate-45 bg-[#3b52a4]" />
           </div>
 
-          <div className="button-borders">
             <a
               href="#about"
-              className="primary-button block"
+              className="bg-gradient-to-r from-[#ff6b3d] via-[#ff5c2b] to-[#ff8a5f] text-white font-bold text-sm px-7 py-3.5 rounded shadow-lg hover:shadow-orange-500/25 hover:-translate-y-0.5 transition-all flex items-center gap-2"
             >
-              About us
+              <span>About us</span>
+              <ArrowRight size={16} />
             </a>
-          </div>
 
           <div className="flex items-center">
             <div className="w-2.5 h-2.5 rotate-45 bg-[#3b52a4]" />
