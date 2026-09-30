@@ -7,6 +7,7 @@ import WhyChooseUs from './WhyChooseUs';
 import SelectedWork from './SelectedWork';
 import Services from './Services';
 import Certifications from './Certifications';
+import Awards from './Awards';
 
 export default function Home() {
   return (
@@ -69,6 +70,10 @@ export default function Home() {
       {/* Certifications */}
       <section className="transition-all duration-500">
         <Certifications />
+      </section>
+      {/*Awards*/}
+      <section className="transition-all duration-500">
+        <Awards/>
       </section>
     </main>
   );
