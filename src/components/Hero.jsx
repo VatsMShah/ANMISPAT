@@ -68,14 +68,11 @@ export default function Hero() {
               <ArrowRight size={16} />
             </a>
 
-            <a
-              href="#contact"
             <Link
               to="/contact"
               className="bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold text-sm px-7 py-3.5 rounded hover:bg-white/20 transition-all"
             >
               Contact Us Today
-            </a>
             </Link>
           </div>
         </div>
