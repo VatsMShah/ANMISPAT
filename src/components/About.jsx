@@ -1,10 +1,12 @@
 import React from 'react';
 import AboutOverviewSection from './AboutOverviewSection';
 import WorkProcess from './WorkProcess.jsx';
+//import ClientMarquee from './ClientMarquee.jsx';
 
 // Replace with your actual hero background & section image paths
 import aboutHeroBg from '../assets/images/about-hero.png'; 
 import coreValuesBg from '../assets/images/core-values-engineers.png';
+import ClientMarquee from './ClientMarquee.jsx';
 
 export default function About() {
   return (
@@ -175,6 +177,8 @@ export default function About() {
 
         </div>
       </section>
+
+      <ClientMarquee/>
 
     </main>
   );
