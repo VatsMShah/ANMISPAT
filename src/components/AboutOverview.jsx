@@ -19,6 +19,7 @@ export default function AboutOverview() {
       }
     `}</style>
     <section
+      id="company"
       className="relative w-full bg-cover bg-center pt-16 lg:pt-20 pb-0 overflow-hidden flex flex-col justify-between"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
@@ -34,13 +35,13 @@ export default function AboutOverview() {
 
         <div className="flex items-center justify-center gap-3 my-4">
           <div className="flex items-center">
-            <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#f25c2b]/40" />
+            <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#f36f35]/40" />
             <div className="w-2.5 h-2.5 rotate-45 bg-[#3b52a4]" />
           </div>
 
             <a
               href="#about"
-              className="bg-gradient-to-r from-[#ff6b3d] via-[#ff5c2b] to-[#ff8a5f] text-white font-bold text-sm px-7 py-3.5 rounded shadow-lg hover:shadow-orange-500/25 hover:-translate-y-0.5 transition-all flex items-center gap-2"
+              className="bg-gradient-to-r from-[#f36f35] via-[#f36f35] to-[#f36f35] text-white font-bold text-sm px-7 py-3.5 rounded shadow-lg hover:shadow-[#f36f35]/25 hover:-translate-y-0.5 transition-all flex items-center gap-2"
             >
               <span>About us</span>
               <ArrowRight size={16} />
@@ -48,7 +49,7 @@ export default function AboutOverview() {
 
           <div className="flex items-center">
             <div className="w-2.5 h-2.5 rotate-45 bg-[#3b52a4]" />
-            <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#f25c2b]/40" />
+            <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#f36f35]/40" />
           </div>
         </div>
       </div>
@@ -63,17 +64,17 @@ export default function AboutOverview() {
           style={{
             background:
               'radial-gradient(ellipse 500px 400px at 50% 100%,' +
-              'rgba(255, 92, 43, 0) 0%,' +
-              'rgba(255, 92, 43, 0) 30%,' +
-              'rgba(255, 146, 82, 0.12) 45%,' +
-              'rgba(255, 132, 74, 0.22) 55%,' +
-              'rgba(255, 116, 58, 0.50) 65%,' +
-              'rgba(255, 122, 62, 0.90) 75%,' +
-              '#ff8c3d 82%,' +
-              '#ff9a45 87%,' +
-              'rgba(255, 152, 92, 0.70) 92%,' +
-              'rgba(255, 206, 152, 0.25) 97%,' +
-              'rgba(255, 236, 212, 0) 100%)',
+              'rgba(243, 111, 53, 0) 0%,' +
+              'rgba(243, 111, 53, 0) 30%,' +
+              'rgba(243, 111, 53, 0.12) 45%,' +
+              'rgba(243, 111, 53, 0.22) 55%,' +
+              'rgba(243, 111, 53, 0.50) 65%,' +
+              'rgba(243, 111, 53, 0.90) 75%,' +
+              '#f36f35 82%,' +
+              '#f36f35 87%,' +
+              'rgba(243, 111, 53, 0.70) 92%,' +
+              'rgba(243, 111, 53, 0.25) 97%,' +
+              'rgba(243, 111, 53, 0) 100%)',
           }}
         />
 
@@ -102,10 +103,10 @@ export default function AboutOverview() {
               object-contain
               opacity-90
               blur-[1px]
-              drop-shadow-[0_0_8px_rgba(255,95,35,0.95)]
-              drop-shadow-[0_0_0px_rgba(255,110,45,1)]
-              drop-shadow-[0_0_24px_rgba(255,110,45,0.75)]
-              drop-shadow-[0_0_55px_rgba(255,135,65,0.45)]
+              drop-shadow-[0_0_8px_rgba(243,111,53,0.95)]
+              drop-shadow-[0_0_0px_rgba(243,111,53,1)]
+              drop-shadow-[0_0_24px_rgba(243,111,53,0.75)]
+              drop-shadow-[0_0_55px_rgba(243,111,53,0.45)]
               scale-[1.015]
             "
             aria-hidden="true"

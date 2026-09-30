@@ -79,7 +79,7 @@ export default function MisVis() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col justify-start gap-6 px-8 sm:px-14 lg:px-20 pt-10 bg-gradient-to-b from-[#FF7414] via-[#F56718] to-[#D94B18]">
+        <div className="flex flex-col justify-start gap-6 px-8 sm:px-14 lg:px-20 pt-10 bg-gradient-to-b from-[#f36f35] via-[#f36f35] to-[#f36f35]">
           <div className="anm-text-fade" style={{ animationDelay: '0.2s' }}>
             <p className="font-badge text-xs font-bold tracking-widest uppercase text-white/80 mb-1.5">
               Our Mission

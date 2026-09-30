@@ -13,7 +13,7 @@ const projects = [
 
 export default function SelectedWork() {
   return (
-    <section className="bg-brand-footer pt-10 md:pt-14 pb-16 md:pb-20 px-4 md:px-8">
+    <section id="our-range" className="bg-brand-footer pt-10 md:pt-14 pb-16 md:pb-20 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 md:mb-14">
@@ -35,7 +35,7 @@ export default function SelectedWork() {
           {projects.map((item) => (
             <div
               key={item.id}
-              className="bg-[#f77501] rounded-[25px] h-[320px] relative overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.025)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.07)]"
+              className="bg-[#f36f35] rounded-[25px] h-[320px] relative overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.025)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.07)]"
             >
               <video
                 src={productVideo}

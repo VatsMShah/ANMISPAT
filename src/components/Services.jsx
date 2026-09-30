@@ -47,7 +47,7 @@ export default function Services() {
               to top,
               rgba(0, 0, 0, 0.68) 0%,
               rgba(0, 0, 0, 0.12) 55%,
-              rgba(242, 92, 43, 0.06) 100%
+              rgba(243, 111, 53, 0.06) 100%
             );
         }
 
@@ -188,8 +188,8 @@ export default function Services() {
                   items-center
                   gap-2.5
                   border
-                  border-[#d85f10]
-                  bg-[#d85f10]
+                  border-[#f36f35]
+                  bg-[#f36f35]
                   px-5
                   py-2.5
                   font-heading
@@ -226,7 +226,7 @@ export default function Services() {
               justify-center
               overflow-hidden
               bg-gradient-to-br
-              bg-[#fe7315]
+              bg-[#f36f35]
               px-8
               py-14
               md:col-span-2
@@ -455,8 +455,8 @@ export default function Services() {
                   items-center
                   gap-2.5
                   border
-                  border-[#d85f10]
-                  bg-[#d85f10]
+                  border-[#f36f35]
+                  bg-[#f36f35]
                   px-5
                   py-2.5
                   font-heading
@@ -563,8 +563,8 @@ export default function Services() {
                   items-center
                   gap-2.5
                   border
-                  border-[#d85f10]
-                  bg-[#d85f10]
+                  border-[#f36f35]
+                  bg-[#f36f35]
                   px-5
                   py-2.5
                   font-heading
@@ -671,8 +671,8 @@ export default function Services() {
                   items-center
                   gap-2.5
                   border
-                  border-[#d85f10]
-                  bg-[#d85f10]
+                  border-[#f36f35]
+                  bg-[#f36f35]
                   px-5
                   py-2.5
                   font-heading

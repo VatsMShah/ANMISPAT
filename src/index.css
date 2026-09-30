@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-orange: #f25c2b;
-  --color-brand-accent: #ff5c2b;
+  --color-brand-orange: #f36f35;
+  --color-brand-accent: #f36f35;
   --color-brand-dark: #1f1f1f;
   --color-brand-body: #4c4c4c;
   --color-brand-light: #ffffff;
@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #ff6b3d 0%, #ff5c2b 50%, #ff8a5f 100%);
+  background: linear-gradient(135deg, #f36f35 0%, #f36f35 50%, #f36f35 100%);
   color: #ffffff;
   font-weight: 600;
   padding: 0.625rem 1.5rem;
@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(242, 92, 43, 0.25);
+  box-shadow: 0 10px 15px -3px rgba(243, 111, 53, 0.25);
 }
 
 /* Slant-Edge CTA Button (uiverse + brand colors) */
@@ -67,10 +67,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 0.05rem;
-  border: 1px solid #ff5c2b;
+  border: 1px solid #f36f35;
   padding: 0.7rem 1.9rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 531.28 200'%3E%3Cdefs%3E%3Cstyle%3E .shape %7B fill: %23ff5c2b %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='shape' points='415.81 200 0 200 115.47 0 531.28 0 415.81 200' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
-  background-color: #ff5c2b;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 531.28 200'%3E%3Cdefs%3E%3Cstyle%3E .shape %7B fill: %23f36f35 %7D %3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='Layer_1-2' data-name='Layer 1'%3E%3Cpolygon class='shape' points='415.81 200 0 200 115.47 0 531.28 0 415.81 200' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
+  background-color: #f36f35;
   background-size: 200%;
   background-position: 200%;
   background-repeat: no-repeat;
@@ -81,16 +81,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .primary-button:hover {
-  border: 1px solid #e14d1f;
+  border: 1px solid #f36f35;
   color: white;
-  background-color: #e14d1f;
+  background-color: #f36f35;
   background-position: 40%;
 }
 
 .primary-button:before {
   content: "";
   position: absolute;
-  background-color: #ff5c2b;
+  background-color: #f36f35;
   width: 0.2rem;
   height: 0.2rem;
   top: -1px;
@@ -109,7 +109,7 @@ h1, h2, h3, h4, h5, h6 {
 .primary-button:after {
   content: "";
   position: absolute;
-  background-color: #ff5c2b;
+  background-color: #f36f35;
   width: 0.3rem;
   height: 0.3rem;
   bottom: -1px;
@@ -130,7 +130,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 50%;
   left: -0.3em;
   top: -0.3em;
-  border: 1px solid #ff5c2b;
+  border: 1px solid #f36f35;
   border-bottom: 0px;
 }
 
@@ -141,7 +141,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 50%;
   left: -0.3em;
   bottom: -0.3em;
-  border: 1px solid #ff5c2b;
+  border: 1px solid #f36f35;
   border-top: 0px;
   z-index: 0;
 }
@@ -153,10 +153,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 48px;
   border: none;
   border-radius: 50px;
-  background: linear-gradient(to right, #1f1f1f 0%, #ff5c2b 25%, #ff5c2b 75%, #1f1f1f 100%);
+  background: linear-gradient(to right, #1f1f1f 0%, #f36f35 25%, #f36f35 75%, #1f1f1f 100%);
   background-size: 250%;
   background-position: left;
-  color: #ff5c2b;
+  color: #f36f35;
   position: relative;
   display: flex;
   align-items: center;
@@ -169,7 +169,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  box-shadow: 0 4px 16px rgba(255, 92, 43, 0.3);
+  box-shadow: 0 4px 16px rgba(243, 111, 53, 0.3);
 }
 
 .hero-cta-btn::before {
@@ -186,7 +186,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-cta-btn:hover {
   background-position: right;
-  box-shadow: 0 6px 20px rgba(255, 92, 43, 0.5);
+  box-shadow: 0 6px 20px rgba(243, 111, 53, 0.5);
 }
 
 .hero-cta-btn:hover::before {
@@ -226,7 +226,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Crisp 2px Outer Border Circle for Section 2 */
 .circle-outer-ring {
-  border: 2px solid #e2a179;
+  border: 2px solid #f36f35;
   border-radius: 50%;
   box-sizing: border-box;
 }
@@ -236,11 +236,11 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
   background: conic-gradient(
     from 0deg,
-    #e4642b 0%,
-    #ea7a38 25%,
-    #f0925c 50%,
-    #f6c6ac 75%,
-    #e4642b 100%
+    #f36f35 0%,
+    #f36f35 25%,
+    #f36f35 50%,
+    #f36f35 75%,
+    #f36f35 100%
   );
   filter: blur(8px);
   -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 52%, #000 62%, #000 76%, transparent 88%);
@@ -511,9 +511,9 @@ h1, h2, h3, h4, h5, h6 {
   background:
     linear-gradient(
       180deg,
-      #fff7f0 0%,
-      #ffd7bf 42%,
-      #fd5900 100%
+      #f36f35 0%,
+      #f36f35 42%,
+      #f36f35 100%
     );
 }
 
@@ -683,7 +683,7 @@ h1, h2, h3, h4, h5, h6 {
 
   border-radius: 50%;
 
-  background: #ffe9df;
+  background: #f36f35;
 
   border: 3px solid #fff;
 
@@ -776,7 +776,7 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================= */
 
 .why-card-capability {
-  background: #fd5900;
+  background: #f36f35;
 }
 
 .capability-content {

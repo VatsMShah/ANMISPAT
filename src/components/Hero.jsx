@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import heroVideo from '../assets/images/hero-video.mp4';
 import tataAstrumLogo from '../assets/images/tata-astrum.png';
@@ -11,7 +12,7 @@ import tataWironLogo from '../assets/images/tata-wiron.png';
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-[calc(100dvh-105px)] min-h-[620px] overflow-hidden bg-brand-dark flex flex-col justify-between">
+    <section id="home" className="relative w-full h-[calc(100dvh-105px)] min-h-[620px] overflow-hidden bg-brand-dark flex flex-col justify-between">
       {/* SVG clipPath for rounded slanted client strip */}
       <svg width="0" height="0" aria-hidden="true" className="absolute">
         <defs>
@@ -41,13 +42,13 @@ export default function Hero() {
           {/* Badge */}
           <p className="text-xs font-bold tracking-widest uppercase font-badge mb-4">
             <span className="text-white/80">A KEY ARM OF </span>
-            <span className="text-[#ff5c2b]">ABHAY ISPAT GROUP</span>
+            <span className="text-[#f36f35]">ABHAY ISPAT GROUP</span>
           </p>
 
           {/* Main Heading */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.12] tracking-tight mb-5">
             Delivering The <br />
-            <span className="text-[#ff5c2b]">Backbone Of</span> <br />
+            <span className="text-[#f36f35]">Backbone Of</span> <br />
             Modern Infrastructure
           </h1>
 
@@ -61,7 +62,7 @@ export default function Hero() {
           <div className="flex flex-wrap items-center gap-4">
             <a
               href="#quote"
-              className="bg-gradient-to-r from-[#ff6b3d] via-[#ff5c2b] to-[#ff8a5f] text-white font-bold text-sm px-7 py-3.5 rounded shadow-lg hover:shadow-orange-500/25 hover:-translate-y-0.5 transition-all flex items-center gap-2"
+              className="bg-gradient-to-r from-[#f36f35] via-[#f36f35] to-[#f36f35] text-white font-bold text-sm px-7 py-3.5 rounded shadow-lg hover:shadow-[#f36f35]/25 hover:-translate-y-0.5 transition-all flex items-center gap-2"
             >
               <span>Get a Free Quote</span>
               <ArrowRight size={16} />
@@ -69,10 +70,13 @@ export default function Hero() {
 
             <a
               href="#contact"
+            <Link
+              to="/contact"
               className="bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold text-sm px-7 py-3.5 rounded hover:bg-white/20 transition-all"
             >
               Contact Us Today
             </a>
+            </Link>
           </div>
         </div>
       </div>
