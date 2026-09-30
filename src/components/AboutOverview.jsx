@@ -40,7 +40,7 @@ export default function AboutOverview() {
           </div>
 
             <a
-              href="#about"
+              href="/about"
               className="bg-gradient-to-r from-[#f36f35] via-[#f36f35] to-[#f36f35] text-white font-bold text-sm px-7 py-3.5 rounded shadow-lg hover:shadow-[#f36f35]/25 hover:-translate-y-0.5 transition-all flex items-center gap-2"
             >
               <span>About us</span>
