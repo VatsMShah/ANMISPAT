@@ -1,5 +1,6 @@
 import React from 'react';
 import AboutOverviewSection from './AboutOverviewSection';
+import WorkProcess from './WorkProcess.jsx';
 
 // Replace with your actual hero background image path
 import aboutHeroBg from '../assets/images/about-hero.png'; 
@@ -83,8 +84,7 @@ export default function About() {
 
       </section>
       <AboutOverviewSection/>
-      {/* Place rest of About page content here */}
-
+      <WorkProcess/>
     </main>
   );
 }
