@@ -38,11 +38,11 @@ export default function Awards() {
   return (
     <section id="awards" className="relative w-full overflow-hidden font-sans border-t border-b border-gray-200">
       
-      {/* UPPER HALF: Wall/Backdrop with soft orange center glow */}
-      <div className="relative bg-[#f8f9fa] pt-20 pb-16 px-6">
+      {/* UPPER HALF: Backdrop Wall */}
+      <div className="relative bg-[#f8f9fa] pt-20 pb-0 px-6">
         
         {/* Soft Radial Backlight Glow behind trophies */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[850px] h-[350px] bg-gradient-to-t from-[#fde8dc]/80 via-[#fde8dc]/30 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-gradient-to-t from-[#fde8dc]/80 via-[#fde8dc]/30 to-transparent rounded-full blur-3xl pointer-events-none" />
 
         {/* Section Header */}
         <div className="max-w-[1280px] mx-auto text-center relative z-10 mb-12">
@@ -62,38 +62,44 @@ export default function Awards() {
           </p>
         </div>
 
-        {/* Trophies Sitting directly on the Platform Edge */}
-        <div className="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-20 -mb-16">
+        {/* Trophy Row Alignment */}
+        <div className="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-20">
           {awardsData.map((award) => (
             <div 
               key={award.id} 
-              className="flex flex-col items-center group cursor-default transition-transform duration-300 hover:-translate-y-2"
+              className="flex flex-col items-center group cursor-default"
             >
-              <div className="relative w-full h-48 md:h-56 flex flex-col items-center justify-end">
-                {/* Trophy Image */}
+              <div className="relative w-full h-52 md:h-60 flex flex-col items-center justify-end">
+                
+                {/* Trophy Image (Bottom edge aligned directly to the seam) */}
                 <img 
                   src={award.image} 
                   alt={award.alt}
-                  className="max-h-40 md:max-h-48 object-contain relative z-10 transition-transform duration-500 group-hover:scale-105"
+                  className="max-h-44 md:max-h-52 object-contain relative z-20 transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:scale-102"
                 />
 
-                {/* Ground Shadow on the seam */}
-                <div className="w-28 h-3 bg-black/15 rounded-[100%] blur-[3px] mt-[-6px] relative z-0 transition-all duration-300 group-hover:w-32 group-hover:bg-[#f36f35]/25" />
+                {/* --- SHADOW SYSTEM FOR PLATFORM REALISM --- */}
+                
+                {/* 1. Tight Ground Contact Shadow (Dark core directly under the base) */}
+                <div className="w-24 h-1.5 bg-black/50 rounded-[100%] blur-[1.5px] relative z-20 -mt-1 transition-all duration-500 group-hover:w-20 group-hover:bg-black/30 group-hover:scale-95" />
+
+                {/* 2. Soft Floor Ambient Drop Shadow (Spreads out onto the white platform below) */}
+                <div className="w-36 h-4 bg-black/20 rounded-[100%] blur-md relative z-10 -mt-3.5 transition-all duration-500 group-hover:w-44 group-hover:bg-[#f36f35]/20 group-hover:blur-lg" />
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* PLATFORM HORIZON LINE: Visible crisp border edge */}
-      <div className="w-full border-t border-gray-200/90 shadow-[0_4px_12px_rgba(0,0,0,0.03)] relative z-20" />
+      {/* PLATFORM HORIZON SEAM: Sharp border line acting as the shelf edge */}
+      <div className="w-full border-t border-gray-300/80 shadow-[0_6px_16px_rgba(0,0,0,0.04)] relative z-30" />
 
-      {/* LOWER HALF: Solid White Platform Base for Titles & Text */}
-      <div className="bg-white pt-10 pb-20 px-6 relative z-10">
+      {/* LOWER HALF: White Platform Base for Titles & Copy */}
+      <div className="bg-white pt-8 pb-20 px-6 relative z-10">
         <div className="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           {awardsData.map((award) => (
             <div key={award.id} className="flex flex-col items-center px-4">
-              <h3 className="text-lg font-extrabold text-[#111827] mb-2 tracking-tight">
+              <h3 className="text-lg font-extrabold text-[#111827] mb-2 tracking-tight group-hover:text-[#f36f35] transition-colors">
                 {award.title}
               </h3>
               <p className="text-xs text-[#666666] leading-relaxed max-w-[220px]">
