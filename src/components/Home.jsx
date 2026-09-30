@@ -67,13 +67,14 @@ export default function Home() {
         <Services />
       </section>
 
-      {/* Certifications */}
-      <section className="transition-all duration-500">
-        <Certifications />
-      </section>
       {/*Awards*/}
       <section className="transition-all duration-500">
         <Awards/>
+      </section>
+
+      {/* Certifications */}
+      <section className="transition-all duration-500">
+        <Certifications />
       </section>
     </main>
   );
