@@ -1,226 +1,910 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, ArrowRight, CheckCircle } from 'lucide-react';
+import {
+  MapPin,
+  Phone,
+  Mail,
+  ArrowRight,
+  CheckCircle,
+} from 'lucide-react';
 
 export default function Contact() {
-  const [formState, setFormState] = useState('idle'); // idle, submitting, success
+  const [formState, setFormState] = useState('idle');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormState('submitting');
+
     setTimeout(() => {
       setFormState('success');
     }, 1200);
   };
 
   return (
-    <section id="contact" className="relative bg-white pt-20 pb-28 border-t border-[#d8dbe0] overflow-hidden">
-      {/* Inline styles for custom entrance animations */}
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-white pt-20 pb-24 md:pt-24 md:pb-28"
+    >
+      {/* =====================================================
+          ANIMATIONS
+      ===================================================== */}
+
       <style>{`
         @keyframes contactFadeUp {
           from {
             opacity: 0;
-            transform: translateY(24px);
+            transform: translateY(28px);
           }
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
-        .animate-fade-up {
+
+        @keyframes contactLineGrow {
+          from {
+            opacity: 0;
+            transform: scaleX(0);
+            transform-origin: left;
+          }
+          to {
+            opacity: 1;
+            transform: scaleX(1);
+            transform-origin: left;
+          }
+        }
+
+        .contact-fade-up {
           animation: contactFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .animate-delay-100 { animation-delay: 100ms; }
-        .animate-delay-200 { animation-delay: 200ms; }
-        .animate-delay-300 { animation-delay: 300ms; }
+
+        .contact-delay-100 {
+          animation-delay: 100ms;
+        }
+
+        .contact-delay-200 {
+          animation-delay: 200ms;
+        }
+
+        .contact-line {
+          animation: contactLineGrow 0.7s ease forwards;
+        }
+        .contact-button {
+          position: relative;
+          overflow: hidden;
+          height: 3rem;
+          padding: 0 0.5rem 0 1.5rem;
+          border: none;
+          border-radius: 1.5rem;
+          background: #ff9a6b;
+          color: #fff;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 1rem;
+          box-shadow: 0 10px 25px rgba(243, 111, 53, 0.18);
+          transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+        }
+
+        .contact-button::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          transform: scaleX(0);
+          transform-origin: left;
+          border-radius: inherit;
+          background: #f36f35;
+          transition: transform 0.475s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .contact-button:hover::before {
+          transform: scaleX(1);
+        }
+
+        .contact-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 16px 35px rgba(243, 111, 53, 0.28);
+        }
+
+        .contact-button:active {
+          transform: translateY(0);
+        }
+
+        .contact-button:disabled {
+          cursor: not-allowed;
+          opacity: 0.6;
+          transform: none;
+        }
+
+        .contact-button-content {
+          position: relative;
+          z-index: 1;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.85rem;
+        }
+
+        .contact-button-arrow {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 2.25rem;
+          height: 2.25rem;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.18);
+          color: #fff;
+          transition:
+            background 0.3s ease,
+            transform 0.3s ease;
+        }
+
+        .contact-button:hover .contact-button-arrow {
+          background: rgba(255, 255, 255, 0.26);
+          transform: translateX(3px);
+        }          
       `}</style>
 
-      {/* Background Glow Elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#f4f5f7] rounded-full blur-[100px] opacity-60 -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#f36f35] rounded-full blur-[120px] opacity-[0.07] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+      {/* =====================================================
+          BACKGROUND ATMOSPHERE
+      ===================================================== */}
 
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        
-        {/* Top Header */}
-        <div className="mb-14 md:mb-20 opacity-0 animate-fade-up">
-          <span className="block w-[42px] h-[3px] bg-[#f36f35] rounded-[20px] mb-5" />
-          <p className="font-badge text-xs font-bold tracking-widest uppercase text-[#f36f35] mb-3">
-            Get in touch
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1f1f1f] tracking-tight max-w-3xl leading-[1.15]">
-            Let's build something <br className="hidden md:block"/>
-            <span className="text-[#f36f35]">great together.</span>
-          </h2>
-        </div>
+      {/* Soft top-right gray glow */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-40
+          -top-40
+          h-[560px]
+          w-[560px]
+          rounded-full
+          bg-[#f4f5f7]
+          opacity-80
+          blur-[110px]
+        "
+      />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          
-          {/* Left Column: Contact Info */}
-          <div className="lg:col-span-5 flex flex-col justify-between opacity-0 animate-fade-up animate-delay-100">
-            <div>
-              <p className="text-[17px] leading-relaxed text-[#4c4c4c] mb-10 max-w-md">
-                Whether you have a question about our steel products, need a custom industrial solution, or want to explore a partnership, our team is ready to assist you.
+      {/* Soft center-right glow behind form */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          right-[8%]
+          top-[28%]
+          h-[380px]
+          w-[380px]
+          rounded-full
+          bg-[#f4f5f7]
+          opacity-60
+          blur-[120px]
+        "
+      />
+
+      {/* Very subtle orange glow */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-48
+          left-[28%]
+          h-[420px]
+          w-[420px]
+          rounded-full
+          bg-[#f36f35]
+          opacity-[0.045]
+          blur-[130px]
+        "
+      />
+
+      {/* =====================================================
+          FADED GEOMETRIC BACKGROUND
+          Similar to the reference design
+      ===================================================== */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          bottom-[-90px]
+          left-[-80px]
+          h-[250px]
+          w-[700px]
+          rotate-[-18deg]
+          bg-[#f4f5f7]/70
+          blur-[1px]
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          bottom-[-145px]
+          left-[40px]
+          h-[210px]
+          w-[620px]
+          rotate-[-18deg]
+          bg-[#f36f35]/[0.035]
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          bottom-[-205px]
+          left-[190px]
+          h-[220px]
+          w-[580px]
+          rotate-[-18deg]
+          bg-[#f4f5f7]/80
+        "
+      />
+
+      {/* Small top-left accent shape */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-[-70px]
+          top-[18%]
+          h-[180px]
+          w-[180px]
+          rounded-full
+          border
+          border-[#f4f5f7]
+          opacity-70
+        "
+      />
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-10 lg:px-12">
+
+        {/* =====================================================
+            MAIN GRID
+        ===================================================== */}
+
+        <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-12 lg:gap-16 xl:gap-24">
+
+          {/* =====================================================
+              LEFT COLUMN
+          ===================================================== */}
+
+          <div className="opacity-0 contact-fade-up lg:col-span-5">
+
+            {/* Section Label */}
+            <div className="mb-6 flex items-center gap-4">
+              <span
+                className="
+                  block
+                  h-[2px]
+                  w-[42px]
+                  rounded-full
+                  bg-[#f36f35]
+                "
+              />
+
+              <p className="font-badge text-[11px] font-bold uppercase tracking-[0.18em] text-[#f36f35]">
+                Get in touch
               </p>
+            </div>
 
-              <div className="space-y-6">
-                {/* Info Item 1 */}
-                <div className="flex items-start gap-5 p-4 -ml-4 rounded-2xl transition-all duration-300 hover:bg-[#f4f5f7]/60 group cursor-default">
-                  <div className="w-12 h-12 rounded-2xl bg-[#f4f5f7] border border-gray-100 flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 group-hover:bg-[#f36f35] group-hover:border-[#f36f35] group-hover:shadow-md group-hover:scale-105">
-                    <MapPin size={20} className="text-[#f36f35] transition-colors duration-300 group-hover:text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#1f1f1f] mb-1 font-badge">Headquarters</h4>
-                    <p className="text-[#4c4c4c] text-[15px] leading-relaxed">
-                      Corporate Office, Ispat Tower<br/>
-                      Main Road, India
-                    </p>
-                  </div>
+            {/* Heading */}
+            <h2
+              className="
+                max-w-[650px]
+                text-[44px]
+                font-extrabold
+                leading-[1.02]
+                tracking-[-0.045em]
+                text-[#1f1f1f]
+                sm:text-[52px]
+                md:text-[58px]
+                lg:text-[60px]
+                xl:text-[68px]
+              "
+            >
+              Let's build something
+              <br />
+              <span className="text-[#f36f35]">
+                great together.
+              </span>
+            </h2>
+
+            {/* Description */}
+            <p
+              className="
+                mt-7
+                max-w-[540px]
+                text-[15px]
+                leading-7
+                text-[#4c4c4c]
+                sm:text-[16px]
+                md:mt-8
+                md:text-[17px]
+              "
+            >
+              Whether you have a question about our steel products,
+              need a custom industrial solution, or want to explore a
+              partnership, our team is ready to assist you.
+            </p>
+
+            {/* =====================================================
+                CONTACT DETAILS
+            ===================================================== */}
+
+            <div className="mt-10 md:mt-12">
+
+              {/* Headquarters */}
+              <div className="group relative flex items-start gap-5">
+
+                <div
+                  className="
+                    relative z-10
+                    flex h-14 w-14 shrink-0
+                    items-center justify-center
+                    rounded-[18px]
+                    border border-[#f36f35]/10
+                    bg-[#f36f35]/[0.07]
+                    shadow-sm
+                    transition-all duration-300
+                    group-hover:border-[#f36f35]/20
+                    group-hover:bg-[#f36f35]/10
+                    group-hover:shadow-md
+                  "
+                >
+                  <MapPin
+                    size={21}
+                    strokeWidth={1.8}
+                    className="
+                      text-[#f36f35]
+                      transition-transform
+                      duration-300
+                      group-hover:scale-110
+                    "
+                  />
                 </div>
 
-                {/* Info Item 2 */}
-                <div className="flex items-start gap-5 p-4 -ml-4 rounded-2xl transition-all duration-300 hover:bg-[#f4f5f7]/60 group cursor-default">
-                  <div className="w-12 h-12 rounded-2xl bg-[#f4f5f7] border border-gray-100 flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 group-hover:bg-[#f36f35] group-hover:border-[#f36f35] group-hover:shadow-md group-hover:scale-105">
-                    <Phone size={20} className="text-[#f36f35] transition-colors duration-300 group-hover:text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#1f1f1f] mb-1 font-badge">Phone</h4>
-                    <p className="text-[#4c4c4c] text-[15px] leading-relaxed">
-                      (123) 456-7890<br/>
-                      <span className="text-xs font-medium text-gray-500">Mon-Fri, 9am - 6pm</span>
-                    </p>
-                  </div>
+                <div className="pt-0.5">
+                  <h4 className="font-badge text-[11px] font-bold uppercase tracking-[0.12em] text-[#1f1f1f]">
+                    Headquarters
+                  </h4>
+
+                  <p className="mt-1.5 text-[15px] leading-6 text-[#4c4c4c]">
+                    Corporate Office, Ispat Tower
+                    <br />
+                    Main Road, India
+                  </p>
                 </div>
 
-                {/* Info Item 3 */}
-                <div className="flex items-start gap-5 p-4 -ml-4 rounded-2xl transition-all duration-300 hover:bg-[#f4f5f7]/60 group cursor-default">
-                  <div className="w-12 h-12 rounded-2xl bg-[#f4f5f7] border border-gray-100 flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 group-hover:bg-[#f36f35] group-hover:border-[#f36f35] group-hover:shadow-md group-hover:scale-105">
-                    <Mail size={20} className="text-[#f36f35] transition-colors duration-300 group-hover:text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#1f1f1f] mb-1 font-badge">Email</h4>
-                    <p className="text-[#4c4c4c] text-[15px] leading-relaxed">
-                      support@fixflow.com<br/>
-                      <span className="text-xs font-medium text-gray-500">24/7 Support Available</span>
-                    </p>
-                  </div>
+                {/* Vertical connector */}
+                <span
+                  className="
+                    absolute
+                    left-[27px]
+                    top-[58px]
+                    h-[38px]
+                    w-px
+                    bg-gradient-to-b
+                    from-[#f36f35]/20
+                    to-transparent
+                  "
+                />
+              </div>
+
+              {/* Phone */}
+              <div className="group relative mt-8 flex items-start gap-5">
+
+                <div
+                  className="
+                    relative z-10
+                    flex h-14 w-14 shrink-0
+                    items-center justify-center
+                    rounded-[18px]
+                    border border-[#f36f35]/10
+                    bg-[#f36f35]/[0.07]
+                    shadow-sm
+                    transition-all duration-300
+                    group-hover:border-[#f36f35]/20
+                    group-hover:bg-[#f36f35]/10
+                    group-hover:shadow-md
+                  "
+                >
+                  <Phone
+                    size={20}
+                    strokeWidth={1.8}
+                    className="
+                      text-[#f36f35]
+                      transition-transform
+                      duration-300
+                      group-hover:scale-110
+                    "
+                  />
                 </div>
+
+                <div className="pt-0.5">
+                  <h4 className="font-badge text-[11px] font-bold uppercase tracking-[0.12em] text-[#1f1f1f]">
+                    Phone
+                  </h4>
+
+                  <p className="mt-1.5 text-[15px] leading-6 text-[#4c4c4c]">
+                    (123) 456-7890
+                    <br />
+                    <span className="text-[12px] font-medium text-[#6b7280]">
+                      Mon-Fri, 9am - 6pm
+                    </span>
+                  </p>
+                </div>
+
+                {/* Vertical connector */}
+                <span
+                  className="
+                    absolute
+                    left-[27px]
+                    top-[58px]
+                    h-[38px]
+                    w-px
+                    bg-gradient-to-b
+                    from-[#f36f35]/20
+                    to-transparent
+                  "
+                />
+              </div>
+
+              {/* Email */}
+              <div className="group mt-8 flex items-start gap-5">
+
+                <div
+                  className="
+                    flex h-14 w-14 shrink-0
+                    items-center justify-center
+                    rounded-[18px]
+                    border border-[#f36f35]/10
+                    bg-[#f36f35]/[0.07]
+                    shadow-sm
+                    transition-all duration-300
+                    group-hover:border-[#f36f35]/20
+                    group-hover:bg-[#f36f35]/10
+                    group-hover:shadow-md
+                  "
+                >
+                  <Mail
+                    size={20}
+                    strokeWidth={1.8}
+                    className="
+                      text-[#f36f35]
+                      transition-transform
+                      duration-300
+                      group-hover:scale-110
+                    "
+                  />
+                </div>
+
+                <div className="pt-0.5">
+                  <h4 className="font-badge text-[11px] font-bold uppercase tracking-[0.12em] text-[#1f1f1f]">
+                    Email
+                  </h4>
+
+                  <p className="mt-1.5 text-[15px] leading-6 text-[#4c4c4c]">
+                    support@fixflow.com
+                    <br />
+                    <span className="text-[12px] font-medium text-[#6b7280]">
+                      24/7 Support Available
+                    </span>
+                  </p>
+                </div>
+
               </div>
             </div>
           </div>
 
-          {/* Right Column: Form Container */}
-          <div className="lg:col-span-7 opacity-0 animate-fade-up animate-delay-200">
-            <div className="bg-[#f4f5f7] rounded-[32px] p-8 md:p-12 relative overflow-hidden group border border-gray-200/50 shadow-xl shadow-black/[0.02]">
-              
-              {/* Soft decorative background spotlight */}
-              <div className="absolute -top-24 -right-24 w-60 h-60 bg-white/70 rounded-full blur-2xl pointer-events-none transition-transform duration-1000 group-hover:scale-125" />
-              <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#f36f35]/5 rounded-full blur-xl pointer-events-none" />
 
-              <h3 className="text-2xl font-bold text-[#1f1f1f] mb-8 relative z-10 tracking-tight">
-                Send us a message
-              </h3>
+          {/* =====================================================
+              RIGHT COLUMN / FORM
+          ===================================================== */}
 
-              {formState === 'success' ? (
-                <div className="flex flex-col items-center justify-center py-16 text-center transition-all duration-500 relative z-10 animate-fade-up">
-                  <div className="w-20 h-20 bg-[#f36f35]/10 border border-[#f36f35]/20 rounded-full flex items-center justify-center mb-5 shadow-inner">
-                    <CheckCircle className="text-[#f36f35] w-10 h-10" />
+          <div className="opacity-0 contact-fade-up contact-delay-200 lg:col-span-7">
+
+            <div
+              className="
+                group
+                relative
+                overflow-hidden
+                rounded-[30px]
+                border
+                border-[#d8dbe0]
+                bg-gradient-to-br
+                from-[#f4f5f7]
+                via-[#f7f8f9]
+                to-[#eef0f2]
+                p-7
+                shadow-[0_24px_70px_rgba(31,31,31,0.055)]
+                transition-all
+                duration-500
+                hover:shadow-[0_28px_80px_rgba(31,31,31,0.075)]
+
+                sm:p-9
+                md:p-11
+                lg:p-12
+              "
+            >
+
+              {/* Card glow - top right */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  -right-20
+                  -top-24
+                  h-[280px]
+                  w-[280px]
+                  rounded-full
+                  bg-white
+                  opacity-90
+                  blur-3xl
+                  transition-transform
+                  duration-1000
+                  group-hover:scale-110
+                "
+              />
+
+              {/* Card orange glow - bottom right */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  -bottom-24
+                  -right-16
+                  h-[220px]
+                  w-[220px]
+                  rounded-full
+                  bg-[#f36f35]
+                  opacity-[0.055]
+                  blur-3xl
+                "
+              />
+
+              {/* Decorative orange line */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  right-0
+                  top-0
+                  h-[2px]
+                  w-28
+                  bg-gradient-to-l
+                  from-[#f36f35]/50
+                  to-transparent
+                "
+              />
+
+              <div className="relative z-10">
+
+                <h3
+                  className="
+                    text-[24px]
+                    font-bold
+                    tracking-[-0.025em]
+                    text-[#1f1f1f]
+                    md:text-[27px]
+                  "
+                >
+                  Send us a message
+                </h3>
+
+                {/* =================================================
+                    SUCCESS STATE
+                ================================================= */}
+
+                {formState === 'success' ? (
+                  <div className="flex flex-col items-center justify-center py-20 text-center">
+
+                    <div
+                      className="
+                        flex h-20 w-20
+                        items-center justify-center
+                        rounded-full
+                        border border-[#f36f35]/20
+                        bg-[#f36f35]/10
+                        shadow-inner
+                      "
+                    >
+                      <CheckCircle
+                        className="h-10 w-10 text-[#f36f35]"
+                        strokeWidth={1.8}
+                      />
+                    </div>
+
+                    <h4 className="mt-6 text-2xl font-bold text-[#1f1f1f]">
+                      Message Received
+                    </h4>
+
+                    <p className="mt-2 max-w-sm text-[15px] leading-6 text-[#4c4c4c]">
+                      We've received your request and will get back to you shortly.
+                    </p>
+
+                    <button
+                      onClick={() => setFormState('idle')}
+                      className="
+                        mt-7
+                        flex
+                        items-center
+                        gap-2
+                        text-sm
+                        font-bold
+                        text-[#f36f35]
+                        transition-all
+                        duration-300
+                        hover:gap-3
+                        hover:underline
+                      "
+                    >
+                      <span>Send another message</span>
+                      <ArrowRight size={15} />
+                    </button>
+
                   </div>
-                  <h4 className="text-2xl font-bold text-[#1f1f1f] mb-2">Message Received</h4>
-                  <p className="text-[#4c4c4c] max-w-sm">We've received your request and will get back to you shortly.</p>
-                  <button 
-                    onClick={() => setFormState('idle')}
-                    className="mt-8 text-[#f36f35] font-bold text-sm hover:underline focus:outline-none transition-all flex items-center gap-2"
+                ) : (
+
+                  /* =================================================
+                      FORM
+                  ================================================= */
+
+                  <form
+                    onSubmit={handleSubmit}
+                    className="mt-8 space-y-6"
                   >
-                    <span>Send another message</span>
-                    <ArrowRight size={14} />
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Name */}
-                    <div className="space-y-2 group/input">
-                      <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-[#1f1f1f] transition-colors group-focus-within/input:text-[#f36f35] font-badge">
-                        Full Name
-                      </label>
-                      <input 
-                        type="text" 
-                        id="name"
-                        required
-                        className="w-full bg-white border border-transparent focus:border-[#f36f35] rounded-xl px-5 py-4 text-[15px] text-[#1f1f1f] focus:outline-none transition-all duration-300 shadow-sm placeholder:text-gray-400 hover:shadow-md focus:shadow-lg focus:shadow-[#f36f35]/5"
-                        placeholder="John Doe"
-                      />
-                    </div>
-                    
-                    {/* Email */}
-                    <div className="space-y-2 group/input">
-                      <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#1f1f1f] transition-colors group-focus-within/input:text-[#f36f35] font-badge">
-                        Email Address
-                      </label>
-                      <input 
-                        type="email" 
-                        id="email"
-                        required
-                        className="w-full bg-white border border-transparent focus:border-[#f36f35] rounded-xl px-5 py-4 text-[15px] text-[#1f1f1f] focus:outline-none transition-all duration-300 shadow-sm placeholder:text-gray-400 hover:shadow-md focus:shadow-lg focus:shadow-[#f36f35]/5"
-                        placeholder="john@company.com"
-                      />
-                    </div>
-                  </div>
 
-                  {/* Subject */}
-                  <div className="space-y-2 group/input">
-                    <label htmlFor="subject" className="text-xs font-bold uppercase tracking-wider text-[#1f1f1f] transition-colors group-focus-within/input:text-[#f36f35] font-badge">
-                      Inquiry Type
-                    </label>
-                    <div className="relative">
-                      <select 
-                        id="subject"
-                        required
-                        defaultValue=""
-                        className="w-full bg-white border border-transparent focus:border-[#f36f35] rounded-xl px-5 py-4 text-[15px] text-[#1f1f1f] focus:outline-none transition-all duration-300 shadow-sm appearance-none cursor-pointer hover:shadow-md focus:shadow-lg focus:shadow-[#f36f35]/5 pr-12"
+                    {/* Name + Email */}
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="name"
+                          className="
+                            font-badge
+                            text-[10px]
+                            font-bold
+                            uppercase
+                            tracking-[0.12em]
+                            text-[#1f1f1f]
+                          "
+                        >
+                          Full Name
+                        </label>
+
+                        <input
+                          type="text"
+                          id="name"
+                          required
+                          placeholder="John Doe"
+                          className="
+                            w-full
+                            rounded-xl
+                            border
+                            border-transparent
+                            bg-white
+                            px-5
+                            py-4
+                            text-[15px]
+                            text-[#1f1f1f]
+                            shadow-[0_2px_6px_rgba(31,31,31,0.04)]
+                            outline-none
+                            transition-all
+                            duration-300
+                            placeholder:text-[#9aa3b5]
+                            hover:shadow-[0_4px_12px_rgba(31,31,31,0.06)]
+                            focus:border-[#f36f35]
+                            focus:shadow-[0_6px_20px_rgba(243,111,53,0.08)]
+                          "
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="email"
+                          className="
+                            font-badge
+                            text-[10px]
+                            font-bold
+                            uppercase
+                            tracking-[0.12em]
+                            text-[#1f1f1f]
+                          "
+                        >
+                          Email Address
+                        </label>
+
+                        <input
+                          type="email"
+                          id="email"
+                          required
+                          placeholder="john@company.com"
+                          className="
+                            w-full
+                            rounded-xl
+                            border
+                            border-transparent
+                            bg-white
+                            px-5
+                            py-4
+                            text-[15px]
+                            text-[#1f1f1f]
+                            shadow-[0_2px_6px_rgba(31,31,31,0.04)]
+                            outline-none
+                            transition-all
+                            duration-300
+                            placeholder:text-[#9aa3b5]
+                            hover:shadow-[0_4px_12px_rgba(31,31,31,0.06)]
+                            focus:border-[#f36f35]
+                            focus:shadow-[0_6px_20px_rgba(243,111,53,0.08)]
+                          "
+                        />
+                      </div>
+
+                    </div>
+
+                    {/* Inquiry */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="subject"
+                        className="
+                          font-badge
+                          text-[10px]
+                          font-bold
+                          uppercase
+                          tracking-[0.12em]
+                          text-[#1f1f1f]
+                        "
                       >
-                        <option value="" disabled>Select an option...</option>
-                        <option value="sales">Sales & Pricing</option>
-                        <option value="support">Technical Support</option>
-                        <option value="partnership">Partnership Opportunities</option>
-                        <option value="other">Other</option>
-                      </select>
-                      <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                        <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        Inquiry Type
+                      </label>
+
+                      <div className="relative">
+                        <select
+                          id="subject"
+                          required
+                          defaultValue=""
+                          className="
+                            w-full
+                            appearance-none
+                            rounded-xl
+                            border
+                            border-transparent
+                            bg-white
+                            px-5
+                            py-4
+                            pr-12
+                            text-[15px]
+                            text-[#1f1f1f]
+                            shadow-[0_2px_6px_rgba(31,31,31,0.04)]
+                            outline-none
+                            transition-all
+                            duration-300
+                            hover:shadow-[0_4px_12px_rgba(31,31,31,0.06)]
+                            focus:border-[#f36f35]
+                            focus:shadow-[0_6px_20px_rgba(243,111,53,0.08)]
+                            cursor-pointer
+                          "
+                        >
+                          <option value="" disabled>
+                            Select an option...
+                          </option>
+
+                          <option value="sales">
+                            Sales &amp; Pricing
+                          </option>
+
+                          <option value="support">
+                            Technical Support
+                          </option>
+
+                          <option value="partnership">
+                            Partnership Opportunities
+                          </option>
+
+                          <option value="other">
+                            Other
+                          </option>
+                        </select>
+
+                        <svg
+                          className="
+                            pointer-events-none
+                            absolute
+                            right-5
+                            top-1/2
+                            h-4
+                            w-4
+                            -translate-y-1/2
+                            fill-current
+                            text-[#8993a5]
+                          "
+                          viewBox="0 0 20 20"
+                          aria-hidden="true"
+                        >
                           <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                         </svg>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Message */}
-                  <div className="space-y-2 group/input">
-                    <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-[#1f1f1f] transition-colors group-focus-within/input:text-[#f36f35] font-badge">
-                      Your Message
-                    </label>
-                    <textarea 
-                      id="message"
-                      required
-                      rows="4"
-                      className="w-full bg-white border border-transparent focus:border-[#f36f35] rounded-xl px-5 py-4 text-[15px] text-[#1f1f1f] focus:outline-none transition-all duration-300 shadow-sm placeholder:text-gray-400 resize-none hover:shadow-md focus:shadow-lg focus:shadow-[#f36f35]/5"
-                      placeholder="Tell us about your project or inquiry..."
-                    ></textarea>
-                  </div>
+                    {/* Message */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="message"
+                        className="
+                          font-badge
+                          text-[10px]
+                          font-bold
+                          uppercase
+                          tracking-[0.12em]
+                          text-[#1f1f1f]
+                        "
+                      >
+                        Your Message
+                      </label>
 
-                  {/* Submit Button */}
-                  <div className="pt-2">
-                    <button 
-                      type="submit" 
+                      <textarea
+                        id="message"
+                        required
+                        rows={5}
+                        placeholder="Tell us about your project or inquiry..."
+                        className="
+                          w-full
+                          resize-none
+                          rounded-xl
+                          border
+                          border-transparent
+                          bg-white
+                          px-5
+                          py-4
+                          text-[15px]
+                          text-[#1f1f1f]
+                          shadow-[0_2px_6px_rgba(31,31,31,0.04)]
+                          outline-none
+                          transition-all
+                          duration-300
+                          placeholder:text-[#9aa3b5]
+                          hover:shadow-[0_4px_12px_rgba(31,31,31,0.06)]
+                          focus:border-[#f36f35]
+                          focus:shadow-[0_6px_20px_rgba(243,111,53,0.08)]
+                        "
+                      />
+                    </div>
+
+                    {/* =================================================
+                        NEW ORANGE CTA
+                    ================================================= */}
+
+                    <div className="pt-2">
+
+                    <button
+                      type="submit"
                       disabled={formState === 'submitting'}
-                      className="hero-cta-btn w-full md:w-auto px-10 py-4 disabled:opacity-70 disabled:cursor-not-allowed group/btn shadow-lg shadow-[#f36f35]/20 hover:shadow-xl hover:shadow-[#f36f35]/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 rounded-xl"
+                      className="contact-button"
                     >
-                      <span className="hero-cta-btn-text flex items-center justify-center gap-2">
-                        <span>{formState === 'submitting' ? 'Sending...' : 'Send Message'}</span>
-                        <ArrowRight size={18} className={`transition-transform duration-300 ${formState === 'submitting' ? 'animate-pulse' : 'group-hover/btn:translate-x-1.5'}`} />
+                      <span className="contact-button-content">
+                        <span>
+                          {formState === 'submitting' ? 'Sending...' : 'Send Message'}
+                        </span>
+
+                        <span className="contact-button-arrow">
+                          <ArrowRight
+                            size={16}
+                            strokeWidth={2.3}
+                          />
+                        </span>
                       </span>
                     </button>
-                  </div>
-                </form>
-              )}
+
+                    </div>
+                  </form>
+                )}
+
+              </div>
             </div>
           </div>
 
