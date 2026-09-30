@@ -178,9 +178,8 @@ export default function About() {
 
         </div>
       </section>
-
-      <ClientMarquee/>
       <OurTeam/>
+      <ClientMarquee/>
     </main>
   );
 }
