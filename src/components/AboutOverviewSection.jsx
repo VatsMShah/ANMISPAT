@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import engineerImage from '../assets/images/about-overview-engineer.png';
 import abstractPattern from '../assets/images/about-abstract-orange.png';
 
-export default function AboutOverview() {
+export default function AboutOverviewSection() {
   const [years, setYears] = useState(0);
   const [commitment, setCommitment] = useState(0);
 
@@ -11,7 +11,7 @@ export default function AboutOverview() {
     let animationFrame;
     let restartTimeout;
 
-    const duration = 1600;
+    const duration = 1400;
 
     const animateCounters = () => {
       const startTime = performance.now();
@@ -56,30 +56,31 @@ export default function AboutOverview() {
   return (
     <section
       id="about-overview"
-      className="relative overflow-hidden bg-white px-6 py-14 md:px-10 lg:px-14 lg:py-16"
+      className="relative overflow-hidden bg-white px-6 py-10 md:px-10 md:py-12 lg:px-14 lg:py-14"
     >
-      <div className="mx-auto grid max-w-[1380px] grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-6">
+      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-10">
 
         {/* =====================================================
             LEFT CONTENT
         ===================================================== */}
-        <div className="relative z-10 lg:col-span-7">
+        <div className="relative z-10">
 
-          {/* Heading */}
-          <h2 className="max-w-[720px] text-[44px] font-extrabold leading-[0.98] tracking-[-0.045em] sm:text-[52px] md:text-[60px] lg:text-[64px]">
+          {/* Main Heading */}
+          <h2 className="max-w-[650px] text-[38px] font-extrabold leading-[1] tracking-[-0.045em] sm:text-[44px] md:text-[50px] lg:text-[54px]">
             <span className="block text-[#f36f35]">
-              Building the future of
+              Driving scale through
             </span>
 
             <span className="block text-[#111827]">
-              industry & infrastructure.
+              intelligent steel distribution.
             </span>
           </h2>
 
-          {/* Description */}
-          <div className="mt-8 flex max-w-[650px] items-center gap-5">
 
-            <div className="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-[17px] shadow-[0_6px_20px_rgba(0,0,0,0.09)] md:h-[82px] md:w-[82px]">
+          {/* Description */}
+          <div className="mt-6 flex max-w-[600px] items-center gap-4">
+
+            <div className="h-[62px] w-[62px] shrink-0 overflow-hidden rounded-[15px] shadow-[0_5px_18px_rgba(0,0,0,0.08)]">
               <img
                 src={abstractPattern}
                 alt="Engineering abstract"
@@ -87,24 +88,26 @@ export default function AboutOverview() {
               />
             </div>
 
-            <p className="text-[14px] leading-[1.6] text-[#4b5563] md:text-[15px]">
+            <p className="text-[13px] leading-[1.55] text-[#4b5563] md:text-[14px]">
               We empower global enterprises by delivering world-class
               manufacturing precision, sustainable engineering solutions,
               and uncompromised industrial quality across every project.
             </p>
+
           </div>
+
 
           {/* =================================================
               SMALL STATS
           ================================================= */}
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-6 flex flex-wrap gap-3">
 
-            {/* ISO */}
-            <div className="flex items-center gap-3 rounded-[18px] border border-gray-100 bg-white px-4 py-3 shadow-[0_7px_25px_rgba(0,0,0,0.045)]">
+            {/* ISO 9001 */}
+            <div className="flex items-center gap-3 rounded-[15px] border border-gray-100 bg-white px-3.5 py-2.5 shadow-[0_5px_18px_rgba(0,0,0,0.04)]">
 
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[13px] bg-[#fff1eb] text-[#f36f35]">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] bg-[#fff1eb] text-[#f36f35]">
                 <svg
-                  className="h-5 w-5"
+                  className="h-[18px] w-[18px]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -119,22 +122,24 @@ export default function AboutOverview() {
               </div>
 
               <div>
-                <h4 className="text-[17px] font-extrabold leading-none text-[#111827]">
+                <h4 className="text-[15px] font-extrabold leading-none text-[#111827]">
                   ISO 9001
                 </h4>
 
-                <p className="mt-1.5 text-[11px] font-medium text-[#667085]">
+                <p className="mt-1 text-[10px] font-medium text-[#667085]">
                   Global Quality Certified
                 </p>
               </div>
+
             </div>
 
-            {/* Projects */}
-            <div className="flex items-center gap-3 rounded-[18px] border border-gray-100 bg-white px-4 py-3 shadow-[0_7px_25px_rgba(0,0,0,0.045)]">
 
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[13px] bg-[#fff1eb] text-[#f36f35]">
+            {/* Projects */}
+            <div className="flex items-center gap-3 rounded-[15px] border border-gray-100 bg-white px-3.5 py-2.5 shadow-[0_5px_18px_rgba(0,0,0,0.04)]">
+
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] bg-[#fff1eb] text-[#f36f35]">
                 <svg
-                  className="h-5 w-5"
+                  className="h-[18px] w-[18px]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -149,86 +154,149 @@ export default function AboutOverview() {
               </div>
 
               <div>
-                <h4 className="text-[17px] font-extrabold leading-none text-[#111827]">
+                <h4 className="text-[15px] font-extrabold leading-none text-[#111827]">
                   2,500+
                 </h4>
 
-                <p className="mt-1.5 text-[11px] font-medium text-[#667085]">
+                <p className="mt-1 text-[10px] font-medium text-[#667085]">
                   Projects Completed
                 </p>
               </div>
+
             </div>
+
           </div>
+
         </div>
 
+
         {/* =====================================================
-            RIGHT VISUAL
+            RIGHT — HIGH-END MODERN INDUSTRIAL COMPOSITE
         ===================================================== */}
-        <div className="relative flex h-[570px] items-center justify-center lg:col-span-5">
+        <div className="relative flex h-[500px] w-full items-center justify-center lg:h-[520px]">
 
-          {/* Orange layered frame */}
-          <div className="absolute right-2 top-1/2 h-[510px] w-[350px] -translate-y-1/2 md:h-[540px] md:w-[375px]">
+          {/* Ambient Warm Radial Background Glow */}
+          <div className="absolute top-1/2 left-1/2 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[#fff0e8] via-[#fdeee9] to-transparent blur-2xl opacity-80" />
 
-            <div className="absolute inset-0 rounded-[30px] bg-[#d95b18]" />
+          {/* Architectural Blueprint Dot Grid */}
+          <div
+            className="absolute right-4 top-6 h-[180px] w-[180px] opacity-25"
+            style={{
+              backgroundImage: 'radial-gradient(#111827 1.2px, transparent 1.2px)',
+              backgroundSize: '16px 16px',
+            }}
+          />
 
-            <div className="absolute inset-[9px] rounded-[26px] bg-[#ed6a25]" />
+          {/* Decorative Corner Framing Element */}
+          <div className="absolute right-2 top-2 h-24 w-24 rounded-tr-3xl border-r-2 border-t-2 border-[#f36f35]/40" />
 
-            <div className="absolute inset-[20px] rounded-[22px] border-2 border-[#ff9a62]/60" />
 
-            <div className="absolute inset-[29px] rounded-[19px] bg-gradient-to-br from-[#ff9955] via-[#f36f35] to-[#dc5b20]" />
-
-            {/* Decorative extensions */}
-            <div className="absolute -left-[15px] top-[55px] h-[330px] w-[22px] rounded-l-[15px] bg-[#c85216]" />
-
-            <div className="absolute -right-[12px] top-[25px] h-[105px] w-[18px] rounded-r-[12px] bg-[#c85216]" />
-          </div>
-
-          {/* Engineer */}
-          <div className="relative z-10 h-[470px] w-[315px] overflow-hidden rounded-[22px] shadow-[0_20px_45px_rgba(0,0,0,0.14)] md:h-[500px] md:w-[335px] lg:-translate-y-5">
-
+          {/* MAIN HERO IMAGE CONTAINER */}
+          <div className="group relative z-20 h-[430px] w-[320px] sm:w-[350px] overflow-hidden rounded-[28px] border-4 border-white bg-[#0f172a] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-500 hover:-translate-y-1">
+            
             <img
               src={engineerImage}
               alt="Industrial Engineering Specialist"
-              className="h-full w-full object-cover object-center"
+              className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             />
 
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/5" />
           </div>
 
+
           {/* =================================================
-              FLOATING CARD
+              STATS CARD (UNTOUCHED LOGIC & STRUCTURE)
           ================================================= */}
-          <div className="absolute bottom-[2px] left-1/2 z-30 w-[300px] -translate-x-[48%] md:w-[350px] lg:left-[-25px] lg:translate-x-0">
+          <div
+            className="
+              absolute
+              bottom-[-10px]
+              left-1/2
+              z-40
+              w-[280px]
+              -translate-x-1/2
+              sm:w-[315px]
+              lg:left-[-5%]
+              lg:translate-x-0
+            "
+          >
+            <div
+              className="
+                rounded-[20px]
+                border
+                border-gray-100
+                bg-white
+                px-5
+                py-5
+                shadow-[0_20px_50px_rgba(0,0,0,0.13)]
+              "
+            >
 
-            <div className="rounded-[25px] border border-gray-100 bg-white px-6 py-6 shadow-[0_20px_55px_rgba(0,0,0,0.13)]">
+              {/* Animated Stats */}
+              <div className="flex items-center gap-7">
 
-              {/* Animated numbers */}
-              <div className="flex items-center gap-8">
-
-                <span className="text-[30px] font-extrabold leading-none tracking-[-0.04em] text-[#f36f35] md:text-[34px]">
+                <span
+                  className="
+                    text-[28px]
+                    font-extrabold
+                    leading-none
+                    tracking-[-0.04em]
+                    text-[#f36f35]
+                  "
+                >
                   {years}+
                 </span>
 
-                <span className="text-[30px] font-extrabold leading-none tracking-[-0.04em] text-[#f36f35] md:text-[34px]">
+                <span
+                  className="
+                    text-[28px]
+                    font-extrabold
+                    leading-none
+                    tracking-[-0.04em]
+                    text-[#f36f35]
+                  "
+                >
                   {commitment}%
                 </span>
 
               </div>
 
+
+              {/* Divider */}
               <div className="my-4 h-px bg-gray-100" />
 
-              <h3 className="text-[19px] font-extrabold leading-[1.2] tracking-[-0.025em] text-[#111827] md:text-[21px]">
+
+              {/* Card Heading */}
+              <h3
+                className="
+                  text-[18px]
+                  font-extrabold
+                  leading-[1.15]
+                  tracking-[-0.025em]
+                  text-[#111827]
+                "
+              >
                 Decades of Trust & Excellence.
               </h3>
 
-              <p className="mt-3 text-[12px] leading-[1.65] text-[#667085] md:text-[13px]">
+
+              {/* Card Description */}
+              <p
+                className="
+                  mt-2
+                  text-[11px]
+                  leading-[1.55]
+                  text-[#667085]
+                "
+              >
                 Combining over 25 years of technical expertise with a 100%
                 commitment to safety, precision, and client satisfaction.
               </p>
 
             </div>
           </div>
+
         </div>
+
       </div>
     </section>
   );

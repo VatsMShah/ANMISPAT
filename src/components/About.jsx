@@ -7,6 +7,7 @@ import WorkProcess from './WorkProcess.jsx';
 import aboutHeroBg from '../assets/images/about-hero.png'; 
 import coreValuesBg from '../assets/images/core-values-engineers.png';
 import ClientMarquee from './ClientMarquee.jsx';
+import OurTeam from './OurTeam.jsx';
 
 export default function About() {
   return (
@@ -179,7 +180,7 @@ export default function About() {
       </section>
 
       <ClientMarquee/>
-
+      <OurTeam/>
     </main>
   );
 }
