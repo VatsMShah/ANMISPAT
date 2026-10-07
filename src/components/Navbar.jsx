@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
 import anmLogo from '../assets/logo/anm.png';
@@ -37,6 +36,7 @@ export default function Navbar() {
           <Link to="/" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Home</Link>
           <a href="/about" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">About</a>
           <a href="/#our-range" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Products</a>
+          <Link to="/achievements" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Achievements</Link>
         </nav>
 
         {/* 3. Center - Logo Block */}
@@ -50,9 +50,9 @@ export default function Navbar() {
 
         {/* 4. Right Nav Links */}
         <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold text-gray-600">
-          <a href="/#certifications" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Achievements</a>
           <a href="/#services" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Services</a>
           <a href="/#csr" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">CSR</a>
+          <Link to="/careers" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Careers</Link>
           <Link to="/contact" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Contact</Link>
         </nav>
 
