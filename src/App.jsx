@@ -9,23 +9,27 @@ import Contact from './components/Contact';
 import About from './components/About';
 import Achievements from './components/Achievements';
 import Careers from './components/Careers';
+import Products from './components/Products';
+import ScrollManager from './components/ScrollManager';
 
 export default function App() {
   return (
     <Router>
+      <ScrollManager />
       <div className="min-h-screen flex flex-col bg-white">
         <TopStrip />
         <Navbar />
 
-        <main className="flex-grow">
+        <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About/>}/>
             <Route path="/achievements" element={<Achievements />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/products" element={<Products />} />
           </Routes>
-        </main>
+        </div>
 
         <Footer />
       </div>
