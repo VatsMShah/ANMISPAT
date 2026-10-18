@@ -191,11 +191,6 @@ export default function Steel3DViewer({ activeProduct }) {
         <div aria-hidden="true" className="pointer-events-none absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-[#FF9A6B]/20 blur-3xl" />
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:24px_24px]" />
 
-        <div className="absolute top-4 left-4 z-10 flex items-center gap-2 rounded-full border border-brand-border bg-white/90 px-3.5 py-1.5 font-badge text-xs font-semibold uppercase tracking-wider text-brand-dark shadow-sm backdrop-blur-md">
-          <span className="h-2 w-2 rounded-full bg-brand-orange animate-pulse" />
-          3D Studio • {activeProduct}
-        </div>
-
         <Canvas shadows gl={{ powerPreference: 'high-performance', antialias: true }}>
           <PerspectiveCamera makeDefault position={[4.6, 2.2, 5.2]} fov={42} />
           

@@ -1,11 +1,10 @@
-import React from 'react';
 import Hero from './Hero';
 import AboutOverview from './AboutOverview';
 import ClientMarquee from './ClientMarquee';
 import MisVis from './MisVis';
 import WhyChooseUs from './WhyChooseUs';
 import SelectedWork from './SelectedWork';
-import Services from './Services';
+import ServicesPreview from './ServicesPreview';
 import Certifications from './Certifications';
 import Awards from './Awards';
 
@@ -62,9 +61,9 @@ export default function Home() {
         <SelectedWork />
       </section>
 
-      {/* Services */}
+      {/* Industries we serve */}
       <section className="transition-all duration-500">
-        <Services />
+        <ServicesPreview />
       </section>
 
       {/*Awards*/}

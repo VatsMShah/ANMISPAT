@@ -1,5 +1,4 @@
 //Footer.jsx
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import anmLogo from '../assets/logo/anm.png';
@@ -60,7 +59,7 @@ export default function Footer() {
               <li><a href="#company" className="group relative inline-flex text-[#4c4c4c] transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Company Overview</a></li>
               <li><a href="#our-range" className="group relative inline-flex text-[#4c4c4c] transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Our Product Range</a></li>
               <li><a href="#certifications" className="group relative inline-flex text-[#4c4c4c] transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Achievements</a></li>
-              <li><a href="#services" className="group relative inline-flex text-[#4c4c4c] transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Services</a></li>
+              <li><Link to="/services" className="group relative inline-flex text-[#4c4c4c] transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Industries</Link></li>
             </ul>
           </div>
 
