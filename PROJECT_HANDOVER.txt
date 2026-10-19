@@ -1,0 +1,329 @@
+ANM ISPAT WEBSITE - DEVELOPER HANDOVER
+======================================
+
+Purpose of this document
+------------------------
+This is a practical handover for the next developer. It describes the current
+repository, how its main pieces fit together, what has been implemented, known
+content/integration gaps, and how to run the project.
+
+Project at a glance
+-------------------
+The repository contains a responsive, client-rendered website for ANM Ispat.
+It is built with React and JSX, bundled by Vite, styled primarily with Tailwind
+CSS 4, and uses React Router for its page routes. It is currently a front-end
+website; the repository does not show an application API or database.
+
+The editor used during development: Visual Studio Code (VS Code).
+AI tools used during development, as reported by the project owner: Copilot,
+Gemini, ChatGPT, and Opencode.
+
+Main technologies and libraries
+-------------------------------
+- React 19 and React DOM: UI rendering and component composition.
+- Vite 8: local development server and production build.
+- Tailwind CSS 4 with @tailwindcss/vite: responsive utility styling and theme.
+- React Router 7: browser-based client-side page routing.
+- Framer Motion: selected in-view and entrance transitions.
+- Lucide React: interface icons.
+- Three.js, React Three Fiber, and Drei: interactive steel product preview.
+- ESLint: static code linting.
+
+Repository map
+--------------
+- index.html: browser document, font imports, meta description, page title,
+  favicon and manifest declarations, and the root element.
+- src/main.jsx: React entry point; loads global CSS and renders App in
+  StrictMode.
+- src/App.jsx: BrowserRouter, shared header/top strip/footer, scroll manager,
+  and all route declarations.
+- src/index.css: Tailwind import, color and font theme variables, global body
+  styling, shared CSS effects, and the Why Choose Us layout.
+- src/App.css: legacy Vite starter CSS; it is not the primary design system.
+- src/components/: routed pages, shared site chrome, and page sections.
+- src/assets/: local images, logos, videos, and other media grouped by use.
+- public/: favicon and web manifest assets.
+- vite.config.js: React and Tailwind Vite plugins.
+- vercel.json: rewrite all paths to the SPA entry point so direct navigation
+  to client-side routes can resolve through the host.
+- design.md: visual design system and implementation styling notes.
+- dist/: generated production build output; regenerate with npm run build.
+
+How the application is assembled
+--------------------------------
+src/main.jsx mounts App at #root. App wraps the site in BrowserRouter and
+renders ScrollManager, TopStrip, Navbar, the active page under Routes, and
+Footer. The header and footer persist across all defined routes.
+
+Current routes:
+  /             Home
+  /about        About
+  /achievements Achievements
+  /csr          CSR
+  /careers      Careers
+  /contact      Contact
+  /products     Products
+  /services     Services / industries served
+
+ScrollManager controls browser history scroll restoration. It remembers scroll
+positions for history navigation, restores them on Back/Forward (POP), returns
+to the top for ordinary route changes, and scrolls to a URL hash when a target
+element exists.
+
+Component guide
+---------------
+Each component below is a JSX React component. Page and section composition is
+mostly direct imports and child components; much of the content is currently
+declared in arrays/constants inside the component file and rendered with map().
+
+App.jsx
+  The application shell. Uses BrowserRouter, Routes, and Route from
+  react-router-dom; shares TopStrip, Navbar, Footer, and ScrollManager around
+  the routed page components.
+
+Home.jsx
+  Home page composition. Orders Hero, AboutOverview, ClientMarquee, MisVis,
+  WhyChooseUs, SelectedWork, ServicesPreview, Awards, and Certifications.
+  Adds local CSS keyframes for a staggered entrance.
+
+Hero.jsx
+  Home page video hero. Imports a local MP4, product/brand logo PNGs, React
+  Router Link, and a Lucide arrow. Uses a dark overlay, headline/CTA group,
+  embedded SVG clip path, and slanted product-logo strip.
+
+AboutOverview.jsx
+  Home page company-overview feature. Uses imported background/steel images,
+  text and a Link-like CTA, and layered image composition with a radial orange
+  glow and local entrance animation.
+
+ClientMarquee.jsx
+  Repeating client logo carousel. Imports seven local client images, duplicates
+  the logo array to create a continuous track, and uses the .anm-marquee*
+  classes in src/index.css. The shared track pauses when hovered.
+
+MisVis.jsx
+  Mission, vision, and company statistics section. Uses a local image,
+  array-driven counters animated with requestAnimationFrame, and local fade
+  keyframes.
+
+WhyChooseUs.jsx
+  Home page benefits section. Renders a four-card bento layout from card data;
+  uses local images and an IntersectionObserver to add the is-visible reveal
+  class. Layout and card styling live mainly in src/index.css.
+
+SelectedWork.jsx
+  Home product carousel (despite its name, the data describes steel product
+  lines and specifications). Uses local product images, a timer-driven
+  auto-advancing carousel, pointer drag/swipe handling, previous/next controls,
+  and a magnetic pointer-follow CTA that links to /products.
+
+ServicesPreview.jsx
+  Home page preview of four industries (Construction, Defence, Power,
+  Railway). Maps local category images to linked cards; uses Framer Motion
+  reveal and hover effects, plus a link to /services.
+
+Awards.jsx
+  Home page awards presentation. Maps four award titles/descriptions and a
+  trophy image into an image row and a separate text row. The current sample
+  content and shared trophy image should be verified before representing them
+  as actual company awards.
+
+Certifications.jsx
+  Home page certification-card section. Uses local background imagery and
+  state to open a certificate-style modal; closes on Escape or backdrop click.
+  The current issuer details are explicitly placeholders and need replacing
+  with verified material before release.
+
+About.jsx
+  About route composition. Builds the image-led About hero, AboutOverviewSection,
+  WorkProcess, core values/mission/vision section, OurTeam, and ClientMarquee.
+  Uses local image imports and inline entrance animations.
+
+AboutOverviewSection.jsx
+  About route company/scale overview. Uses imported engineer/abstract images,
+  count-up state animated with requestAnimationFrame, and a responsive content
+  plus image/stat layout.
+
+WorkProcess.jsx
+  About route process/timeline section. Defines three process steps with local
+  illustrations and SVG/CSS path and entrance animations. Includes responsive
+  behavior and reduced-motion styling.
+
+OurTeam.jsx
+  About route team presentation. Maps a local-in-file array of names, roles,
+  descriptions, and remote Pexels portraits into a people section. Confirm
+  whether names and portraits are real/approved or sample data.
+
+Achievements.jsx
+  Achievements route. Uses local logistics background and trophy image,
+  Lucide icons, React state, and buttons to select one of four recognition
+  examples and update a featured detail panel. Confirm all claimed awards and
+  related facts before release.
+
+CSR.jsx
+  Corporate social responsibility route. A large stateful page using
+  Framer Motion, React portals, modals/carousels, Lucide icons, and responsive
+  data-driven programme pillars and metrics. The source explicitly marks
+  programme names, periods, partners, locations, examples, and imagery as
+  illustrative placeholders. Treat this as a presentation prototype until
+  factual content and approvals are supplied.
+
+Careers.jsx
+  Careers route. Displays a photo hero, selectable values/principles, and a
+  current opportunities section; the current copy says no open roles and sends
+  users to Contact. Uses React state, Lucide icons, React Router Link, local
+  CSS animations, and a local team image.
+
+Contact.jsx
+  Contact route with details, a form, local styling, Lucide icons, and React
+  state. Important: the form currently prevents normal submission and changes
+  to a success state after a local timeout. It does not send the form to a
+  server, email service, or other backend. A production form needs an agreed
+  destination/integration, validation, and visible error handling.
+
+Products.jsx
+  Product catalog route. Stores six product families/specifications in local
+  arrays; provides keyboard-operable product tabs, selected-product details,
+  imported images, a 3D viewer, modal/portal and carousel-related UI, and
+  contact/product CTAs. Uses React state/effects/refs, React Router Link,
+  Lucide icons, and Steel3DViewer. Review remote Unsplash product imagery and
+  technical product specifications with the business before publishing.
+
+Steel3DViewer.jsx
+  Reusable WebGL 3D product preview. Uses React Three Fiber Canvas and Drei
+  camera, lighting, floating, reflection, and orbit controls. Switches model
+  geometry/materials according to active product and wraps the scene in a
+  WebGL error boundary with a readable fallback.
+
+Services.jsx
+  The /services industries page (the visible content calls it “Industries we
+  serve”). Uses local Construction/Defence/Power/Railway photos, static data
+  arrays, React state/effects and Framer Motion for reduced-motion-aware
+  entrance/scroll reveals. Shows industry cards and applications, animated
+  statistics, product material families, service pillars, and contact/product
+  calls to action.
+
+TopStrip.jsx
+  Shared orange contact strip above the sticky navigation. Uses Lucide phone,
+  mail, and clock icons and telephone/email links. Its current copy/contact
+  values should be checked against approved company details.
+
+Navbar.jsx
+  Shared sticky navigation and logo. Uses React Router Link, a Lucide phone
+  icon, local logo image, inline social SVGs, and desktop navigation links.
+  Some social anchors use # placeholders; verify real social URLs and check
+  narrow-screen navigation behavior before release.
+
+Footer.jsx
+  Shared footer with logo, social buttons, quick links, contact details, and a
+  newsletter-style field. Uses React Router Link and Lucide icons. The
+  newsletter form currently calls preventDefault only; it is not connected to
+  a subscription service. Contact details and social links must be verified.
+
+ScrollManager.jsx
+  Non-visual route scroll helper. Uses React Router location/navigation type and
+  React refs/layout effects to handle hash navigation and scroll restoration.
+
+ClientStrip.jsx
+  An alternate text-based product/client strip. It currently declares logo
+  names/subtitles inline and is not imported by the routed pages. Hero.jsx
+  implements a separate visual logo strip using local image files.
+
+Design and CSS overview
+-----------------------
+Read design.md for the full visual guide. In brief:
+- Brand orange #F36F35, charcoal #1F1F1F, body gray #4C4C4C, white #FFFFFF,
+  pale footer gray #F4F5F7, and border gray #D8DBE0 are the shared palette.
+- Plus Jakarta Sans is used for headings, Inter for body text, and Space
+  Grotesk for badges/compact labels. Font files are loaded from Google Fonts
+  in index.html.
+- Tailwind utilities in JSX are the main layout/component styling technique.
+  Global design tokens and custom CSS patterns are in src/index.css. Some
+  sections add inline CSS/keyframes and local color exceptions.
+- The site is mobile responsive through Tailwind breakpoints and component
+  media queries. Not all older animations have reduced-motion support.
+
+Assets and external dependencies
+-------------------------------
+Local media is primarily in src/assets/images, src/assets/webp_images,
+src/assets/clients-images, src/assets/industry-images, src/assets/logo,
+src/assets/products-images, src/assets/awards-images, and public.
+Some page imagery and team portraits are loaded from remote image hosts.
+External media needs network access and can change or disappear independently
+of this repository.
+
+The checked-in hero video is large (around 38 MB in the current production
+build). The production JavaScript bundle is also above Vite's 500 kB advisory
+threshold. Consider video compression/streaming strategy, lazy loading, and
+route-level code splitting as performance work; do not treat the advisory as a
+build failure.
+
+Working locally
+---------------
+Prerequisites: Node.js compatible with the installed Vite version and npm.
+
+  npm install
+  npm run dev
+
+Useful commands:
+  npm run build    Create dist/ production assets.
+  npm run preview  Serve the production build locally.
+  npm run lint     Run ESLint.
+
+There is currently no test script declared in package.json.
+
+Verification performed for this handover
+-----------------------------------------
+- npm run build: PASSED. Vite generated dist/ successfully. It reported a
+  warning that the minified JavaScript chunk is larger than 500 kB.
+- npm run lint: FAILED with 13 no-unused-vars errors. They are unused default
+  React imports in About.jsx, AboutOverview.jsx, AboutOverviewSection.jsx,
+  Awards.jsx, ClientMarquee.jsx, ClientStrip.jsx, Contact.jsx, Hero.jsx,
+  OurTeam.jsx, Steel3DViewer.jsx, TopStrip.jsx, WhyChooseUs.jsx, and
+  WorkProcess.jsx. The documentation task did not modify those source files.
+- No automated test command is present in package.json, and no browser
+  end-to-end test was run as part of this handover.
+
+Current progress and recommended next steps
+-------------------------------------------
+The repository contains a complete set of client-side route shells for Home,
+About, Achievements, CSR, Careers, Contact, Products, and Services/Industries,
+with a shared navigation/footer and substantial responsive visual content.
+The production bundle builds. Based on repository inspection, this is best
+described as a visually developed front-end, not a verified end-to-end business
+website: forms and newsletter capture are not wired to a backend, some
+navigation/social/contact values need verification, and several awards,
+certifications, people, metrics, CSR examples, and project details are marked
+or appear to be placeholders.
+
+Suggested handover priorities:
+1. Confirm company-approved copy, product specifications, awards, certificates,
+   CSR claims, statistics, team details, addresses, phone numbers, and email.
+2. Connect the contact and newsletter forms to approved services and implement
+   validation, loading, success, and error handling.
+3. Replace placeholder social links and confirm all internal CTA destinations.
+4. Audit remote media and accessibility, including image alternatives,
+   keyboard navigation, reduced motion, and mobile layouts.
+5. Address the current ESLint unused-import errors; add focused tests or
+   browser smoke tests for routes, forms, product selection, modal behavior,
+   and history/scroll restoration.
+6. Evaluate asset sizing and route-level code splitting to reduce initial
+   download cost.
+
+Terminology
+-----------
+- Component: a reusable or page-sized piece of UI, usually a JSX function.
+- Route: a URL path mapped to a page component by React Router.
+- JSX: JavaScript syntax used to describe React UI.
+- State: data held by React that changes what is rendered (for example, the
+  selected product or currently open modal).
+- Props: values passed from a parent component to a child component.
+- Tailwind utility: a small CSS class that directly sets a style, such as
+  spacing, color, layout, or responsive behavior.
+- Responsive breakpoint: a viewport width at which a layout or style changes.
+- Client-side rendering/routing: the browser loads the app and updates the
+  view when navigating, rather than requesting a separate HTML page per route.
+- WebGL: browser graphics technology used here by the interactive 3D viewer.
+- Build: the optimized static files generated for deployment in dist/.
+- Placeholder: sample or unverified information that must not be presented as
+  confirmed company data until an authorized person validates it.
