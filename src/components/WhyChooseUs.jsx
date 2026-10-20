@@ -2,7 +2,9 @@
 import React, { useEffect, useRef } from "react";
 
 import whyCard1Img from "../assets/images/why-choose-us-card1.png";
-import whyCard2Img from "../assets/images/why-choose-us-card2.png"
+import whyProductRangeImg from "../assets/images/why-choose-us-product-range.jpg";
+import whyTrustImg from "../assets/images/why-choose-us-trust.jpg";
+import whyCapabilityImg from "../assets/images/why-choose-us-capability.jpg";
 
 const cards = [
   {
@@ -144,8 +146,8 @@ export default function WhyChooseUs() {
 
             <div className="product-image-wrapper">
               <img
-                src={whyCard2Img}
-                alt="Industrial steel manufacturing"
+                src={whyProductRangeImg}
+                alt="Tata Steel warehouse and structural steel"
               />
 
               <div className="image-fade" />
@@ -163,32 +165,30 @@ export default function WhyChooseUs() {
             className={`${cards[2].className} why-reveal`}
             style={{ "--delay": "400ms" }}
           >
-            <div>
-              <span className="why-eyebrow">
-                {cards[2].eyebrow}
-              </span>
+            <div className="why-card-top-content">
+              <div>
+                <span className="why-eyebrow">
+                  {cards[2].eyebrow}
+                </span>
 
-              <h3>{cards[2].title}</h3>
+                <h3>{cards[2].title}</h3>
 
-              <p>{cards[2].description}</p>
+                <p>{cards[2].description}</p>
+              </div>
             </div>
 
-            {/* NETWORK VISUAL */}
-            <div className="network-visual">
+            <div className="product-image-wrapper">
+              <img
+                src={whyTrustImg}
+                alt="Business built on trust - Steel industry partnership"
+              />
 
-              <div className="network-line line-1" />
-              <div className="network-line line-2" />
-              <div className="network-line line-3" />
-              <div className="network-line line-4" />
+              <div className="image-fade" />
 
-              <div className="network-center">
-                <span>ANM</span>
+              <div className="product-tags">
+                <span>Long-Term Trust</span>
+                <span>Responsive Service</span>
               </div>
-
-              <div className="network-node node-1">M</div>
-              <div className="network-node node-2">S</div>
-              <div className="network-node node-3">I</div>
-              <div className="network-node node-4">P</div>
             </div>
           </article>
 
@@ -230,8 +230,8 @@ export default function WhyChooseUs() {
               {/* INDUSTRIAL IMAGE */}
               <div className="capability-image">
                 <img
-                  src={whyCard2Img}
-                  alt="Industrial steel facility"
+                  src={whyCapabilityImg}
+                  alt="ANM Ispat logistics and transport fleet"
                 />
 
                 <div className="capability-image-overlay" />

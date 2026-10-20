@@ -1,22 +1,25 @@
 import React from 'react';
-import { Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Mail, FileText } from 'lucide-react';
 
 export default function TopStrip() {
   return (
-    <div className="bg-[#f36f35] text-white text-xs py-1.5 px-6">
-      <div className="max-w-[1400px] mx-auto flex flex-wrap justify-center items-center gap-4 md:gap-6 font-medium">
-        <a href="tel:+1234567890" className="flex items-center gap-1.5 hover:opacity-90 transition-opacity">
-          <Phone size={13} className="fill-current" />
-          (123) 456-7890
+    <div className="bg-[#f36f35] text-white text-xs py-2 px-4 sm:px-6">
+      <div className="max-w-[1400px] mx-auto flex flex-wrap justify-center items-center gap-x-6 gap-y-2 font-medium">
+        <div className="flex items-center gap-1.5">
+          <MapPin size={13} className="shrink-0 text-white/90" />
+          <span>Platinum Building, Jawahar Road, Ghatkopar East, Mumbai – 400077</span>
+        </div>
+        <a 
+          href="mailto:enquiry@anmispat.com" 
+          className="flex items-center gap-1.5 hover:underline transition-opacity"
+        >
+          <Mail size={13} className="shrink-0 text-white/90" />
+          <span>enquiry@anmispat.com</span>
         </a>
-        <a href="mailto:support@fixflow.com" className="flex items-center gap-1.5 hover:opacity-90 transition-opacity">
-          <Mail size={13} />
-          support@fixflow.com
-        </a>
-        <span className="flex items-center gap-1.5">
-          <Clock size={13} />
-          24/7 Emergency Service
-        </span>
+        <div className="flex items-center gap-1.5">
+          <FileText size={13} className="shrink-0 text-white/90" />
+          <span><strong className="font-semibold">TAX ID:</strong> 27AANCA2927N2Z5</span>
+        </div>
       </div>
     </div>
   );

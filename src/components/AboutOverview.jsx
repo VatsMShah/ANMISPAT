@@ -2,8 +2,8 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
 import bgImage from '../assets/images/about-overview-bg.png';
-import leftImg from '../assets/images/second-sec-left.png';
-import rightImg from '../assets/images/second-sec-right.png';
+import leftImg from '../assets/images/second-sec-left-new.jpg';
+import rightImg from '../assets/images/second-sec-right-new.jpg';
 import steelCoilImg from '../assets/images/steel-coil-second-sec.png';
 
 export default function AboutOverview() {
@@ -83,7 +83,7 @@ export default function AboutOverview() {
           <div className="rounded-3xl overflow-hidden shadow-2xl border-2 border-white transition-transform duration-500 ease-out group-hover:scale-[1.03] group-hover:-translate-y-2 group-hover:shadow-3xl">
             <img
               src={leftImg}
-              alt="Steel Rolling Mill"
+              alt="Steel Coil Storage Warehouse"
               className="w-full h-[240px] sm:h-[270px] object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
@@ -135,7 +135,7 @@ export default function AboutOverview() {
           <div className="rounded-3xl overflow-hidden shadow-2xl border-2 border-white transition-transform duration-500 ease-out group-hover:scale-[1.03] group-hover:-translate-y-2 group-hover:shadow-3xl">
             <img
               src={rightImg}
-              alt="Foundry Ladle"
+              alt="Hot Steel Coil Processing"
               className="w-full h-[240px] sm:h-[270px] object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>

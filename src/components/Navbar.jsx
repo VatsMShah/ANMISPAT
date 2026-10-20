@@ -58,11 +58,11 @@ export default function Navbar() {
 
         {/* 5. Far Right - Pill CTA Button */}
         <a 
-          href="tel:+1245678900" 
+          href="tel:+917304656254" 
           className="bg-[#f36f35] hover:brightness-95 text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2"
         >
           <Phone size={15} className="fill-current" />
-          <span>(124) 567 8900</span>
+          <span>+91 7304656254</span>
         </a>
 
       </div>
