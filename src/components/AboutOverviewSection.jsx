@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
-import engineerImage from '../assets/images/about-overview-engineer.png';
+import engineerImage from '../assets/images/about-feature-new.png';
 import abstractPattern from '../assets/images/about-abstract-orange.png';
 
 export default function AboutOverviewSection() {
-  const [years, setYears] = useState(0);
-  const [commitment, setCommitment] = useState(0);
+  const [years, setYears] = useState(25);
 
   useEffect(() => {
     let animationFrame;
     let restartTimeout;
 
-    const duration = 1400;
+    const duration = 1200;
 
     const animateCounters = () => {
       const startTime = performance.now();
@@ -23,7 +22,6 @@ export default function AboutOverviewSection() {
         const easedProgress = 1 - Math.pow(1 - progress, 4);
 
         setYears(Math.round(25 * easedProgress));
-        setCommitment(Math.round(100 * easedProgress));
 
         if (progress < 1) {
           animationFrame = requestAnimationFrame(update);
@@ -33,13 +31,10 @@ export default function AboutOverviewSection() {
       animationFrame = requestAnimationFrame(update);
     };
 
-    animateCounters();
-
     const interval = setInterval(() => {
       cancelAnimationFrame(animationFrame);
 
       setYears(0);
-      setCommitment(0);
 
       restartTimeout = setTimeout(() => {
         animateCounters();
@@ -56,7 +51,7 @@ export default function AboutOverviewSection() {
   return (
     <section
       id="about-overview"
-      className="relative overflow-hidden bg-white px-6 py-10 md:px-10 md:py-12 lg:px-14 lg:py-14"
+      className="relative overflow-hidden bg-white px-6 py-12 md:px-10 md:py-16 lg:px-14 lg:py-18"
     >
       <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-10">
 
@@ -66,19 +61,19 @@ export default function AboutOverviewSection() {
         <div className="relative z-10">
 
           {/* Main Heading */}
-          <h2 className="max-w-[650px] text-[38px] font-extrabold leading-[1] tracking-[-0.045em] sm:text-[44px] md:text-[50px] lg:text-[54px]">
+          <h2 className="max-w-[650px] text-[34px] font-extrabold leading-[1.12] tracking-[-0.035em] sm:text-[38px] md:text-[42px] lg:text-[46px]">
             <span className="block text-[#f36f35]">
-              Driving scale through
+              Built on Trust,
             </span>
 
             <span className="block text-[#111827]">
-              intelligent steel distribution.
+              Driven by Steel Expertise
             </span>
           </h2>
 
 
           {/* Description */}
-          <div className="mt-6 flex max-w-[600px] items-center gap-4">
+          <div className="mt-6 flex max-w-[600px] items-start gap-4">
 
             <div className="h-[62px] w-[62px] shrink-0 overflow-hidden rounded-[15px] shadow-[0_5px_18px_rgba(0,0,0,0.08)]">
               <img
@@ -88,23 +83,20 @@ export default function AboutOverviewSection() {
               />
             </div>
 
-            <p className="text-[13px] leading-[1.55] text-[#4b5563] md:text-[14px]">
-              We empower global enterprises by delivering world-class
-              manufacturing precision, sustainable engineering solutions,
-              and uncompromised industrial quality across every project.
+            <p className="text-[13px] leading-[1.6] text-[#4b5563] sm:text-[14px]">
+              ANM ISPAT PRIVATE LIMITED was founded in 2015 and has steadily grown into a trusted steel industry player through dependable supply, expanding dealership capabilities, and ethical business practices.
             </p>
 
           </div>
 
 
           {/* =================================================
-              SMALL STATS
+              MISSION & VISION
           ================================================= */}
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-col gap-3 max-w-[600px]">
 
-            {/* ISO 9001 */}
-            <div className="flex items-center gap-3 rounded-[15px] border border-gray-100 bg-white px-3.5 py-2.5 shadow-[0_5px_18px_rgba(0,0,0,0.04)]">
-
+            {/* Mission */}
+            <div className="flex items-start gap-3.5 rounded-[15px] border border-gray-100 bg-[#fbfbfc] p-3.5 sm:p-4 shadow-[0_4px_14px_rgba(0,0,0,0.03)] hover:border-[#f36f35]/30 transition-all">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] bg-[#fff1eb] text-[#f36f35]">
                 <svg
                   className="h-[18px] w-[18px]"
@@ -112,57 +104,46 @@ export default function AboutOverviewSection() {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
+                  <circle cx="12" cy="12" r="9" strokeWidth="2" />
+                  <circle cx="12" cy="12" r="5" strokeWidth="2" />
+                  <circle cx="12" cy="12" r="1" fill="currentColor" />
                 </svg>
               </div>
 
               <div>
-                <h4 className="text-[15px] font-extrabold leading-none text-[#111827]">
-                  ISO 9001
+                <h4 className="text-[13px] font-extrabold uppercase tracking-wider text-[#f36f35]">
+                  Mission
                 </h4>
 
-                <p className="mt-1 text-[10px] font-medium text-[#667085]">
-                  Global Quality Certified
+                <p className="mt-0.5 text-[13px] sm:text-[14px] leading-[1.5] text-[#374151]">
+                  Empowering businesses with high-quality services for sustainable growth.
                 </p>
               </div>
-
             </div>
 
-
-            {/* Projects */}
-            <div className="flex items-center gap-3 rounded-[15px] border border-gray-100 bg-white px-3.5 py-2.5 shadow-[0_5px_18px_rgba(0,0,0,0.04)]">
-
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] bg-[#fff1eb] text-[#f36f35]">
+            {/* Vision */}
+            <div className="flex items-start gap-3.5 rounded-[15px] border border-gray-100 bg-[#fbfbfc] p-3.5 sm:p-4 shadow-[0_4px_14px_rgba(0,0,0,0.03)] hover:border-[#3b52a4]/30 transition-all">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] bg-[#ebf0ff] text-[#3b52a4]">
                 <svg
                   className="h-[18px] w-[18px]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0h5m-5 0V11m0 0h5m-5 0H7"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
               </div>
 
               <div>
-                <h4 className="text-[15px] font-extrabold leading-none text-[#111827]">
-                  2,500+
+                <h4 className="text-[13px] font-extrabold uppercase tracking-wider text-[#3b52a4]">
+                  Vision
                 </h4>
 
-                <p className="mt-1 text-[10px] font-medium text-[#667085]">
-                  Projects Completed
+                <p className="mt-0.5 text-[13px] sm:text-[14px] leading-[1.5] text-[#374151]">
+                  To lead globally in industrial services with new standards.
                 </p>
               </div>
-
             </div>
 
           </div>
@@ -204,7 +185,7 @@ export default function AboutOverviewSection() {
 
 
           {/* =================================================
-              STATS CARD (UNTOUCHED LOGIC & STRUCTURE)
+              STATS CARD (25+ YEARS ENLARGED, 100% REMOVED)
           ================================================= */}
           <div
             className="
@@ -214,7 +195,7 @@ export default function AboutOverviewSection() {
               z-40
               w-[280px]
               -translate-x-1/2
-              sm:w-[315px]
+              sm:w-[320px]
               lg:left-[-5%]
               lg:translate-x-0
             "
@@ -225,21 +206,21 @@ export default function AboutOverviewSection() {
                 border
                 border-gray-100
                 bg-white
-                px-5
+                px-6
                 py-5
                 shadow-[0_20px_50px_rgba(0,0,0,0.13)]
               "
             >
 
-              {/* Animated Stats */}
-              <div className="flex items-center gap-7">
+              {/* Animated Stats - 25+ Years (Enlarged) */}
+              <div className="flex items-baseline gap-2.5">
 
                 <span
                   className="
-                    text-[28px]
-                    font-extrabold
+                    text-[48px] sm:text-[54px]
+                    font-black
                     leading-none
-                    tracking-[-0.04em]
+                    tracking-tight
                     text-[#f36f35]
                   "
                 >
@@ -248,29 +229,29 @@ export default function AboutOverviewSection() {
 
                 <span
                   className="
-                    text-[28px]
+                    text-[24px] sm:text-[26px]
                     font-extrabold
                     leading-none
-                    tracking-[-0.04em]
-                    text-[#f36f35]
+                    tracking-tight
+                    text-[#111827]
                   "
                 >
-                  {commitment}%
+                  Years
                 </span>
 
               </div>
 
 
               {/* Divider */}
-              <div className="my-4 h-px bg-gray-100" />
+              <div className="my-3.5 h-px bg-gray-100" />
 
 
               {/* Card Heading */}
               <h3
                 className="
-                  text-[18px]
+                  text-[17px]
                   font-extrabold
-                  leading-[1.15]
+                  leading-[1.2]
                   tracking-[-0.025em]
                   text-[#111827]
                 "
@@ -282,14 +263,13 @@ export default function AboutOverviewSection() {
               {/* Card Description */}
               <p
                 className="
-                  mt-2
-                  text-[11px]
+                  mt-1.5
+                  text-[12px]
                   leading-[1.55]
                   text-[#667085]
                 "
               >
-                Combining over 25 years of technical expertise with a 100%
-                commitment to safety, precision, and client satisfaction.
+                Combining over 25 years of technical expertise with a commitment to safety, precision, and client satisfaction.
               </p>
 
             </div>

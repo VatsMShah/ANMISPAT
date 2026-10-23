@@ -1,33 +1,33 @@
 import React from 'react';
 
-import WorkProcess1 from '../assets/images/WorkProcess1.png';
-import WorkProcess2 from '../assets/images/WorkProcess2.png';
-import WorkProcess3 from '../assets/images/WorkProcess3.png';
+import WorkProcess1 from '../assets/images/WorkProcess1_new.jpg';
+import WorkProcess2 from '../assets/images/WorkProcess2_new.jpg';
+import WorkProcess3 from '../assets/images/WorkProcess3_new.jpg';
 
 export default function WorkProcess() {
   const steps = [
     {
       number: '01',
       label: 'Consultation & Planning',
-      title: 'Shaping the Foundation of Success',
+      title: 'Understanding Your Steel Requirement',
       description:
-        'We begin by thoroughly understanding your needs, defining clear goals, and crafting solution.',
+        'We begin by understanding your grade, size, quantity and delivery timeline, so every order is planned right from the start.',
       image: WorkProcess1,
     },
     {
       number: '02',
-      label: 'Execution & Implementation',
-      title: 'Transforming Ideas into Tangible Results',
+      label: 'Execution & Processing',
+      title: 'Quality Steel, Processed to Precision',
       description:
-        'Our team applies advanced techniques, innovative technology, and precise execution.',
+        'Using our supplier network and processing capabilities, we prepare coils, sheets, bars and plates to your required size and quality.',
       image: WorkProcess2,
     },
     {
       number: '03',
       label: 'Delivery & Support',
-      title: 'Committed to Quality and Continued Growth',
+      title: 'Reliable Supply, Backed by Continued Support',
       description:
-        'We deliver projects on time, provide continuous support, and ensure your complete satisfaction.',
+        'We deliver on schedule, stay available for follow-ups, and work to build long-term relationships with every customer.',
       image: WorkProcess3,
     },
   ];
@@ -93,18 +93,23 @@ export default function WorkProcess() {
         }
 
         /* Direct image animation */
-        .process-image {
+        .process-image-card {
           transition:
             transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
-            filter 500ms ease;
+            box-shadow 500ms ease;
+        }
+
+        .process-step:hover .process-image-card {
+          transform: translateY(-6px);
+          box-shadow: 0 20px 35px rgba(0, 0, 0, 0.14);
+        }
+
+        .process-image {
+          transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .process-step:hover .process-image {
-          transform: translateY(-8px) scale(1.025);
-
-          filter:
-            drop-shadow(0 22px 28px rgba(0, 0, 0, 0.13))
-            drop-shadow(0 4px 8px rgba(243, 111, 53, 0.08));
+          transform: scale(1.05);
         }
 
         /* Connection point */
@@ -326,29 +331,36 @@ export default function WorkProcess() {
 
 
                   {/* =======================================
-                      DIRECT 3D IMAGE
+                      PROCESS PHOTO CARD
                   ======================================== */}
                   <div
                     className="
+                      process-image-card
                       relative
-                      w-[225px]
-                      h-[165px]
-                      flex
-                      items-center
-                      justify-center
+                      w-full
+                      max-w-[275px]
+                      sm:max-w-[290px]
+                      h-[155px]
+                      sm:h-[165px]
+                      rounded-[18px]
+                      overflow-hidden
+                      border-2
+                      border-white
+                      shadow-[0_10px_25px_rgba(0,0,0,0.10)]
+                      bg-gray-100
                     "
                   >
 
                     <img
                       src={step.image}
-                      alt=""
+                      alt={step.title}
                       className="
                         process-image
                         w-full
                         h-full
-                        object-contain
+                        object-cover
+                        object-center
                         block
-                        drop-shadow-[0_18px_25px_rgba(0,0,0,0.10)]
                       "
                     />
 
