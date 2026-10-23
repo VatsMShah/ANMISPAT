@@ -37,27 +37,29 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/60 z-10" />
 
       {/* Foreground Hero Content Container */}
-      <div className="relative z-20 max-w-[1400px] w-full mx-auto px-6 pt-8 sm:pt-12 flex flex-col items-center">
-        <div className="max-w-4xl w-full mx-auto text-center flex flex-col items-center">
+      <div className="relative z-20 max-w-[1400px] w-full mx-auto px-6 sm:px-12 lg:px-16 my-auto pt-6 pb-6">
+        <div className="max-w-3xl text-left flex flex-col items-start">
           {/* Badge */}
-          <p className="text-xs sm:text-sm font-bold tracking-widest uppercase font-badge mb-4 text-center">
+          <p className="text-xs sm:text-sm font-bold tracking-widest uppercase font-badge mb-4 text-left">
             <span className="text-white/80">A KEY ARM OF </span>
             <span className="text-[#f36f35]">ABHAY ISPAT GROUP</span>
           </p>
 
           {/* Main Heading */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.15] tracking-tight mb-5 text-center">
-            Delivering The <span className="text-[#f36f35]">Backbone Of</span><br className="hidden sm:inline" /> Modern Infrastructure
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.12] tracking-tight mb-5 text-left">
+            Delivering The <br />
+            <span className="text-[#f36f35]">Backbone Of</span> <br />
+            Modern Infrastructure
           </h1>
 
           {/* Subtitle */}
-          <p className="text-gray-200 text-base md:text-lg mb-8 max-w-2xl font-normal leading-relaxed text-center mx-auto">
+          <p className="text-gray-200 text-base md:text-lg mb-8 max-w-xl font-normal leading-relaxed text-left">
             Delivering more than steel, ANM Ispat provides precision processing, 
             dependable supply, and trusted service to industries.
           </p>
 
           {/* CTA Group */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-start gap-4">
             <a
               href="#quote"
               className="bg-gradient-to-r from-[#f36f35] via-[#f36f35] to-[#f36f35] text-white font-bold text-sm px-7 py-3.5 rounded shadow-lg hover:shadow-[#f36f35]/25 hover:-translate-y-0.5 transition-all flex items-center gap-2"

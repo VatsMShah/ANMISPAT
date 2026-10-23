@@ -1,6 +1,5 @@
-//Footer.jsx
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, FileText, Send } from 'lucide-react';
 import anmLogo from '../assets/logo/anm.png';
 
 export default function Footer() {
@@ -69,19 +68,19 @@ export default function Footer() {
             <ul className="space-y-4 text-sm text-[#4c4c4c]">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-[#f36f35] shrink-0 mt-0.5" />
-                <span>Corporate Office, Ispat Tower, Main Road, India</span>
+                <span>Platinum Building, Jawahar Road, Ghatkopar East, Mumbai – 400077</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-[#f36f35] shrink-0" />
-                <span>(123) 456-7890</span>
+                <a href="tel:+917304656254" className="hover:text-[#f36f35] transition-colors">+91 7304656254</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-[#f36f35] shrink-0" />
-                <span>support@anmispat.com</span>
+                <a href="mailto:enquiry@anmispat.com" className="hover:text-[#f36f35] transition-colors">enquiry@anmispat.com</a>
               </li>
               <li className="flex items-center gap-3">
-                <Clock size={18} className="text-[#f36f35] shrink-0" />
-                <span>24/7 Emergency Support</span>
+                <FileText size={18} className="text-[#f36f35] shrink-0" />
+                <span>GST: 27AANCA2927N2Z5</span>
               </li>
             </ul>
           </div>

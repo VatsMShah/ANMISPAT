@@ -851,33 +851,47 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .why-pill {
-  padding: 8px 15px;
+  padding: 12px 22px;
 
   border: 0;
 
   border-radius: 100px;
 
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.88);
 
-  color: #3b3b3b;
+  color: #1f1f1f;
 
   font-family: var(--font-body);
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
 
   cursor: pointer;
 
   transition:
     transform 0.3s ease,
-    background 0.3s ease;
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
 .why-pill:hover {
   transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
 .why-pill.primary {
-  background: #fff;
+  background: #ffffff;
+  color: #111827;
+}
+
+.why-card-tall-blue {
+  border-top: 0 !important;
+  background: linear-gradient(
+    180deg,
+    #3b52a4 0%,
+    #344994 42%,
+    #2c3d7d 100%
+  ) !important;
 }
 
 

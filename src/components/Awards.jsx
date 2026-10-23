@@ -46,12 +46,9 @@ export default function Awards() {
 
         {/* Section Header */}
         <div className="max-w-[1280px] mx-auto text-center relative z-10 mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#fdeee9] border border-[#fbd8cb] mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#f36f35] animate-pulse" />
-            <span className="font-badge text-[11px] font-extrabold tracking-widest uppercase text-[#f36f35]">
-              OUR ACCOLADES
-            </span>
-          </div>
+          <p className="mb-3 font-badge text-xs font-bold uppercase tracking-[0.2em] text-[#f36f35]">
+            OUR ACCOLADES
+          </p>
 
           <h2 className="text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#111827] tracking-tight leading-tight mb-3">
             Recognized for <span className="text-[#f36f35]">Excellence & Quality</span>

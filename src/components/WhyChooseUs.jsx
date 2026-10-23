@@ -44,16 +44,14 @@ const cards = [
   },
 ];
 
-export default function WhyChooseUs() {
+function WhyChooseUsSection({ id = "why-choose-us", qualityTheme = "orange", subtitleTag = null }) {
   const sectionRef = useRef(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-
     if (!section) return;
 
     const elements = section.querySelectorAll(".why-reveal");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -70,15 +68,16 @@ export default function WhyChooseUs() {
     );
 
     elements.forEach((element) => observer.observe(element));
-
     return () => observer.disconnect();
   }, []);
+
+  const isBlue = qualityTheme === "blue";
 
   return (
     <section
       ref={sectionRef}
       className="why-section"
-      id="why-choose-us"
+      id={id}
     >
       <div className="why-container">
 
@@ -87,7 +86,7 @@ export default function WhyChooseUs() {
           <span className="why-heading-line" />
 
           <h2>
-            Why Choose <span>Us?</span>
+            Why Choose <span>Us?</span> {subtitleTag && <span className="text-base font-normal text-gray-500 ml-2">({subtitleTag})</span>}
           </h2>
 
           <p>
@@ -101,7 +100,7 @@ export default function WhyChooseUs() {
 
           {/* LEFT TALL CARD */}
           <article
-            className={`${cards[0].className} why-reveal`}
+            className={`${cards[0].className} ${isBlue ? 'why-card-tall-blue' : ''} why-reveal`}
             style={{ "--delay": "120ms" }}
           >
             <div className="why-card-content">
@@ -127,7 +126,7 @@ export default function WhyChooseUs() {
 
           </article>
 
-          {/* TOP MIDDLE */}
+          {/* TOP MIDDLE: 02 / PRODUCT RANGE */}
           <article
             className={`${cards[1].className} why-reveal`}
             style={{ "--delay": "260ms" }}
@@ -153,14 +152,14 @@ export default function WhyChooseUs() {
               <div className="image-fade" />
 
               <div className="product-tags">
+                <span>Long Products</span>
+                <span>Flat Products</span>
                 <span>Structural Steel</span>
-                <span>Industrial</span>
-                <span>Infrastructure</span>
               </div>
             </div>
           </article>
 
-          {/* TOP RIGHT */}
+          {/* TOP RIGHT: 03 / PARTNERSHIPS */}
           <article
             className={`${cards[2].className} why-reveal`}
             style={{ "--delay": "400ms" }}
@@ -187,12 +186,12 @@ export default function WhyChooseUs() {
 
               <div className="product-tags">
                 <span>Long-Term Trust</span>
-                <span>Responsive Service</span>
+                <span>Integrity</span>
               </div>
             </div>
           </article>
 
-          {/* BOTTOM LARGE CARD */}
+          {/* BOTTOM LARGE CARD: 04 / CAPABILITY */}
           <article
             className="why-card why-card-capability why-reveal"
             style={{ "--delay": "540ms" }}
@@ -216,12 +215,12 @@ export default function WhyChooseUs() {
                   that businesses can depend on.
                 </p>
 
-                <div className="capability-actions">
-                  <button className="why-pill primary">
+                <div className="capability-actions flex flex-wrap items-center gap-3 mt-5">
+                  <button className="why-pill primary text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-3.5 font-bold shadow-md hover:shadow-lg transition-all">
                     Our Products
                   </button>
 
-                  <button className="why-pill">
+                  <button className="why-pill text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-3.5 font-bold shadow-md hover:shadow-lg transition-all">
                     Explore ANM Ispat →
                   </button>
                 </div>
@@ -235,11 +234,6 @@ export default function WhyChooseUs() {
                 />
 
                 <div className="capability-image-overlay" />
-
-                <div className="facility-badge">
-                  <span className="facility-dot" />
-                  Industrial Strength
-                </div>
               </div>
 
             </div>
@@ -248,5 +242,17 @@ export default function WhyChooseUs() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function WhyChooseUs() {
+  return (
+    <>
+      {/* Original Section (Orange 01/Quality Card) */}
+      <WhyChooseUsSection id="why-choose-us" qualityTheme="orange" />
+
+      {/* Duplicate Section (Blue 01/Quality Card matching the ANM Logo) */}
+      <WhyChooseUsSection id="why-choose-us-blue" qualityTheme="blue" subtitleTag="Option B - Logo Blue Theme" />
+    </>
   );
 }

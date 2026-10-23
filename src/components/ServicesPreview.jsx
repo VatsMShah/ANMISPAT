@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -20,10 +21,96 @@ const industries = [
 
 export default function ServicesPreview() {
   const shouldReduceMotion = useReducedMotion();
-  const doubledIndustries = [...industries, ...industries];
+  const scrollRef = useRef(null);
+  const isDownRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftStartRef = useRef(0);
+  const hasDraggedRef = useRef(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+
+  // Triple industries for infinite bidirectional scrolling
+  const displayedIndustries = [...industries, ...industries, ...industries];
+
+  // Auto-scroll loop
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    // Center scroll on middle set initially
+    if (el.scrollLeft === 0) {
+      el.scrollLeft = el.scrollWidth / 3;
+    }
+
+    let animationFrameId;
+    const speed = 0.8;
+
+    const step = () => {
+      if (!isDownRef.current && !isHovered && el) {
+        el.scrollLeft += speed;
+        const oneThird = el.scrollWidth / 3;
+        if (el.scrollLeft >= oneThird * 2) {
+          el.scrollLeft -= oneThird;
+        } else if (el.scrollLeft <= 0) {
+          el.scrollLeft += oneThird;
+        }
+      }
+      animationFrameId = requestAnimationFrame(step);
+    };
+
+    animationFrameId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovered]);
+
+  // Infinite wrap-around check on manual scroll / wheel
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const oneThird = el.scrollWidth / 3;
+    if (el.scrollLeft >= oneThird * 2) {
+      el.scrollLeft -= oneThird;
+    } else if (el.scrollLeft <= 5) {
+      el.scrollLeft += oneThird;
+    }
+  }, []);
+
+  // Mouse Drag handlers
+  const handleMouseDown = (e) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    isDownRef.current = true;
+    setIsDragging(true);
+    startXRef.current = e.pageX - el.offsetLeft;
+    scrollLeftStartRef.current = el.scrollLeft;
+    hasDraggedRef.current = false;
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDownRef.current) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startXRef.current) * 1.6;
+    if (Math.abs(walk) > 5) {
+      hasDraggedRef.current = true;
+    }
+    el.scrollLeft = scrollLeftStartRef.current - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    isDownRef.current = false;
+    setIsDragging(false);
+  };
+
+  const handleCardClick = (e) => {
+    if (hasDraggedRef.current) {
+      e.preventDefault();
+    }
+  };
 
   return (
-    <section id="services" className="bg-[#f4f5f7] py-16 sm:py-20 lg:py-24 overflow-hidden">
+    <section id="services" className="bg-[#f4f5f7] py-16 sm:py-20 lg:py-24 overflow-hidden select-none">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
         <motion.div
           className="mb-10 grid gap-5 lg:mb-12 lg:grid-cols-[1fr_0.7fr] lg:items-end"
@@ -53,26 +140,15 @@ export default function ServicesPreview() {
         </motion.div>
       </div>
 
-      {/* Continuous Sliding Carousel */}
+      {/* Interactive Sliding & Drag/Wheel Carousel */}
       <div className="relative w-full overflow-hidden">
         <style>{`
-          @keyframes industrySlide {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
+          .industry-scroll-container::-webkit-scrollbar {
+            display: none;
           }
-          .industry-slide-track {
-            display: flex;
-            gap: 1.25rem;
-            width: max-content;
-            animation: industrySlide 36s linear infinite;
-            will-change: transform;
-          }
-          .industry-slide-track:hover {
-            animation-play-state: paused;
+          .industry-scroll-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
           }
           .industry-mask {
             -webkit-mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
@@ -85,19 +161,38 @@ export default function ServicesPreview() {
             }
           }
         `}</style>
-        <div className="industry-mask overflow-hidden py-3">
-          <div className="industry-slide-track pl-4">
-            {doubledIndustries.map((industry, index) => (
+        
+        <div className="industry-mask py-3">
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => {
+              setIsHovered(false);
+              handleMouseUpOrLeave();
+            }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUpOrLeave}
+            className={`industry-scroll-container flex gap-5 overflow-x-auto pl-4 cursor-grab ${
+              isDragging ? 'cursor-grabbing active:cursor-grabbing' : ''
+            }`}
+            style={{ willChange: 'scroll-position' }}
+          >
+            {displayedIndustries.map((industry, index) => (
               <Link
                 to="/services"
                 key={`${industry.name}-${index}`}
-                className="group relative block w-[280px] sm:w-[340px] lg:w-[390px] shrink-0 aspect-[4/3] overflow-hidden rounded-2xl bg-[#1f1f1f] shadow-[0_8px_24px_rgba(31,31,31,0.1)] transition-transform duration-300 hover:-translate-y-1.5"
+                onClick={handleCardClick}
+                draggable={false}
+                className="group relative block w-[280px] sm:w-[340px] lg:w-[390px] shrink-0 aspect-[4/3] overflow-hidden rounded-2xl bg-[#1f1f1f] shadow-[0_8px_24px_rgba(31,31,31,0.1)] transition-transform duration-300 hover:-translate-y-1.5 select-none"
               >
                 <img
                   src={industry.image}
                   alt={industry.name}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  draggable={false}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/85 via-[#111827]/25 to-transparent transition-opacity duration-300 group-hover:from-[#111827]/90" />
                 <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-3 text-white sm:inset-x-6 sm:bottom-6">
