@@ -251,8 +251,10 @@ export default function WhyChooseUs() {
       {/* Original Section (Orange 01/Quality Card) */}
       <WhyChooseUsSection id="why-choose-us" qualityTheme="orange" />
 
-      {/* Duplicate Section (Blue 01/Quality Card matching the ANM Logo) */}
-      <WhyChooseUsSection id="why-choose-us-blue" qualityTheme="blue" subtitleTag="Option B - Logo Blue Theme" />
+      {/* Duplicate Section (Option B - Logo Blue Theme, Hidden per request, not deleted) */}
+      {false && (
+        <WhyChooseUsSection id="why-choose-us-blue" qualityTheme="blue" subtitleTag="Option B - Logo Blue Theme" />
+      )}
     </>
   );
 }

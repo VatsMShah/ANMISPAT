@@ -15,6 +15,33 @@ import Steel3DViewer from '../components/Steel3DViewer';
 import productHeroImage from '../assets/products-images/products-page-bg.png';
 import productsCta from '../assets/images/products-cta.jpg';
 
+// Catalog images downloaded from Google Drive
+import catalogHRCoil from '../assets/products-images/catalog/catalog-6.jpg';
+import catalogHRSheet from '../assets/products-images/catalog/catalog-1.jpg';
+import catalogHRPO from '../assets/products-images/catalog/catalog-5.jpg';
+import catalogHRSPO from '../assets/products-images/catalog/catalog-2.jpg';
+import catalogCRCoil from '../assets/products-images/catalog/catalog-3.jpg';
+import catalogGPSheet from '../assets/products-images/catalog/catalog-4.jpg';
+
+// Client / Partner brand logos for sliding marquee
+import logoTataAstrum from '../assets/images/tata-astrum.png';
+import logoGalvano from '../assets/images/galvano.png';
+import logoTataAstrumSuper from '../assets/images/tata-astrum-super.png';
+import logoTataSteeliumSuper from '../assets/images/tata-steelium-super.png';
+import logoTataSteelium from '../assets/images/tata-steelium.png';
+import logoTataKosh from '../assets/images/tata-kosh.png';
+import logoTataWiron from '../assets/images/tata-wiron.png';
+
+const PRODUCT_CLIENT_LOGOS = [
+  { name: 'Tata Astrum', src: logoTataAstrum },
+  { name: 'Galvano', src: logoGalvano },
+  { name: 'Tata Astrum Super', src: logoTataAstrumSuper },
+  { name: 'Tata Steelium Super', src: logoTataSteeliumSuper },
+  { name: 'Tata Steelium', src: logoTataSteelium },
+  { name: 'Tata Kosh', src: logoTataKosh },
+  { name: 'Tata Wiron', src: logoTataWiron },
+];
+
 const PRODUCTS_DATA = [
   {
     id: 'hr-coil',
@@ -26,9 +53,9 @@ const PRODUCTS_DATA = [
     grade: 'E250A/BR, E350A/C, IS10748(GR1,GR2), CHQ, BSK46, 550MC, 600MC, 700MC',
     applications: ['Construction', 'Infrastructure', 'Automotive Components', 'Heavy Machinery'],
     images: [
-      'https://images.unsplash.com/photo-1535813547-99c456a41d4a?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      catalogHRCoil,
+      catalogHRPO,
+      catalogHRSPO,
     ],
   },
   {
@@ -41,9 +68,9 @@ const PRODUCTS_DATA = [
     grade: 'E250A, IS10748(GR2)',
     applications: ['Heavy Engineering', 'Industrial Equipment', 'Structural Fabrication', 'Bridges'],
     images: [
-      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80',
+      catalogHRSheet,
+      catalogGPSheet,
+      catalogHRCoil,
     ],
   },
   {
@@ -56,9 +83,9 @@ const PRODUCTS_DATA = [
     grade: 'IS1079D, E250A, E34',
     applications: ['Automotive Panels', 'Precision Tubing', 'Stamping', 'Appliances'],
     images: [
-      'https://images.unsplash.com/photo-1535813547-99c456a41d4a?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80',
+      catalogHRPO,
+      catalogHRSPO,
+      catalogHRCoil,
     ],
   },
   {
@@ -71,9 +98,9 @@ const PRODUCTS_DATA = [
     grade: 'IS1079D',
     applications: ['Laser Cutting', 'Precision Enclosures', 'High-Tolerance Fabrication'],
     images: [
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1535813547-99c456a41d4a?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
+      catalogHRSPO,
+      catalogHRCoil,
+      catalogHRPO,
     ],
   },
   {
@@ -86,9 +113,9 @@ const PRODUCTS_DATA = [
     grade: 'IS513D (DQ)',
     applications: ['Automotive Body Parts', 'Electrical Panels', 'Furniture', 'Home Appliances'],
     images: [
-      'https://images.unsplash.com/photo-1535813547-99c456a41d4a?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80',
+      catalogCRCoil,
+      catalogHRSPO,
+      catalogHRPO,
     ],
   },
   {
@@ -101,9 +128,9 @@ const PRODUCTS_DATA = [
     grade: 'GLK1, GLR1 - SOFT, GLK2 (120 GSM), GK09',
     applications: ['Roofing & Cladding', 'HVAC Ducting', 'Control Panels', 'Agricultural Equipment'],
     images: [
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1535813547-99c456a41d4a?auto=format&fit=crop&w=1200&q=80',
+      catalogGPSheet,
+      catalogHRSheet,
+      catalogCRCoil,
     ],
   },
 ];
@@ -262,6 +289,27 @@ export default function Products() {
           }
         }
       `}</style>
+
+      {/* Hero Section - Compact Banner (Occupies ~30% of viewport, matching About page) */}
+      <section className="relative w-full h-[30vh] min-h-[220px] max-h-[300px] flex flex-col justify-end overflow-hidden bg-[#0a1120]">
+        {/* Full-width Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={productsCta} 
+            alt="Products Banner" 
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Subtle Dark Overlay for Legibility Without Being Too Dark */}
+          <div className="absolute inset-0 bg-black/45 z-10" />
+        </div>
+
+        {/* Content Container - Bottom Left Aligned, ONLY "PRODUCTS" */}
+        <div className="max-w-[1280px] w-full mx-auto px-6 sm:px-8 md:px-12 relative z-20 pb-7 sm:pb-9">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight uppercase leading-none drop-shadow-md">
+            PRODUCTS
+          </h1>
+        </div>
+      </section>
 
       {/* =========================================================================
           HIDDEN SECTIONS (Preserved per request, not deleted)
@@ -555,6 +603,26 @@ export default function Products() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      {/* SECTION: BRAND OFFERINGS MARQUEE */}
+      <section className="anm-marquee relative border-t border-brand-border bg-white pt-10 pb-8 sm:pt-12 sm:pb-10 overflow-hidden">
+        <h2 className="text-center text-sm sm:text-base font-light tracking-widest text-gray-500 mb-4 sm:mb-6">
+          OUR OFFERINGS
+        </h2>
+        <div className="anm-marquee-mask overflow-hidden">
+          <div className="anm-marquee-track">
+            {[...PRODUCT_CLIENT_LOGOS, ...PRODUCT_CLIENT_LOGOS].map((logo, index) => (
+              <div key={index} className="group flex items-center justify-center px-8 sm:px-14 shrink-0">
+                <img
+                  src={logo.src}
+                  alt={logo.name}
+                  className="anm-marquee-logo h-12 sm:h-16 lg:h-[4.5rem] w-auto object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

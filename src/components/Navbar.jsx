@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Phone } from 'lucide-react';
+import { Phone, ChevronDown } from 'lucide-react';
 import anmLogo from '../assets/logo/anm.png';
 
 export default function Navbar() {
@@ -34,7 +34,40 @@ export default function Navbar() {
         {/* 2. Left Nav Links */}
         <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold text-gray-600">
           <Link to="/" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Home</Link>
-          <a href="/about" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">About</a>
+          {/* About with Sub-page Dropdown */}
+          <div className="relative group/about py-1">
+            <Link 
+              to="/about" 
+              className="group relative inline-flex items-center gap-1 text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100"
+            >
+              <span>About Us</span>
+              <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover/about:rotate-180 text-gray-400 group-hover/about:text-[#f36f35]" />
+            </Link>
+
+            {/* Dropdown Menu */}
+            <div className="absolute top-full left-0 pt-2 w-56 opacity-0 pointer-events-none translate-y-1.5 group-hover/about:opacity-100 group-hover/about:pointer-events-auto group-hover/about:translate-y-0 transition-all duration-200 z-50">
+              <div className="bg-white rounded-xl shadow-[0_12px_32px_rgba(0,0,0,0.12)] border border-gray-100 p-1.5 overflow-hidden">
+                <Link
+                  to="/about"
+                  className="block px-3.5 py-2.5 rounded-lg text-xs font-semibold text-gray-700 hover:bg-[#fff5f0] hover:text-[#f36f35] transition-colors"
+                >
+                  About Overview
+                </Link>
+                <Link
+                  to="/about/founder-chairman"
+                  className="block px-3.5 py-2.5 rounded-lg text-xs font-semibold text-gray-700 hover:bg-[#fff5f0] hover:text-[#f36f35] transition-colors"
+                >
+                  Founder Chairman
+                </Link>
+                <Link
+                  to="/about/board-of-directors"
+                  className="block px-3.5 py-2.5 rounded-lg text-xs font-semibold text-gray-700 hover:bg-[#fff5f0] hover:text-[#f36f35] transition-colors"
+                >
+                  Board of Directors
+                </Link>
+              </div>
+            </div>
+          </div>
           <Link to="/products" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Products</Link>
           <Link to="/achievements" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Achievements</Link>
         </nav>
@@ -51,7 +84,36 @@ export default function Navbar() {
         {/* 4. Right Nav Links */}
         <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold text-gray-600">
           <Link to="/services" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Industries</Link>
-          <a href="/csr" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">CSR</a>
+          
+          {/* CSR with Sub-page Dropdown */}
+          <div className="relative group/csr py-1">
+            <Link 
+              to="/csr" 
+              className="group relative inline-flex items-center gap-1 text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100"
+            >
+              <span>CSR</span>
+              <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover/csr:rotate-180 text-gray-400 group-hover/csr:text-[#f36f35]" />
+            </Link>
+
+            {/* Dropdown Menu */}
+            <div className="absolute top-full left-0 pt-2 w-56 opacity-0 pointer-events-none translate-y-1.5 group-hover/csr:opacity-100 group-hover/csr:pointer-events-auto group-hover/csr:translate-y-0 transition-all duration-200 z-50">
+              <div className="bg-white rounded-xl shadow-[0_12px_32px_rgba(0,0,0,0.12)] border border-gray-100 p-1.5 overflow-hidden">
+                <Link
+                  to="/csr"
+                  className="block px-3.5 py-2.5 rounded-lg text-xs font-semibold text-gray-700 hover:bg-[#fff5f0] hover:text-[#f36f35] transition-colors"
+                >
+                  CSR Overview
+                </Link>
+                <Link
+                  to="/csr/initiatives"
+                  className="block px-3.5 py-2.5 rounded-lg text-xs font-semibold text-gray-700 hover:bg-[#fff5f0] hover:text-[#f36f35] transition-colors"
+                >
+                  CSR Initiatives
+                </Link>
+              </div>
+            </div>
+          </div>
+
           <Link to="/careers" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Careers</Link>
           <Link to="/contact" className="group relative inline-flex items-center text-gray-600 transition-colors duration-300 ease-out hover:text-[#f36f35] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#f36f35] after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100">Contact</Link>
         </nav>

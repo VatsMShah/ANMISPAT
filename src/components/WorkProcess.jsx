@@ -310,19 +310,21 @@ export default function WorkProcess() {
                   "
                 >
 
-                  {/* Giant background number */}
+                  {/* Step Number */}
                   <span
                     className="
                       absolute
-                      left-0
-                      top-0
-                      z-[-1]
-                      text-[88px]
-                      sm:text-[96px]
-                      font-extrabold
+                      left-2
+                      sm:left-4
+                      -top-8
+                      sm:-top-10
+                      z-0
+                      text-[78px]
+                      sm:text-[88px]
+                      font-black
                       leading-none
-                      tracking-[-0.08em]
-                      text-[#f36f35]/[0.11]
+                      tracking-[-0.06em]
+                      text-[#f36f35]/40
                       select-none
                     "
                   >

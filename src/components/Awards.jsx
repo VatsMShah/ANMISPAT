@@ -13,8 +13,7 @@ const awardsData = [
     image: award1Img,
     title: 'Best Brands 2025',
     issuer: 'The Economic Times / ET Edge',
-    category: 'Colorshine recognised as one of the Best Brands - 2025',
-    year: '2025',
+    category: 'Colorshine recognised as one of the Best Brands',
   },
   {
     id: 2,
@@ -22,7 +21,6 @@ const awardsData = [
     title: 'Star Performer of The Year',
     issuer: 'AM/NS Steel Star',
     category: 'Abhay Ispat (India) Pvt. Ltd. - Central',
-    year: '2024',
   },
   {
     id: 3,
@@ -30,7 +28,6 @@ const awardsData = [
     title: 'Retail Rockstar',
     issuer: 'Tata Steel (Tata Kosh)',
     category: 'Top Performing ASO (ANM Ispat Pvt. Ltd. : Mumbai)',
-    year: '2020',
   },
   {
     id: 4,
@@ -38,7 +35,6 @@ const awardsData = [
     title: 'Steel Distributor of the Year',
     issuer: 'BCC&I & Tata Steel',
     category: 'Manufacturing & MSME Excellence Award (ANM Ispat Pvt. Ltd.)',
-    year: '2021-22',
   },
   {
     id: 5,
@@ -46,7 +42,6 @@ const awardsData = [
     title: 'Market Development of LC Grades',
     issuer: 'Tata Steel (Manthan)',
     category: 'Special Appreciation Winner (ANM Ispat Pvt. Ltd., Mumbai)',
-    year: '2023-24',
   },
 ];
 
@@ -184,7 +179,7 @@ export default function Awards() {
 
       </div>
 
-      {/* Infinite Continuous Sliding & Interactive Scroll Carousel */}
+      {/* Infinite Continuous Sliding Carousel (No boxes, no year) */}
       <div className="relative w-full overflow-hidden">
         <style>{`
           .awards-scroll-container::-webkit-scrollbar {
@@ -218,53 +213,47 @@ export default function Awards() {
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUpOrLeave}
-            className={`awards-scroll-container flex gap-6 overflow-x-auto pl-6 sm:pl-8 cursor-grab ${
+            className={`awards-scroll-container flex items-start gap-8 sm:gap-12 overflow-x-auto pl-6 sm:pl-8 cursor-grab ${
               isDragging ? 'cursor-grabbing active:cursor-grabbing' : ''
             }`}
             style={{ willChange: 'scroll-position' }}
           >
             {displayedAwards.map((award, index) => (
-              <article
+              <div
                 key={`${award.id}-${index}`}
                 onClick={() => handleCardClick(award)}
-                className="group relative block w-[280px] sm:w-[320px] lg:w-[335px] shrink-0 cursor-pointer rounded-2xl bg-white p-5 text-left text-[#1f1f1f] border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_35px_rgba(243,111,53,0.12)] hover:border-[#f36f35]/30 select-none"
+                className="group flex flex-col items-center w-[220px] sm:w-[250px] md:w-[270px] shrink-0 cursor-pointer select-none px-2 transition-transform duration-300 hover:-translate-y-2 text-center"
               >
-                {/* Trophy Showcase Box */}
-                <div className="relative flex items-center justify-center h-56 sm:h-60 w-full rounded-xl bg-gradient-to-b from-[#f8f9fa] to-[#f1f3f7] p-4 overflow-hidden mb-4 border border-gray-100/80">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(243,111,53,0.07)_0%,transparent_70%)]" />
-                  
-                  {/* High Quality Trophy Image */}
+                {/* Trophy Image & Natural Stand/Shadow (No boxes!) */}
+                <div className="relative w-full h-56 sm:h-64 flex flex-col items-center justify-end pb-3">
                   <img
                     src={award.image}
                     alt={award.title}
                     draggable={false}
-                    className="max-h-full max-w-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.14)] transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none"
+                    className="max-h-48 sm:max-h-56 w-auto object-contain drop-shadow-[0_12px_22px_rgba(0,0,0,0.18)] transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none"
                   />
 
-                  {/* Year Badge */}
-                  <span className="absolute top-3 right-3 rounded-full bg-white/95 backdrop-blur-sm border border-gray-100 px-2.5 py-0.5 font-badge text-[10px] font-extrabold text-[#f36f35] shadow-sm">
-                    {award.year}
-                  </span>
+                  {/* Natural Ground Contact Shadow */}
+                  <div className="w-24 h-2 bg-black/30 rounded-[100%] blur-[2px] -mt-1 transition-all duration-500 group-hover:w-20 group-hover:bg-black/20" />
+                  {/* Soft Ambient Ground Glow */}
+                  <div className="w-36 h-4 bg-black/15 rounded-[100%] blur-md -mt-3 transition-all duration-500 group-hover:w-40 group-hover:bg-[#f36f35]/20 group-hover:blur-lg" />
                 </div>
 
-                {/* Content */}
-                <div>
-                  <div className="flex items-center gap-1.5 mb-1.5">
-                    <Award size={13} className="text-[#f36f35]" />
-                    <span className="font-badge text-[10.5px] font-bold uppercase tracking-wider text-[#f36f35]">
-                      {award.issuer}
-                    </span>
-                  </div>
+                {/* Content below trophy (No boxes, no year) */}
+                <div className="mt-2 flex flex-col items-center max-w-[240px]">
+                  <span className="font-badge text-[10.5px] font-bold uppercase tracking-wider text-[#f36f35] block mb-1">
+                    {award.issuer}
+                  </span>
                   
-                  <h3 className="font-heading text-lg font-black text-[#111827] leading-snug group-hover:text-[#f36f35] transition-colors line-clamp-1">
+                  <h3 className="font-heading text-base sm:text-lg font-black text-[#111827] leading-snug group-hover:text-[#f36f35] transition-colors line-clamp-2">
                     {award.title}
                   </h3>
                   
-                  <p className="mt-1.5 font-body text-xs text-gray-500 line-clamp-2 leading-relaxed">
+                  <p className="mt-1 font-body text-xs text-gray-500 line-clamp-2 leading-relaxed">
                     {award.category}
                   </p>
                 </div>
-              </article>
+              </div>
             ))}
           </div>
         </div>
@@ -303,7 +292,7 @@ export default function Awards() {
             <div className="text-center w-full">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fdeee9] text-[#f36f35] font-badge text-xs font-bold uppercase tracking-wider mb-2">
                 <Award size={14} className="text-[#f36f35]" />
-                {selectedAward.issuer} • {selectedAward.year}
+                {selectedAward.issuer}
               </div>
               
               <h2 className="font-heading text-2xl font-black text-[#111827] mt-1 mb-2">

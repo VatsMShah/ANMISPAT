@@ -159,28 +159,13 @@ export default function AboutOverviewSection() {
           {/* Ambient Warm Radial Background Glow */}
           <div className="absolute top-1/2 left-1/2 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[#fff0e8] via-[#fdeee9] to-transparent blur-2xl opacity-80" />
 
-          {/* Architectural Blueprint Dot Grid */}
-          <div
-            className="absolute right-4 top-6 h-[180px] w-[180px] opacity-25"
-            style={{
-              backgroundImage: 'radial-gradient(#111827 1.2px, transparent 1.2px)',
-              backgroundSize: '16px 16px',
-            }}
-          />
-
-          {/* Decorative Corner Framing Element */}
-          <div className="absolute right-2 top-2 h-24 w-24 rounded-tr-3xl border-r-2 border-t-2 border-[#f36f35]/40" />
-
-
-          {/* MAIN HERO IMAGE CONTAINER */}
-          <div className="group relative z-20 h-[430px] w-[320px] sm:w-[350px] overflow-hidden rounded-[28px] border-4 border-white bg-[#0f172a] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-500 hover:-translate-y-1">
-            
+          {/* MAIN HERO IMAGE */}
+          <div className="group relative z-20 flex h-[430px] w-[330px] sm:w-[360px] items-center justify-center transition-all duration-500 hover:-translate-y-1">
             <img
               src={engineerImage}
               alt="Industrial Engineering Specialist"
-              className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              className="h-full w-full object-contain object-center drop-shadow-[0_20px_35px_rgba(0,0,0,0.18)] transition-transform duration-700 ease-out group-hover:scale-105"
             />
-
           </div>
 
 
