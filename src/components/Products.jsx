@@ -263,92 +263,102 @@ export default function Products() {
         }
       `}</style>
 
-      {/* SECTION 1: HERO */}
-      <section className="relative isolate overflow-hidden border-b border-brand-border bg-brand-footer py-12 sm:py-16 lg:py-20">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[58%] lg:block">
-          <img src={productHeroImage} alt="" className="h-full w-full object-cover object-center opacity-[0.22] mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-footer via-brand-footer/70 to-brand-footer/10" />
-        </div>
-        <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-28 -z-10 h-72 w-72 rounded-full border-[32px] border-brand-orange/10 sm:h-96 sm:w-96" />
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="products-rise-in inline-flex items-center gap-2 rounded-full border border-brand-orange/30 bg-white/80 px-3.5 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-orange shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-orange motion-safe:animate-pulse" />
-              ANM Ispat Product Line
+      {/* =========================================================================
+          HIDDEN SECTIONS (Preserved per request, not deleted)
+          Section 1: Hero ("Steel Solutions For A Stronger Tomorrow")
+          Section 2: Products Overview ("Steel for a wide range of industrial needs")
+          Set condition to true to unhide anytime.
+      ========================================================================= */}
+      {false && (
+        <>
+          {/* SECTION 1: HERO */}
+          <section className="relative isolate overflow-hidden border-b border-brand-border bg-brand-footer py-12 sm:py-16 lg:py-20">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[58%] lg:block">
+              <img src={productHeroImage} alt="" className="h-full w-full object-cover object-center opacity-[0.22] mix-blend-multiply" />
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-footer via-brand-footer/70 to-brand-footer/10" />
             </div>
-            <h1 className="products-rise-in mt-4 font-heading text-4xl font-extrabold leading-[1.04] tracking-tight text-brand-dark [animation-delay:100ms] sm:text-6xl lg:text-7xl">
-              Steel Solutions
-              <br />
-              <span className="text-brand-orange">For A Stronger</span> Tomorrow
-            </h1>
-            <p className="products-rise-in mt-5 max-w-2xl font-body text-base leading-relaxed text-brand-body [animation-delay:200ms] sm:text-lg">
-              Our comprehensive range includes HR Coils, HR Sheets, HRPO, HRSPO, CR Coils, and Galvanized Plain Steel. Engineered to meet demanding requirements across infrastructure, automotive, fabrication, and machinery sectors.
-            </p>
-            <div className="products-rise-in mt-6 flex flex-wrap gap-3 [animation-delay:300ms] sm:gap-4">
-              <a href="#interactive-studio" className="group inline-flex items-center justify-center gap-2 rounded-md bg-brand-orange px-6 py-3 font-badge text-sm font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-orange sm:px-7 sm:py-3.5">
-                Explore the range
-                <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
-              <a href="#specifications-table" className="inline-flex items-center justify-center gap-2 rounded-md border border-brand-border bg-white/90 px-6 py-3 font-badge text-sm font-bold text-brand-dark transition-all duration-300 hover:border-brand-orange hover:text-brand-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-orange sm:px-7 sm:py-3.5">
-                View specifications
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+            <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-28 -z-10 h-72 w-72 rounded-full border-[32px] border-brand-orange/10 sm:h-96 sm:w-96" />
 
-      {/* SECTION 2: PRODUCTS OVERVIEW */}
-      <section aria-labelledby="products-overview-heading" className="relative isolate overflow-hidden border-b border-brand-border bg-white py-14 sm:py-16 lg:py-20">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-20 -z-10 h-72 w-72 rounded-full bg-brand-orange/[0.06] blur-3xl" />
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-12 lg:items-center lg:gap-14 lg:px-8">
-          <div className="products-rise-in lg:col-span-5">
-            <p className="mb-3 flex items-center gap-2 font-badge text-xs font-bold uppercase tracking-[0.18em] text-brand-orange">
-              <Layers aria-hidden="true" className="h-4 w-4" />
-              Our products
-            </p>
-            <h2 id="products-overview-heading" className="font-heading text-3xl font-extrabold leading-tight tracking-tight text-brand-dark sm:text-4xl">
-              Steel for a wide range of <span className="text-brand-orange">industrial needs.</span>
-            </h2>
-            <p className="mt-5 font-body text-sm leading-7 text-brand-body sm:text-base">
-              Our product range includes Hot Rolled (HR) Coils, Hot Rolled Sheets and Plates, Hot Rolled Pickled and Oiled (HRPO) Coils, Hot Rolled Skin Passed (HRSP) Coils, Cold Rolled (CR) Coils, and Galvanized Plain (GP) Steel. These products cater to construction, infrastructure, fabrication, automotive components, machinery, manufacturing, and roofing requirements.
-            </p>
-          </div>
-
-          <div className="products-rise-in lg:col-span-7" style={{ animationDelay: '120ms' }}>
-            <div className="relative overflow-hidden rounded-2xl border border-brand-border bg-brand-footer p-5 shadow-sm sm:p-7">
-              <div aria-hidden="true" className="pointer-events-none absolute -right-12 -top-16 h-48 w-48 rounded-full border-[24px] border-brand-orange/[0.08]" />
-              <div className="relative">
-                <div className="mb-5 flex flex-col justify-between gap-2 border-b border-brand-border pb-4 sm:flex-row sm:items-end">
-                  <div>
-                    <p className="font-badge text-[10px] font-bold uppercase tracking-[0.16em] text-brand-body">Product portfolio</p>
-                    <h3 className="mt-1 font-heading text-lg font-bold text-brand-dark sm:text-xl">Six product forms. One dependable range.</h3>
-                  </div>
-                  <span className="font-badge text-xs font-semibold text-brand-orange">01 / 06</span>
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+              <div className="max-w-3xl">
+                <div className="products-rise-in inline-flex items-center gap-2 rounded-full border border-brand-orange/30 bg-white/80 px-3.5 py-1 text-xs font-bold uppercase tracking-[0.18em] text-brand-orange shadow-sm">
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand-orange motion-safe:animate-pulse" />
+                  ANM Ispat Product Line
                 </div>
-                <ul className="grid gap-2 sm:grid-cols-2" aria-label="Product families">
-                  {PRODUCT_FAMILIES.map((family, index) => (
-                    <li key={family} className="group flex min-w-0 items-start gap-3 rounded-xl border border-brand-border/80 bg-white px-3.5 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-orange/50 hover:shadow-sm sm:px-4">
-                      <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-orange/10 font-badge text-[10px] font-bold tabular-nums text-brand-orange transition-colors group-hover:bg-brand-orange group-hover:text-white">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <span className="min-w-0 break-words font-body text-xs font-semibold leading-relaxed text-brand-dark sm:text-sm">{family}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-5 border-t border-brand-border pt-4">
-                  <p className="mb-3 font-badge text-[10px] font-bold uppercase tracking-[0.16em] text-brand-body">Applications across industry</p>
-                  <ul className="flex flex-wrap gap-2" aria-label="Product applications">
-                    {PRODUCT_APPLICATIONS.map((application) => (
-                      <li key={application} className="rounded-full border border-brand-orange/20 bg-brand-orange/5 px-3 py-1.5 font-badge text-[10px] font-semibold text-brand-dark sm:text-xs">{application}</li>
-                    ))}
-                  </ul>
+                <h1 className="products-rise-in mt-4 font-heading text-4xl font-extrabold leading-[1.04] tracking-tight text-brand-dark [animation-delay:100ms] sm:text-6xl lg:text-7xl">
+                  Steel Solutions
+                  <br />
+                  <span className="text-brand-orange">For A Stronger</span> Tomorrow
+                </h1>
+                <p className="products-rise-in mt-5 max-w-2xl font-body text-base leading-relaxed text-brand-body [animation-delay:200ms] sm:text-lg">
+                  Our comprehensive range includes HR Coils, HR Sheets, HRPO, HRSPO, CR Coils, and Galvanized Plain Steel. Engineered to meet demanding requirements across infrastructure, automotive, fabrication, and machinery sectors.
+                </p>
+                <div className="products-rise-in mt-6 flex flex-wrap gap-3 [animation-delay:300ms] sm:gap-4">
+                  <a href="#interactive-studio" className="group inline-flex items-center justify-center gap-2 rounded-md bg-brand-orange px-6 py-3 font-badge text-sm font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-orange sm:px-7 sm:py-3.5">
+                    Explore the range
+                    <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </a>
+                  <a href="#specifications-table" className="inline-flex items-center justify-center gap-2 rounded-md border border-brand-border bg-white/90 px-6 py-3 font-badge text-sm font-bold text-brand-dark transition-all duration-300 hover:border-brand-orange hover:text-brand-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-orange sm:px-7 sm:py-3.5">
+                    View specifications
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
+
+          {/* SECTION 2: PRODUCTS OVERVIEW */}
+          <section aria-labelledby="products-overview-heading" className="relative isolate overflow-hidden border-b border-brand-border bg-white py-14 sm:py-16 lg:py-20">
+            <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-20 -z-10 h-72 w-72 rounded-full bg-brand-orange/[0.06] blur-3xl" />
+            <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-12 lg:items-center lg:gap-14 lg:px-8">
+              <div className="products-rise-in lg:col-span-5">
+                <p className="mb-3 flex items-center gap-2 font-badge text-xs font-bold uppercase tracking-[0.18em] text-brand-orange">
+                  <Layers aria-hidden="true" className="h-4 w-4" />
+                  Our products
+                </p>
+                <h2 id="products-overview-heading" className="font-heading text-3xl font-extrabold leading-tight tracking-tight text-brand-dark sm:text-4xl">
+                  Steel for a wide range of <span className="text-brand-orange">industrial needs.</span>
+                </h2>
+                <p className="mt-5 font-body text-sm leading-7 text-brand-body sm:text-base">
+                  Our product range includes Hot Rolled (HR) Coils, Hot Rolled Sheets and Plates, Hot Rolled Pickled and Oiled (HRPO) Coils, Hot Rolled Skin Passed (HRSP) Coils, Cold Rolled (CR) Coils, and Galvanized Plain (GP) Steel. These products cater to construction, infrastructure, fabrication, automotive components, machinery, manufacturing, and roofing requirements.
+                </p>
+              </div>
+
+              <div className="products-rise-in lg:col-span-7" style={{ animationDelay: '120ms' }}>
+                <div className="relative overflow-hidden rounded-2xl border border-brand-border bg-brand-footer p-5 shadow-sm sm:p-7">
+                  <div aria-hidden="true" className="pointer-events-none absolute -right-12 -top-16 h-48 w-48 rounded-full border-[24px] border-brand-orange/[0.08]" />
+                  <div className="relative">
+                    <div className="mb-5 flex flex-col justify-between gap-2 border-b border-brand-border pb-4 sm:flex-row sm:items-end">
+                      <div>
+                        <p className="font-badge text-[10px] font-bold uppercase tracking-[0.16em] text-brand-body">Product portfolio</p>
+                        <h3 className="mt-1 font-heading text-lg font-bold text-brand-dark sm:text-xl">Six product forms. One dependable range.</h3>
+                      </div>
+                      <span className="font-badge text-xs font-semibold text-brand-orange">01 / 06</span>
+                    </div>
+                    <ul className="grid gap-2 sm:grid-cols-2" aria-label="Product families">
+                      {PRODUCT_FAMILIES.map((family, index) => (
+                        <li key={family} className="group flex min-w-0 items-start gap-3 rounded-xl border border-brand-border/80 bg-white px-3.5 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-orange/50 hover:shadow-sm sm:px-4">
+                          <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-orange/10 font-badge text-[10px] font-bold tabular-nums text-brand-orange transition-colors group-hover:bg-brand-orange group-hover:text-white">
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                          <span className="min-w-0 break-words font-body text-xs font-semibold leading-relaxed text-brand-dark sm:text-sm">{family}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-5 border-t border-brand-border pt-4">
+                      <p className="mb-3 font-badge text-[10px] font-bold uppercase tracking-[0.16em] text-brand-body">Applications across industry</p>
+                      <ul className="flex flex-wrap gap-2" aria-label="Product applications">
+                        {PRODUCT_APPLICATIONS.map((application) => (
+                          <li key={application} className="rounded-full border border-brand-orange/20 bg-brand-orange/5 px-3 py-1.5 font-badge text-[10px] font-semibold text-brand-dark sm:text-xs">{application}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* SECTION 3: INTERACTIVE PRODUCT STUDIO */}
       <section id="interactive-studio" className="relative overflow-hidden border-b border-brand-border bg-white py-10 sm:py-12 lg:py-16">
