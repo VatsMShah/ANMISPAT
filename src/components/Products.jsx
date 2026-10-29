@@ -11,6 +11,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PageHero from './PageHero.jsx';
 import Steel3DViewer from '../components/Steel3DViewer';
 import productHeroImage from '../assets/products-images/products-page-bg.png';
 import productsCta from '../assets/images/products-cta.jpg';
@@ -290,26 +291,15 @@ export default function Products() {
         }
       `}</style>
 
-      {/* Hero Section - Compact Banner (Occupies ~30% of viewport, matching About page) */}
-      <section className="relative w-full h-[30vh] min-h-[220px] max-h-[300px] flex flex-col justify-end overflow-hidden bg-[#0a1120]">
-        {/* Full-width Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={productsCta} 
-            alt="Products Banner" 
-            className="w-full h-full object-cover object-center"
-          />
-          {/* Subtle Dark Overlay for Legibility Without Being Too Dark */}
-          <div className="absolute inset-0 bg-black/45 z-10" />
-        </div>
-
-        {/* Content Container - Bottom Left Aligned, ONLY "PRODUCTS" */}
-        <div className="max-w-[1280px] w-full mx-auto px-6 sm:px-8 md:px-12 relative z-20 pb-7 sm:pb-9">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight uppercase leading-none drop-shadow-md">
-            PRODUCTS
-          </h1>
-        </div>
-      </section>
+      {/* Hero Section - Compact Banner Matching Reference Mockup */}
+      <PageHero
+        title="Products"
+        subtitle="ANM ISPAT"
+        exploreText="Explore Products"
+        exploreLink="/"
+        bgImage={productsCta}
+        imageAlt="Products Banner"
+      />
 
       {/* =========================================================================
           HIDDEN SECTIONS (Preserved per request, not deleted)
@@ -706,29 +696,6 @@ export default function Products() {
           document.body,
         )
       )}
-
-      {/* SECTION 6: CALL TO ACTION */}
-      <section className="relative isolate overflow-hidden bg-brand-dark py-8 text-white sm:py-10 lg:py-12">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-          <img src={productsCta} alt="" loading="lazy" className="h-full w-full object-cover object-right sm:object-center" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-orange via-brand-orange/95 to-brand-orange/40 sm:via-brand-orange/90 sm:to-transparent" />
-        </div>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-xl">
-            <div className="flex items-center gap-3">
-              <span className="h-0.5 w-6 bg-white/80" />
-              <p className="font-badge text-xs font-bold uppercase tracking-[0.18em] text-white/90">Need a custom specification?</p>
-            </div>
-            <h2 className="mt-2 font-heading text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">Let&apos;s Find the Right Steel Solution for Your Need.</h2>
-            <div className="mt-5">
-              <Link to="/contact" className="group inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-2.5 font-badge text-xs font-bold text-brand-orange shadow-lg transition-all duration-300 hover:bg-brand-dark hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:px-7 sm:py-3 sm:text-sm">
-                Get in Touch
-                <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

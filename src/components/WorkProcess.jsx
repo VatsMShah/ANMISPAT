@@ -233,30 +233,31 @@ export default function WorkProcess() {
               absolute
               left-[8%]
               right-[8%]
-              top-[125px]
-              h-[100px]
+              top-[188px]
+              sm:top-[203px]
+              h-[2px]
               z-0
+              hidden
+              md:block
             "
           >
 
             <svg
               className="w-full h-full overflow-visible"
-              viewBox="0 0 1000 120"
+              viewBox="0 0 1000 2"
               preserveAspectRatio="none"
               fill="none"
               aria-hidden="true"
             >
 
-              <path
-                className="process-path"
-                d="
-                  M0 62
-                  C145 115 205 115 330 54
-                  C440 3 500 5 610 60
-                  C735 120 810 108 1000 34
-                "
+              <line
+                x1="80"
+                y1="1"
+                x2="920"
+                y2="1"
                 stroke="#f36f35"
                 strokeWidth="2"
+                strokeDasharray="6 6"
                 strokeLinecap="round"
                 opacity="0.45"
               />
@@ -292,7 +293,6 @@ export default function WorkProcess() {
                   process-delay-${(index + 1) * 100}
                   relative
                   min-w-0
-                  ${index === 1 ? 'md:pt-6' : ''}
                 `}
               >
 
@@ -310,23 +310,30 @@ export default function WorkProcess() {
                   "
                 >
 
-                  {/* Step Number */}
+                  {/* Step Number - Forward and upon the image */}
                   <span
                     className="
                       absolute
                       left-2
                       sm:left-4
-                      -top-8
-                      sm:-top-10
-                      z-0
-                      text-[78px]
-                      sm:text-[88px]
+                      -top-4
+                      sm:-top-6
+                      z-20
+                      text-[72px]
+                      sm:text-[82px]
                       font-black
                       leading-none
                       tracking-[-0.06em]
-                      text-[#f36f35]/40
+                      text-[#f36f35]
                       select-none
+                      drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]
+                      transition-transform
+                      duration-500
+                      hover:scale-105
                     "
+                    style={{
+                      WebkitTextStroke: '1px rgba(255,255,255,0.6)',
+                    }}
                   >
                     {step.number}
                   </span>

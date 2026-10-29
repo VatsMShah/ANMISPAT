@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import TopStrip from './components/TopStrip';
 import Navbar from './components/Navbar';
+import QuoteSection from './components/QuoteSection';
 import Footer from './components/Footer';
 
 import Home from './components/Home';
@@ -15,6 +16,7 @@ import CSR from './components/CSR';
 import CSRInitiatives from './components/CSRInitiatives';
 import FounderChairman from './components/FounderChairman';
 import BoardOfDirectors from './components/BoardOfDirectors';
+import CorporateGovernance from './components/CorporateGovernance';
 import ScrollManager from './components/ScrollManager';
 
 export default function App() {
@@ -33,6 +35,8 @@ export default function App() {
             <Route path="/founder-chairman" element={<FounderChairman />} />
             <Route path="/about/board-of-directors" element={<BoardOfDirectors />} />
             <Route path="/board-of-directors" element={<BoardOfDirectors />} />
+            <Route path="/about/corporate-governance" element={<CorporateGovernance />} />
+            <Route path="/corporate-governance" element={<CorporateGovernance />} />
             <Route path="/achievements" element={<Achievements />} />
             <Route path="/csr" element={<CSR/>}/>
             <Route path="/csr/initiatives" element={<CSRInitiatives />} />
@@ -44,6 +48,7 @@ export default function App() {
           </Routes>
         </div>
 
+        <QuoteSection />
         <Footer />
       </div>
     </Router>

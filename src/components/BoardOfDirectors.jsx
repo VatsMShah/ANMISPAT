@@ -1,270 +1,349 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { Plus, X, CheckCircle2 } from 'lucide-react';
+import PageHero from './PageHero.jsx';
 
-import vineshMehtaWideImg from '../assets/images/vinesh-mehta-wide.jpg';
-import abhayMehtaWideImg from '../assets/images/abhay-mehta-wide.jpg';
+import aboutHeroBg from '../assets/images/about-banner-new.jpg';
+import vineshMehtaImg from '../assets/images/vinesh-mehta-card.jpg';
+import abhayMehtaImg from '../assets/images/abhay-mehta-card.jpg';
+
+const directorsData = [
+  {
+    id: 'vinesh-mehta',
+    name: 'MR. VINESH MEHTA',
+    designation: 'DIRECTOR, ANM ISPAT',
+    image: vineshMehtaImg,
+    imagePosition: 'object-center',
+    // Half info displayed on the card preview
+    previewBio:
+      "Mr. Vinesh Mehta, a towering figure in the steel industry, is driven by a philosophy of the 5 D's: Determination, Dedication, Dynamism, Discipline, and Devotion. His journey into the steel industry began at a remarkably young age in 1976, when he first ventured into the bustling alleys of Masjid Bandar, demonstrating his early passion and commitment to the steel trade.",
+    // Full info displayed inside the modal
+    fullBio: [
+      "Mr. Vinesh Mehta, a towering figure in the steel industry, is driven by a philosophy of the 5 D's: Determination, Dedication, Dynamism, Discipline, and Devotion.",
+      "His journey into the steel industry began at a remarkably young age in 1976, when he first ventured into the bustling alleys of Masjid Bandar, demonstrating his early passion and commitment to the steel trade.",
+      "Mr. Mehta's visionary leadership played a pivotal role in transitioning from traders to establishing two proprietary firms: Abhay Enterprises and Abhay Steel Private Limited. These ventures were later merged and restructured into Abhay Ispat India Private Limited in 2002, marking a significant evolution in their business model, a testament to his strategic foresight.",
+    ],
+    pillarsTitle: "The 5 D's Philosophy",
+    pillars: [
+      'Determination',
+      'Dedication',
+      'Dynamism',
+      'Discipline',
+      'Devotion',
+    ],
+  },
+  {
+    id: 'abhay-mehta',
+    name: 'MR. ABHAY MEHTA',
+    designation: 'DIRECTOR, ANM ISPAT',
+    image: abhayMehtaImg,
+    imagePosition: 'object-[center_18%]',
+    // Half info displayed on the card preview
+    previewBio:
+      "Mr. Abhay Mehta, Director of ANM Ispat, is a cornerstone of the company's operational excellence, supply chain resilience, and enduring customer relationships. Driven by a commitment to ethical governance and modern infrastructure, his leadership ensures precision, reliability, and continuous expansion across India's industrial landscape.",
+    // Full info displayed inside the modal
+    fullBio: [
+      "Mr. Abhay Mehta, Director of ANM Ispat, brings extensive experience, operational rigor, and strategic depth to the organization, anchoring its core values of integrity, quality, and long-term customer partnerships.",
+      "Under his stewardship alongside the board, the company has scaled its distribution footprint, modernized its service center infrastructure, and forged strong alliances with India's premier primary steel producers.",
+      "His commitment to sustainable growth, proactive market adaptation, and customer-first execution has been instrumental in positioning ANM Ispat as one of the most reliable and trusted steel partners in the region.",
+    ],
+    pillarsTitle: 'Core Leadership Pillars',
+    pillars: [
+      'Operational Rigor',
+      'Supply Chain Resilience',
+      'Strategic Partnerships',
+      'Ethical Governance',
+      'Customer-First Culture',
+    ],
+  },
+];
 
 export default function BoardOfDirectors() {
-  // Ensure page scrolls to top on navigation
+  const [activeModalDirector, setActiveModalDirector] = useState(null);
+
+  // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Lock body scroll when modal is open and handle Escape key
+  useEffect(() => {
+    if (activeModalDirector) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          setActiveModalDirector(null);
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = 'unset';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [activeModalDirector]);
+
+  const vineshMehta = directorsData[0];
+  const abhayMehta = directorsData[1];
+
   return (
-    <main className="relative w-full overflow-hidden font-sans bg-white text-[#2d3748]">
-      
+    <main className="relative w-full overflow-hidden font-sans bg-[#fbfcfd] text-[#111827]">
       {/* =====================================================
-          SECTION 1: VINESH MEHTA
-          Similar to Founder Chairman:
-          - The photo covers the WHOLE section
-          - Vinesh Mehta is on the left of the photo
-          - Upon the photo, text is placed on the right side
-          - "Chairman's Message" is replaced with "Vinesh Mehta"
+          SECTION 1: HERO SECTION
+          Standard Hero Section matching all other pages
       ====================================================== */}
-      <section className="relative w-full overflow-hidden bg-[#e9eff4] border-b border-gray-200 min-h-[620px] sm:min-h-[680px] md:min-h-[740px] lg:min-h-[800px] xl:min-h-[860px] flex items-center">
-        
-        {/* Full-bleed Photo Background covering the entire section */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={vineshMehtaWideImg}
-            alt="Vinesh Mehta - Director"
-            className="w-full h-full object-cover object-[25%_center] lg:object-center select-none"
-          />
-          {/* Subtle gradient overlay to guarantee razor-sharp text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-white/10 to-white/70 lg:to-white/60 pointer-events-none" />
+      <PageHero
+        title="Board of Directors"
+        subtitle="ANM ISPAT"
+        exploreText="Explore Leadership"
+        exploreLink="/"
+        bgImage={aboutHeroBg}
+        imageAlt="Board of Directors Banner"
+      />
+
+      {/* Intro Header Section */}
+      <section className="pt-14 sm:pt-16 pb-6 px-6 sm:px-10 lg:px-14 max-w-6xl mx-auto text-center">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f36f35]/10 border border-[#f36f35]/25 text-[#f36f35] text-xs font-bold tracking-widest uppercase mb-4">
+          Executive Leadership
         </div>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#111827] tracking-tight">
+          Guiding ANM Ispat with Vision, Scale &amp; Integrity
+        </h2>
+        <p className="mt-4 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          Driven by decades of steel craftsmanship, strategic innovation, and steadfast commitment to client success.
+        </p>
+      </section>
 
-        {/* Content Container Overlaying the Photo */}
-        <div className="relative z-10 max-w-[1440px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-16 py-12 sm:py-16 md:py-20">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
-            {/* -------------------------------------------------
-                LEFT SIDE: SPACER (Leaves Vinesh Mehta's portrait clearly visible)
-            -------------------------------------------------- */}
-            <div className="hidden lg:block lg:col-span-5 min-h-[300px]" aria-hidden="true" />
+      {/* =====================================================
+          SECTION 2: MR. VINESH MEHTA
+          Brand Color Themed Card:
+          Left: Full portrait photo
+          Right: Warm brand-tinted container with Name, Designation, Half Info & Plus button
+      ====================================================== */}
+      <section className="py-8 sm:py-12 px-6 sm:px-10 lg:px-14">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-white rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_12px_45px_rgba(243,111,53,0.08)] border border-gray-100 hover:border-[#f36f35]/35 hover:shadow-[0_18px_55px_rgba(243,111,53,0.14)] transition-all duration-300">
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+              {/* Left Column: Photo */}
+              <div className="lg:col-span-6 relative min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] overflow-hidden bg-gray-100">
+                <img
+                  src={vineshMehta.image}
+                  alt={vineshMehta.name}
+                  className={`w-full h-full object-cover ${vineshMehta.imagePosition} transition-transform duration-500 hover:scale-[1.02]`}
+                />
+                {/* Subtle light gradient transition on desktop */}
+                <div className="hidden lg:block absolute inset-y-0 right-0 w-16 bg-gradient-to-r from-transparent to-white/90 pointer-events-none" />
+              </div>
 
-            {/* -------------------------------------------------
-                RIGHT SIDE: "VINESH MEHTA" TITLE & CONTENT
-                Placing the text directly upon the photo
-            -------------------------------------------------- */}
-            <div className="lg:col-span-7 flex flex-col justify-center">
+              {/* Right Column: Brand Theme Content */}
+              <div className="lg:col-span-6 p-7 sm:p-10 lg:p-12 xl:p-14 bg-gradient-to-br from-white via-[#fffaf6] to-[#fff3eb] flex flex-col justify-between">
+                <div>
+                  {/* Name */}
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] tracking-wider uppercase font-sans">
+                    {vineshMehta.name}
+                  </h3>
+
+                  {/* Designation */}
+                  <div className="mt-2.5 mb-6 sm:mb-8 flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#f36f35]" />
+                    <p className="text-xs sm:text-sm font-bold tracking-[0.18em] text-[#f36f35] uppercase">
+                      {vineshMehta.designation}
+                    </p>
+                  </div>
+
+                  {/* Half Info (Preview Text) */}
+                  <p className="text-[#4b5563] text-sm sm:text-base leading-relaxed font-normal">
+                    {vineshMehta.previewBio}
+                  </p>
+                </div>
+
+                {/* Circular Plus Button to open modal */}
+                <div className="mt-8 pt-4 flex items-center gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setActiveModalDirector(vineshMehta)}
+                    aria-label={`Read full biography of ${vineshMehta.name}`}
+                    className="group flex items-center gap-3.5 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#f36f35] focus:ring-offset-2 rounded-full"
+                  >
+                    <div className="w-11 h-11 rounded-full bg-[#f36f35] group-hover:bg-[#e0561b] text-white flex items-center justify-center transition-all duration-300 shadow-[0_4px_14px_rgba(243,111,53,0.35)] group-hover:shadow-[0_6px_20px_rgba(243,111,53,0.5)] group-hover:scale-110">
+                      <Plus
+                        className="w-5 h-5 text-white"
+                        strokeWidth={2.5}
+                      />
+                    </div>
+                    <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-gray-700 group-hover:text-[#f36f35] transition-colors duration-200">
+                      Read Full Bio
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================
+          SECTION 3: MR. ABHAY MEHTA
+          Brand Color Themed Card (Reversed Layout):
+          Left Column (Desktop): Warm brand-tinted container with Name, Designation, Half Info & Plus button
+          Right Column (Desktop): Full portrait photo
+      ====================================================== */}
+      <section className="py-8 sm:py-12 pb-16 sm:pb-24 px-6 sm:px-10 lg:px-14">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-white rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_12px_45px_rgba(243,111,53,0.08)] border border-gray-100 hover:border-[#f36f35]/35 hover:shadow-[0_18px_55px_rgba(243,111,53,0.14)] transition-all duration-300">
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
               
-              <div className="bg-white/85 backdrop-blur-md p-6 sm:p-10 rounded-2xl border border-white/70 shadow-lg lg:bg-transparent lg:backdrop-blur-none lg:p-0 lg:border-0 lg:shadow-none max-w-2xl">
-                
-                {/* Header Title: "Vinesh Mehta" (replaces Chairman's Message) */}
-                <div className="mb-6 sm:mb-8">
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#2D3748] tracking-tight font-sans drop-shadow-sm">
-                    Vinesh Mehta
-                  </h2>
-                  <div className="mt-2.5 flex items-center gap-2">
-                    <span className="h-[2px] w-8 bg-[#f36f35]" />
-                    <p className="text-xs uppercase tracking-widest font-bold text-[#f36f35]">
-                      Board of Directors
+              {/* Left Column on Desktop / Bottom on Mobile: Brand Theme Content */}
+              <div className="order-2 lg:order-1 lg:col-span-6 p-7 sm:p-10 lg:p-12 xl:p-14 bg-gradient-to-br from-white via-[#fffaf6] to-[#fff3eb] flex flex-col justify-between">
+                <div>
+                  {/* Name */}
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] tracking-wider uppercase font-sans">
+                    {abhayMehta.name}
+                  </h3>
+
+                  {/* Designation */}
+                  <div className="mt-2.5 mb-6 sm:mb-8 flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#f36f35]" />
+                    <p className="text-xs sm:text-sm font-bold tracking-[0.18em] text-[#f36f35] uppercase">
+                      {abhayMehta.designation}
                     </p>
                   </div>
+
+                  {/* Half Info (Preview Text) */}
+                  <p className="text-[#4b5563] text-sm sm:text-base leading-relaxed font-normal">
+                    {abhayMehta.previewBio}
+                  </p>
                 </div>
 
-                {/* Eyebrow Label (matching reference "2014 RESULTS" styling) */}
-                <div className="text-xs font-bold uppercase tracking-[0.2em] text-[#718096] mb-3">
-                  Strategic Vision &amp; Leadership
+                {/* Circular Plus Button to open modal */}
+                <div className="mt-8 pt-4 flex items-center gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setActiveModalDirector(abhayMehta)}
+                    aria-label={`Read full biography of ${abhayMehta.name}`}
+                    className="group flex items-center gap-3.5 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#f36f35] focus:ring-offset-2 rounded-full"
+                  >
+                    <div className="w-11 h-11 rounded-full bg-[#f36f35] group-hover:bg-[#e0561b] text-white flex items-center justify-center transition-all duration-300 shadow-[0_4px_14px_rgba(243,111,53,0.35)] group-hover:shadow-[0_6px_20px_rgba(243,111,53,0.5)] group-hover:scale-110">
+                      <Plus
+                        className="w-5 h-5 text-white"
+                        strokeWidth={2.5}
+                      />
+                    </div>
+                    <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-gray-700 group-hover:text-[#f36f35] transition-colors duration-200">
+                      Read Full Bio
+                    </span>
+                  </button>
                 </div>
+              </div>
 
-                {/* Main Statement / Paragraph */}
-                <p className="text-xl sm:text-2xl lg:text-[25px] font-normal text-[#1A202C] leading-[1.4] tracking-tight mb-8 font-sans drop-shadow-sm">
-                  At ANM Ispat, our commitment is centered on delivering enduring value, fostering resilient partnerships, and building a scalable, technology-driven platform that supports India's industrial and infrastructure expansion.
-                </p>
-
-                {/* Bulleted Highlights (Styled exactly like reference design) */}
-                <div className="space-y-6">
-                  
-                  {/* Metric 1 */}
-                  <div className="pl-1">
-                    <p className="text-lg sm:text-xl font-normal text-[#1A202C] leading-snug drop-shadow-sm">
-                      • <span className="italic font-medium">Leadership across</span>{' '}
-                      <span className="italic font-bold text-[#111827]">50+ steel categories &amp; grades</span>
-                    </p>
-                    <p className="italic text-xs sm:text-sm text-[#4A5568] mt-0.5 pl-4">
-                      (comprehensive supply chain network spanning major industrial hubs across India)
-                    </p>
-                  </div>
-
-                  {/* Metric 2 */}
-                  <div className="pl-1">
-                    <p className="text-lg sm:text-xl font-normal text-[#1A202C] leading-snug drop-shadow-sm">
-                      • <span className="italic font-medium">Trusted partnerships with</span>{' '}
-                      <span className="italic font-bold text-[#111827]">premier primary steel producers</span>
-                    </p>
-                    <p className="italic text-xs sm:text-sm text-[#4A5568] mt-0.5 pl-4">
-                      (authorized processing, distribution, and value-added supply chain execution)
-                    </p>
-                  </div>
-
-                  {/* Metric 3 */}
-                  <div className="pl-1">
-                    <p className="text-lg sm:text-xl font-normal text-[#1A202C] leading-snug drop-shadow-sm">
-                      • <span className="italic font-medium">Strong foundation of</span>{' '}
-                      <span className="italic font-bold text-[#111827]">growth &amp; ethical governance</span>
-                    </p>
-                    <p className="italic text-xs sm:text-sm text-[#4A5568] mt-0.5 pl-4">
-                      (building long-term customer trust through transparent trade and discipline)
-                    </p>
-                  </div>
-
-                </div>
-
+              {/* Right Column on Desktop / Top on Mobile: Photo */}
+              <div className="order-1 lg:order-2 lg:col-span-6 relative min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] overflow-hidden bg-gray-100">
+                <img
+                  src={abhayMehta.image}
+                  alt={abhayMehta.name}
+                  className={`w-full h-full object-cover ${abhayMehta.imagePosition} transition-transform duration-500 hover:scale-[1.02]`}
+                />
+                {/* Subtle left gradient transition on desktop */}
+                <div className="hidden lg:block absolute inset-y-0 left-0 w-16 bg-gradient-to-l from-transparent to-white/90 pointer-events-none" />
               </div>
 
             </div>
-
           </div>
-
         </div>
-
       </section>
 
       {/* =====================================================
-          SECTION 2: ABHAY MEHTA
-          Similar to Founder Chairman:
-          - The photo covers the WHOLE section
-          - Abhay Mehta is on the right of the photo
-          - Upon the photo, text is placed on the left side
+          INTERACTIVE MODAL: FULL DIRECTOR INFORMATION
+          Mounted directly into document.body via createPortal
+          Light Brand Color Theme matching the website palette
       ====================================================== */}
-      <section className="relative w-full overflow-hidden bg-[#e9eff4] border-b border-gray-200 min-h-[620px] sm:min-h-[680px] md:min-h-[740px] lg:min-h-[800px] xl:min-h-[860px] flex items-center">
-        
-        {/* Full-bleed Photo Background covering the entire section */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={abhayMehtaWideImg}
-            alt="Abhay Mehta - Director"
-            className="w-full h-full object-cover object-[75%_center] lg:object-center select-none"
-          />
-          {/* Subtle gradient overlay to guarantee razor-sharp text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-l from-black/20 via-white/10 to-white/70 lg:to-white/60 pointer-events-none" />
-        </div>
+      {activeModalDirector &&
+        createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="director-modal-title"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/60 backdrop-blur-sm transition-all duration-300"
+            onClick={() => setActiveModalDirector(null)}
+          >
+            {/* Modal Container */}
+            <div
+              className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto bg-white text-[#111827] rounded-3xl border border-gray-100 shadow-[0_25px_70px_rgba(0,0,0,0.25)] p-6 sm:p-10 my-auto transition-transform duration-300"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Brand Accent Bar on Top */}
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#f36f35] via-[#ff9865] to-[#f36f35] rounded-t-3xl" />
 
-        {/* Content Container Overlaying the Photo */}
-        <div className="relative z-10 max-w-[1440px] w-full mx-auto px-6 sm:px-10 lg:px-14 xl:px-16 py-12 sm:py-16 md:py-20">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
-            {/* -------------------------------------------------
-                LEFT SIDE: "ABHAY MEHTA" TITLE & CONTENT (Mirrored)
-                Placing the text directly upon the photo
-            -------------------------------------------------- */}
-            <div className="lg:col-span-7 flex flex-col justify-center">
-              
-              <div className="bg-white/85 backdrop-blur-md p-6 sm:p-10 rounded-2xl border border-white/70 shadow-lg lg:bg-transparent lg:backdrop-blur-none lg:p-0 lg:border-0 lg:shadow-none max-w-2xl">
-                
-                {/* Header Title: "Abhay Mehta" */}
-                <div className="mb-6 sm:mb-8">
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#2D3748] tracking-tight font-sans drop-shadow-sm">
-                    Abhay Mehta
-                  </h2>
-                  <div className="mt-2.5 flex items-center gap-2">
-                    <span className="h-[2px] w-8 bg-[#f36f35]" />
-                    <p className="text-xs uppercase tracking-widest font-bold text-[#f36f35]">
-                      Board of Directors
-                    </p>
-                  </div>
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={() => setActiveModalDirector(null)}
+                aria-label="Close biography modal"
+                className="absolute top-5 right-5 sm:top-6 sm:right-6 w-10 h-10 rounded-full bg-gray-100 hover:bg-[#f36f35] text-gray-500 hover:text-white flex items-center justify-center transition-colors duration-200 cursor-pointer focus:outline-none"
+              >
+                <X className="w-5 h-5" strokeWidth={2.5} />
+              </button>
+
+              {/* Modal Header: Director Portrait Thumbnail & Title */}
+              <div className="flex items-center gap-4 sm:gap-6 pr-12">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-[#f36f35]/25 shadow-md flex-shrink-0 bg-gray-100">
+                  <img
+                    src={activeModalDirector.image}
+                    alt={activeModalDirector.name}
+                    className={`w-full h-full object-cover ${activeModalDirector.imagePosition}`}
+                  />
                 </div>
-
-                {/* Eyebrow Label */}
-                <div className="text-xs font-bold uppercase tracking-[0.2em] text-[#718096] mb-3">
-                  Operational Excellence &amp; Supply Chain
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#f36f35]/10 text-[11px] font-bold text-[#f36f35] uppercase tracking-wider mb-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#f36f35]" />
+                    {activeModalDirector.designation}
+                  </div>
+                  <h3
+                    id="director-modal-title"
+                    className="text-2xl sm:text-3xl font-extrabold text-[#111827] tracking-wider uppercase font-sans"
+                  >
+                    {activeModalDirector.name}
+                  </h3>
                 </div>
-
-                {/* Main Statement / Paragraph */}
-                <p className="text-xl sm:text-2xl lg:text-[25px] font-normal text-[#1A202C] leading-[1.4] tracking-tight mb-8 font-sans drop-shadow-sm">
-                  Driving operational discipline and modern supply chain innovation, we ensure that every customer receives tailored steel solutions with speed, precision, and uncompromised quality.
-                </p>
-
-                {/* Bulleted Highlights (Styled exactly like reference design) */}
-                <div className="space-y-6">
-                  
-                  {/* Metric 1 */}
-                  <div className="pl-1">
-                    <p className="text-lg sm:text-xl font-normal text-[#1A202C] leading-snug drop-shadow-sm">
-                      • <span className="italic font-medium">Precision processing with</span>{' '}
-                      <span className="italic font-bold text-[#111827]">cut-to-length &amp; custom slitting</span>
-                    </p>
-                    <p className="italic text-xs sm:text-sm text-[#4A5568] mt-0.5 pl-4">
-                      (tailored steel dimensions engineered to exact industrial manufacturing tolerances)
-                    </p>
-                  </div>
-
-                  {/* Metric 2 */}
-                  <div className="pl-1">
-                    <p className="text-lg sm:text-xl font-normal text-[#1A202C] leading-snug drop-shadow-sm">
-                      • <span className="italic font-medium">Just-In-Time supply with</span>{' '}
-                      <span className="italic font-bold text-[#111827]">nationwide logistical reach</span>
-                    </p>
-                    <p className="italic text-xs sm:text-sm text-[#4A5568] mt-0.5 pl-4">
-                      (rapid turnaround and dedicated fleet reducing downtime for critical projects)
-                    </p>
-                  </div>
-
-                  {/* Metric 3 */}
-                  <div className="pl-1">
-                    <p className="text-lg sm:text-xl font-normal text-[#1A202C] leading-snug drop-shadow-sm">
-                      • <span className="italic font-medium">Deep customer relationships across</span>{' '}
-                      <span className="italic font-bold text-[#111827]">major industrial sectors</span>
-                    </p>
-                    <p className="italic text-xs sm:text-sm text-[#4A5568] mt-0.5 pl-4">
-                      (partnering with leading automotive, infrastructure, engineering, and OEM leaders)
-                    </p>
-                  </div>
-
-                </div>
-
               </div>
 
+              {/* Divider */}
+              <div className="h-px w-full bg-gray-100 my-6 sm:my-8" />
+
+              {/* Modal Body: Full Biography Paragraphs */}
+              <div className="space-y-4 sm:space-y-5 text-[#374151] text-sm sm:text-base leading-relaxed font-normal">
+                {activeModalDirector.fullBio.map((paragraph, idx) => (
+                  <p key={idx} className="text-justify">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              {/* Modal Highlights / Core Pillars */}
+              {activeModalDirector.pillars && (
+                <div className="mt-8 pt-6 border-t border-gray-100">
+                  <h4 className="text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-[#111827] mb-3 sm:mb-4">
+                    {activeModalDirector.pillarsTitle}
+                  </h4>
+                  <div className="flex flex-wrap gap-2.5">
+                    {activeModalDirector.pillars.map((pillar, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#fff5ee] border border-[#f36f35]/25 text-xs sm:text-sm font-semibold text-[#f36f35] hover:bg-[#f36f35] hover:text-white transition-colors"
+                      >
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#f36f35]" />
+                        {pillar}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-
-            {/* -------------------------------------------------
-                RIGHT SIDE: SPACER (Leaves Abhay Mehta's portrait clearly visible)
-            -------------------------------------------------- */}
-            <div className="hidden lg:block lg:col-span-5 min-h-[300px]" aria-hidden="true" />
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* =====================================================
-          BOTTOM DISCOVERY BANNER
-      ====================================================== */}
-      <section className="py-12 bg-white border-t border-gray-200">
-        <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <h4 className="text-lg font-bold text-gray-900">
-              Explore More of ANM Ispat Leadership
-            </h4>
-            <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
-              Learn about our Founder Chairman, our journey, and nationwide steel capabilities.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link
-              to="/about/founder-chairman"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-300 text-gray-700 text-xs sm:text-sm font-bold hover:border-[#f36f35] hover:text-[#f36f35] transition-colors"
-            >
-              Founder Chairman
-            </Link>
-            <Link
-              to="/products"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#f36f35] text-white text-xs sm:text-sm font-bold hover:brightness-95 shadow-sm transition-all"
-            >
-              <span>Explore Products</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
+          </div>,
+          document.body
+        )}
     </main>
   );
 }

@@ -41,8 +41,10 @@ export default function Hero() {
         <div className="max-w-3xl text-left flex flex-col items-start">
           {/* Badge */}
           <p className="text-xs sm:text-sm font-bold tracking-widest uppercase font-badge mb-4 text-left">
-            <span className="text-white/80">A KEY ARM OF </span>
-            <span className="text-[#f36f35]">ABHAY ISPAT GROUP</span>
+            <span className="text-white/90">A KEY ARM OF </span>
+            <span className="text-[#ff3838] font-extrabold tracking-[0.16em] drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
+              ABHAY ISPAT GROUP
+            </span>
           </p>
 
           {/* Main Heading */}

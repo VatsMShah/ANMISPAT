@@ -65,6 +65,12 @@ export default function Navbar() {
                 >
                   Board of Directors
                 </Link>
+                <Link
+                  to="/about/corporate-governance"
+                  className="block px-3.5 py-2.5 rounded-lg text-xs font-semibold text-gray-700 hover:bg-[#fff5f0] hover:text-[#f36f35] transition-colors"
+                >
+                  Corporate Governance
+                </Link>
               </div>
             </div>
           </div>

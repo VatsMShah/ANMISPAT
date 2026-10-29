@@ -112,14 +112,27 @@ export default function OurJourney() {
                     `}
                   >
                     {item.type === 'outline' ? (
-                      <span
-                        className="block text-[80px] lg:text-[100px] xl:text-[112px] font-black leading-none tracking-tight text-transparent"
-                        style={{
-                          WebkitTextStroke: '2.5px #475569',
-                          filter: 'drop-shadow(0 2px 4px rgba(255,255,255,0.4))',
-                        }}
-                      >
-                        {item.year}
+                      <span className="relative block text-[80px] lg:text-[100px] xl:text-[112px] font-black leading-none tracking-tight select-none">
+                        {/* Outer high-contrast white stroke with ambient shadow for dark photography legibility */}
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-0 text-transparent"
+                          style={{
+                            WebkitTextStroke: '5px #ffffff',
+                            filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.45))',
+                          }}
+                        >
+                          {item.year}
+                        </span>
+                        {/* Inner dark slate stroke for crisp contrast on light background */}
+                        <span
+                          className="relative text-transparent"
+                          style={{
+                            WebkitTextStroke: '2px #1e293b',
+                          }}
+                        >
+                          {item.year}
+                        </span>
                       </span>
                     ) : (
                       <span
@@ -155,13 +168,25 @@ export default function OurJourney() {
                   {/* Mobile-only Year Graphic */}
                   <div className="md:hidden mt-4 select-none">
                     {item.type === 'outline' ? (
-                      <span
-                        className="block text-6xl font-black leading-none tracking-tight text-transparent"
-                        style={{
-                          WebkitTextStroke: '2px #475569',
-                        }}
-                      >
-                        {item.year}
+                      <span className="relative block text-6xl font-black leading-none tracking-tight select-none">
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-0 text-transparent"
+                          style={{
+                            WebkitTextStroke: '4px #ffffff',
+                            filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.35))',
+                          }}
+                        >
+                          {item.year}
+                        </span>
+                        <span
+                          className="relative text-transparent"
+                          style={{
+                            WebkitTextStroke: '2px #1e293b',
+                          }}
+                        >
+                          {item.year}
+                        </span>
                       </span>
                     ) : (
                       <span className="block text-6xl font-black leading-none tracking-tight text-[#f36f35]">

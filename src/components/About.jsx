@@ -1,4 +1,5 @@
 import React from 'react';
+import PageHero from './PageHero.jsx';
 import AboutOverviewSection from './AboutOverviewSection';
 import WorkProcess from './WorkProcess.jsx';
 import OurJourney from './OurJourney.jsx';
@@ -34,29 +35,15 @@ export default function About() {
         .animate-delay-200 { animation-delay: 200ms; }
       `}</style>
 
-      {/* Hero Section - Compact Banner (Occupies ~30% of viewport) */}
-      <section className="relative w-full h-[30vh] min-h-[220px] max-h-[300px] flex flex-col justify-end overflow-hidden bg-[#0a1120]">
-        
-        {/* Full-width Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={aboutHeroBg} 
-            alt="About Us Banner" 
-            className="w-full h-full object-cover object-center"
-          />
-          
-          {/* Subtle Dark Overlay for Legibility Without Being Too Dark */}
-          <div className="absolute inset-0 bg-black/40 z-10" />
-        </div>
-
-        {/* Content Container - Bottom Left Aligned, ONLY "ABOUT US" */}
-        <div className="max-w-[1280px] w-full mx-auto px-6 sm:px-8 md:px-12 relative z-20 pb-7 sm:pb-9">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight uppercase leading-none drop-shadow-md">
-            ABOUT US
-          </h1>
-        </div>
-
-      </section>
+      {/* Hero Section - Compact Banner Matching Reference Mockup */}
+      <PageHero
+        title="About Us"
+        subtitle="ANM ISPAT"
+        exploreText="Explore About Us"
+        exploreLink="/"
+        bgImage={aboutHeroBg}
+        imageAlt="About Us Banner"
+      />
 
       <AboutOverviewSection/>
       <WorkProcess/>

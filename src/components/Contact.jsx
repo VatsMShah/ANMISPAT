@@ -6,6 +6,8 @@ import {
   ArrowRight,
   CheckCircle,
 } from 'lucide-react';
+import PageHero from './PageHero.jsx';
+import contactHeroBg from '../assets/images/steel-trading.png';
 
 export default function Contact() {
   const [formState, setFormState] = useState('idle');
@@ -20,10 +22,21 @@ export default function Contact() {
   };
 
   return (
-    <section
-      id="contact"
-      className="relative overflow-hidden bg-white pt-20 pb-24 md:pt-24 md:pb-28"
-    >
+    <main className="overflow-hidden bg-white">
+      {/* Hero Section - Compact Banner Matching Reference Mockup */}
+      <PageHero
+        title="Contact Us"
+        subtitle="ANM ISPAT"
+        exploreText="Explore Contact Us"
+        exploreLink="/"
+        bgImage={contactHeroBg}
+        imageAlt="Contact Us Banner"
+      />
+
+      <section
+        id="contact"
+        className="relative overflow-hidden bg-white pt-14 pb-24 md:pt-16 md:pb-28"
+      >
       {/* =====================================================
           ANIMATIONS
       ===================================================== */}
@@ -911,5 +924,6 @@ export default function Contact() {
         </div>
       </div>
     </section>
+  </main>
   );
 }

@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
+import PageHero from "./PageHero.jsx";
+import missionVisionImg from "../assets/images/mission-vision.png";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowRight, ArrowUpRight, Building2, ChevronLeft, ChevronRight, MapPin, ShieldCheck, Sparkles, X } from "lucide-react";
 
@@ -240,199 +242,15 @@ export default function CSR() {
 
   return (
     <main className="bg-white text-[#4c4c4c] selection:bg-[#f36f35] selection:text-white">
-      {/* 1. HERO WITH INTERACTIVE FIELD VIEWPORT */}
-      <motion.section
-        className="relative isolate overflow-hidden border-b border-gray-200 bg-white text-[#4c4c4c]"
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
-      >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_78%_48%,rgba(243,111,53,0.09),transparent_38%),linear-gradient(to_right,rgba(31,31,31,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(31,31,31,0.025)_1px,transparent_1px)] bg-[size:auto,4rem_4rem,4rem_4rem]"
-        />
-
-        <div className="relative z-10 mx-auto max-w-7xl px-6 pb-14 pt-8 sm:px-10 sm:pb-16 sm:pt-10 lg:px-16 lg:pb-20 lg:pt-12">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
-            
-            {/* Left Content Column */}
-            <motion.div
-              className="flex flex-col justify-center lg:col-span-6"
-              initial={shouldReduceMotion ? false : "hidden"}
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: shouldReduceMotion ? 0 : 0.1 } },
-              }}
-            >
-              <div>
-                <motion.nav
-                  aria-label="Breadcrumb"
-                  className="mb-6 flex items-center gap-2 text-xs text-[#667085]"
-                  variants={{
-                    hidden: { opacity: 0, y: 12 },
-                    visible: { opacity: 1, y: 0, transition: enterTransition },
-                  }}
-                >
-                  <Link to="/" className="transition-colors hover:text-[#f36f35]">Home</Link>
-                  <span aria-hidden="true">/</span>
-                  <span className="text-[#111827]">CSR and community impact</span>
-                </motion.nav>
-
-                <motion.div
-                  className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#fbd8cb] bg-[#fff1eb] px-3.5 py-1.5 font-badge text-[10px] font-bold uppercase tracking-[0.18em] text-[#e05d23] sm:text-xs"
-                  variants={{
-                    hidden: { opacity: 0, y: 14 },
-                    visible: { opacity: 1, y: 0, transition: enterTransition },
-                  }}
-                >
-                  <Sparkles className="w-3.5 h-3.5" />
-                  Community impact
-                </motion.div>
-
-                <motion.h1
-                  className="max-w-2xl font-heading text-4xl font-extrabold leading-[1.08] tracking-tight text-[#111827] sm:text-5xl lg:text-6xl"
-                  variants={{
-                    hidden: { opacity: 0, y: 24 },
-                    visible: { opacity: 1, y: 0, transition: enterTransition },
-                  }}
-                >
-                  Measurable impact. <br />
-                  <span className="text-[#f36f35]">Built with purpose.</span>
-                </motion.h1>
-
-                <motion.p
-                  className="mt-5 max-w-xl font-body text-sm leading-7 text-[#4c4c4c] sm:mt-6 sm:text-base sm:leading-7"
-                  variants={{
-                    hidden: { opacity: 0, y: 18 },
-                    visible: { opacity: 1, y: 0, transition: enterTransition },
-                  }}
-                >
-                  Explore illustrative community programmes in education, healthcare and environmental
-                  care. Project names, partner details, locations and figures shown here are placeholders;
-                  replace them with verified disclosures before publication.
-                </motion.p>
-              </div>
-
-              {/* Interactive Field Location Selector */}
-              <motion.div
-                className="mt-8 border-t border-gray-200 pt-6 sm:mt-9 sm:pt-7"
-                variants={{
-                  hidden: { opacity: 0, y: 14 },
-                  visible: { opacity: 1, y: 0, transition: enterTransition },
-                }}
-              >
-                <span className="mb-3 block font-badge text-[10px] font-bold uppercase tracking-[0.18em] text-[#667085] sm:text-[11px]">
-                  Explore an impact area
-                </span>
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
-                  {HERO_SITES.map((site) => {
-                    const isActive = site.id === activeSite.id;
-                    return (
-                      <button
-                        key={site.id}
-                        onClick={() => setActiveSite(site)}
-                        className={`relative overflow-hidden rounded-xl border px-3.5 py-3 text-left font-body text-xs transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f36f35] ${
-                          isActive
-                            ? "border-[#f36f35] bg-[#fff8f4] text-[#111827] font-semibold"
-                            : "border-gray-200 bg-[#f8f9fa] text-[#4c4c4c] hover:border-[#f36f35]/50 hover:bg-white hover:text-[#111827]"
-                        }`}
-                      >
-                        {isActive && (
-                          <motion.div
-                            layoutId="activeHeroTab"
-                            className="absolute inset-0 border-l-2 border-[#f36f35] bg-[#f36f35]/[0.06]"
-                            transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                          />
-                        )}
-                        <span className="relative block font-badge text-[9px] font-bold uppercase tracking-[0.14em] text-[#e05d23]">{site.tag}</span>
-                        <span className="relative mt-1 block truncate font-heading text-xs font-bold">{site.title}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </motion.div>
-
-              {/* CTA Buttons */}
-              <motion.div
-                className="mt-6 flex flex-wrap gap-3 sm:mt-7"
-                variants={{
-                  hidden: { opacity: 0, y: 14 },
-                  visible: { opacity: 1, y: 0, transition: enterTransition },
-                }}
-              >
-                <a
-                  href="#pillars-section"
-                  className="inline-flex items-center gap-2 rounded-lg border border-[#f36f35] bg-[#f36f35] px-5 py-3 font-badge text-sm font-bold text-white transition-colors duration-200 hover:border-[#e05d23] hover:bg-[#e05d23] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f36f35]"
-                >
-                  View audit matrix
-                  <ArrowDown className="h-4 w-4" />
-                </a>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-3 font-badge text-sm font-bold text-[#111827] transition-colors duration-200 hover:border-[#f36f35] hover:bg-[#fff8f4] hover:text-[#e05d23] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f36f35]"
-                >
-                  Request the annual CSR brief
-                  <ArrowUpRight className="h-4 w-4 text-[#667085]" />
-                </Link>
-              </motion.div>
-            </motion.div>
-
-            {/* Right Interactive Photographic Viewport */}
-            <div className="flex flex-col lg:col-span-6">
-              <div className="relative min-h-[360px] flex-1 overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-[0_18px_45px_rgba(31,31,31,0.12)] sm:min-h-[430px] lg:min-h-[500px]">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={activeSite.id}
-                    src={activeSite.image}
-                    alt={activeSite.title}
-                    initial={{ opacity: 0, scale: 1.04 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </AnimatePresence>
-
-                {/* Viewport Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent" />
-
-                {/* Top Viewport Header */}
-                <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-2 text-xs sm:left-5 sm:right-5 sm:top-5">
-                  <span className="rounded-lg border border-gray-200 bg-white/90 px-3 py-1.5 font-badge text-[10px] font-bold uppercase tracking-[0.14em] text-[#e05d23] shadow-sm backdrop-blur-md">
-                    {activeSite.tag}
-                  </span>
-                  <span className="flex max-w-[70%] items-center gap-1.5 rounded-lg border border-gray-200 bg-white/90 px-3 py-1.5 font-body text-[10px] text-[#4c4c4c] shadow-sm backdrop-blur-md sm:text-xs">
-                    <MapPin className="h-3 w-3 shrink-0 text-[#f36f35]" />
-                    <span className="truncate">{activeSite.location}</span>
-                  </span>
-                </div>
-
-                {/* Bottom Viewport Caption & Metadata */}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-white via-white/95 to-white/0 p-5 pt-16 sm:p-7 sm:pt-20">
-                  <span className="block font-badge text-[10px] font-bold uppercase tracking-[0.16em] text-[#e05d23] sm:text-[11px]">
-                    {activeSite.clause}
-                  </span>
-                  <h3 className="mt-2 font-heading text-xl font-extrabold leading-tight text-[#111827] sm:text-2xl">
-                    {activeSite.title}
-                  </h3>
-                  <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-gray-200 pt-3 font-body text-[11px] text-[#667085] sm:text-xs">
-                    <span className="flex items-center gap-1.5">
-                      <Building2 className="h-3.5 w-3.5 text-[#f36f35]" />
-                      Illustrative programme
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <ShieldCheck className="h-3.5 w-3.5 text-[#f36f35]" />
-                      Sample project details
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </motion.section>
+      {/* Hero Section - Compact Banner Matching Reference Mockup */}
+      <PageHero
+        title="CSR"
+        subtitle="ANM ISPAT"
+        exploreText="Explore CSR"
+        exploreLink="/"
+        bgImage={missionVisionImg}
+        imageAlt="CSR Banner"
+      />
 
       {/* 2. PROOF LEDGER */}
       <section aria-label="Audit metric ledger" className="border-b border-gray-200">

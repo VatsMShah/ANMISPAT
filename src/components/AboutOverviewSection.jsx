@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Target, Compass } from 'lucide-react';
 
 import engineerImage from '../assets/images/about-feature-new.png';
 import abstractPattern from '../assets/images/about-abstract-orange.png';
@@ -53,7 +54,7 @@ export default function AboutOverviewSection() {
       id="about-overview"
       className="relative overflow-hidden bg-white px-6 py-12 md:px-10 md:py-16 lg:px-14 lg:py-18"
     >
-      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-10">
+      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_1fr] lg:gap-10">
 
         {/* =====================================================
             LEFT CONTENT
@@ -91,58 +92,59 @@ export default function AboutOverviewSection() {
 
 
           {/* =================================================
-              MISSION & VISION
+              MISSION & VISION CARDS (ELEVATED DESIGN)
           ================================================= */}
-          <div className="mt-7 flex flex-col gap-3 max-w-[600px]">
+          <div className="mt-8 flex flex-col gap-4 max-w-[600px]">
 
-            {/* Mission */}
-            <div className="flex items-start gap-3.5 rounded-[15px] border border-gray-100 bg-[#fbfbfc] p-3.5 sm:p-4 shadow-[0_4px_14px_rgba(0,0,0,0.03)] hover:border-[#f36f35]/30 transition-all">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] bg-[#fff1eb] text-[#f36f35]">
-                <svg
-                  className="h-[18px] w-[18px]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <circle cx="12" cy="12" r="9" strokeWidth="2" />
-                  <circle cx="12" cy="12" r="5" strokeWidth="2" />
-                  <circle cx="12" cy="12" r="1" fill="currentColor" />
-                </svg>
-              </div>
+            {/* Mission Card */}
+            <div className="group relative overflow-hidden rounded-[18px] border border-gray-100/90 bg-gradient-to-r from-[#fff7f2] via-white to-white p-4 sm:p-5 shadow-[0_6px_20px_rgba(243,111,53,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(243,111,53,0.12)] hover:border-[#f36f35]/30">
+              {/* Left Accent Bar */}
+              <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-gradient-to-b from-[#f36f35] to-[#ff9865] rounded-l-full" />
 
-              <div>
-                <h4 className="text-[13px] font-extrabold uppercase tracking-wider text-[#f36f35]">
-                  Mission
-                </h4>
+              <div className="flex items-start gap-4 pl-1">
+                {/* Icon Tile */}
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-white text-[#f36f35] shadow-[0_4px_12px_rgba(243,111,53,0.14)] border border-[#f36f35]/20 transition-transform duration-300 group-hover:scale-105">
+                  <Target className="h-[22px] w-[22px]" strokeWidth={2.2} />
+                </div>
 
-                <p className="mt-0.5 text-[13px] sm:text-[14px] leading-[1.5] text-[#374151]">
-                  Empowering businesses with high-quality services for sustainable growth.
-                </p>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f36f35]/10 px-2.5 py-0.5 text-[11px] font-black uppercase tracking-widest text-[#f36f35]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#f36f35] animate-pulse" />
+                      Our Mission
+                    </span>
+                  </div>
+
+                  <p className="mt-2 text-[13.5px] sm:text-[14px] font-medium leading-[1.55] text-[#374151]">
+                    Empowering businesses with high-quality services for sustainable growth.
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Vision */}
-            <div className="flex items-start gap-3.5 rounded-[15px] border border-gray-100 bg-[#fbfbfc] p-3.5 sm:p-4 shadow-[0_4px_14px_rgba(0,0,0,0.03)] hover:border-[#3b52a4]/30 transition-all">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[11px] bg-[#ebf0ff] text-[#3b52a4]">
-                <svg
-                  className="h-[18px] w-[18px]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </div>
+            {/* Vision Card */}
+            <div className="group relative overflow-hidden rounded-[18px] border border-gray-100/90 bg-gradient-to-r from-[#f4f7fd] via-white to-white p-4 sm:p-5 shadow-[0_6px_20px_rgba(59,82,164,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(59,82,164,0.12)] hover:border-[#3b52a4]/30">
+              {/* Left Accent Bar */}
+              <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-gradient-to-b from-[#3b52a4] to-[#6384db] rounded-l-full" />
 
-              <div>
-                <h4 className="text-[13px] font-extrabold uppercase tracking-wider text-[#3b52a4]">
-                  Vision
-                </h4>
+              <div className="flex items-start gap-4 pl-1">
+                {/* Icon Tile */}
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] bg-white text-[#3b52a4] shadow-[0_4px_12px_rgba(59,82,164,0.14)] border border-[#3b52a4]/20 transition-transform duration-300 group-hover:scale-105">
+                  <Compass className="h-[22px] w-[22px]" strokeWidth={2.2} />
+                </div>
 
-                <p className="mt-0.5 text-[13px] sm:text-[14px] leading-[1.5] text-[#374151]">
-                  To lead globally in industrial services with new standards.
-                </p>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#3b52a4]/10 px-2.5 py-0.5 text-[11px] font-black uppercase tracking-widest text-[#3b52a4]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#3b52a4]" />
+                      Our Vision
+                    </span>
+                  </div>
+
+                  <p className="mt-2 text-[13.5px] sm:text-[14px] font-medium leading-[1.55] text-[#374151]">
+                    To lead globally in industrial services with new standards.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -154,34 +156,34 @@ export default function AboutOverviewSection() {
         {/* =====================================================
             RIGHT — HIGH-END MODERN INDUSTRIAL COMPOSITE
         ===================================================== */}
-        <div className="relative flex h-[500px] w-full items-center justify-center lg:h-[520px]">
+        <div className="relative flex w-full flex-col items-center justify-start lg:items-end">
 
           {/* Ambient Warm Radial Background Glow */}
-          <div className="absolute top-1/2 left-1/2 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[#fff0e8] via-[#fdeee9] to-transparent blur-2xl opacity-80" />
+          <div className="pointer-events-none absolute top-1/2 left-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[#fff0e8] via-[#fdeee9] to-transparent blur-3xl opacity-80" />
 
-          {/* MAIN HERO IMAGE */}
-          <div className="group relative z-20 flex h-[430px] w-[330px] sm:w-[360px] items-center justify-center transition-all duration-500 hover:-translate-y-1">
+          {/* MAIN HERO IMAGE - Enlarged, starts in parallel with 'Built on Trust' and ends flush with the Vision Card */}
+          <div className="group relative z-20 flex w-full max-w-[390px] sm:max-w-[430px] lg:max-w-[460px] h-[430px] sm:h-[470px] lg:h-[490px] items-start justify-center transition-all duration-500 hover:-translate-y-1 -mt-2 lg:-mt-3">
             <img
               src={engineerImage}
               alt="Industrial Engineering Specialist"
-              className="h-full w-full object-contain object-center drop-shadow-[0_20px_35px_rgba(0,0,0,0.18)] transition-transform duration-700 ease-out group-hover:scale-105"
+              className="h-full w-full object-contain object-top drop-shadow-[0_20px_35px_rgba(0,0,0,0.18)] transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
 
 
           {/* =================================================
-              STATS CARD (25+ YEARS ENLARGED, 100% REMOVED)
+              STATS CARD (25+ YEARS)
           ================================================= */}
           <div
             className="
               absolute
-              bottom-[-10px]
+              bottom-[-16px]
               left-1/2
-              z-40
+              z-30
               w-[280px]
               -translate-x-1/2
               sm:w-[320px]
-              lg:left-[-5%]
+              lg:left-[-8%]
               lg:translate-x-0
             "
           >

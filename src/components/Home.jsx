@@ -7,6 +7,7 @@ import SelectedWork from './SelectedWork';
 import ServicesPreview from './ServicesPreview';
 import Certifications from './Certifications';
 import Awards from './Awards';
+import PrioritiesSection from './PrioritiesSection';
 
 export default function Home() {
   return (
@@ -75,6 +76,9 @@ export default function Home() {
       <section className="transition-all duration-500">
         <Certifications />
       </section>
+
+      {/* Built around your priorities (Testimonials / Customer Experience) */}
+      <PrioritiesSection />
     </main>
   );
 }

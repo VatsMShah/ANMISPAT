@@ -14,6 +14,8 @@ const awardsData = [
     title: 'Best Brands 2025',
     issuer: 'The Economic Times / ET Edge',
     category: 'Colorshine recognised as one of the Best Brands',
+    imgClassName: '',
+    shadowWidth: 'w-32 sm:w-40',
   },
   {
     id: 2,
@@ -21,6 +23,9 @@ const awardsData = [
     title: 'Star Performer of The Year',
     issuer: 'AM/NS Steel Star',
     category: 'Abhay Ispat (India) Pvt. Ltd. - Central',
+    // Rotate +2.3deg to level the angled bottom edge flush with the ground line
+    imgClassName: 'rotate-[2.3deg] origin-bottom',
+    shadowWidth: 'w-36 sm:w-44',
   },
   {
     id: 3,
@@ -28,6 +33,8 @@ const awardsData = [
     title: 'Retail Rockstar',
     issuer: 'Tata Steel (Tata Kosh)',
     category: 'Top Performing ASO (ANM Ispat Pvt. Ltd. : Mumbai)',
+    imgClassName: '',
+    shadowWidth: 'w-24 sm:w-28',
   },
   {
     id: 4,
@@ -35,6 +42,9 @@ const awardsData = [
     title: 'Steel Distributor of the Year',
     issuer: 'BCC&I & Tata Steel',
     category: 'Manufacturing & MSME Excellence Award (ANM Ispat Pvt. Ltd.)',
+    // Slight leveling and custom shadow for faceted crystal stand
+    imgClassName: 'rotate-[0.6deg] origin-bottom',
+    shadowWidth: 'w-28 sm:w-34',
   },
   {
     id: 5,
@@ -42,6 +52,8 @@ const awardsData = [
     title: 'Market Development of LC Grades',
     issuer: 'Tata Steel (Manthan)',
     category: 'Special Appreciation Winner (ANM Ispat Pvt. Ltd., Mumbai)',
+    imgClassName: '',
+    shadowWidth: 'w-32 sm:w-38',
   },
 ];
 
@@ -145,15 +157,26 @@ export default function Awards() {
   }, [selectedAward]);
 
   return (
-    <section id="awards" className="relative w-full overflow-hidden font-sans border-t border-b border-gray-100 bg-[#fbfcfd] py-16 sm:py-20 select-none">
+    <section id="awards" className="relative w-full overflow-hidden font-sans border-t border-b border-gray-200 bg-[#edf1f5] pt-16 sm:pt-20 select-none">
       
-      {/* Soft Radial Backlight Glow behind trophies */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#fff1eb]/60 via-[#fdeee9]/30 to-transparent rounded-full blur-3xl pointer-events-none" />
+      {/* Focused Center Orange Backlight Glow behind Trophies on the Wall (Matching Reference Image) */}
+      <div
+        className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-[100px] sm:top-[120px] w-[650px] sm:w-[950px] lg:w-[1150px] h-[360px] sm:h-[440px] rounded-full blur-3xl opacity-90 z-0"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 65%, rgba(243, 111, 53, 0.45) 0%, rgba(251, 146, 60, 0.25) 35%, rgba(254, 215, 170, 0.12) 60%, transparent 75%)',
+        }}
+      />
+      <div
+        className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-[140px] sm:top-[160px] w-[420px] sm:w-[620px] h-[220px] sm:h-[280px] rounded-full blur-2xl opacity-75 z-0"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 70%, rgba(243, 111, 53, 0.38) 0%, rgba(255, 154, 98, 0.18) 45%, transparent 70%)',
+        }}
+      />
 
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 relative z-10">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 relative z-20 pb-8 sm:pb-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
             <p className="mb-3 font-badge text-xs font-bold uppercase tracking-[0.2em] text-[#f36f35]">
               OUR ACCOLADES
@@ -163,7 +186,7 @@ export default function Awards() {
               Recognized for <span className="text-[#f36f35]">Excellence & Quality</span>
             </h2>
 
-            <p className="text-sm sm:text-[15px] text-[#666666] leading-relaxed">
+            <p className="text-sm sm:text-[15px] text-[#555555] leading-relaxed">
               Our commitment to quality, safety, and cutting-edge industrial supply has earned us prestigious recognition from Tata Steel, AM/NS, and industry bodies.
             </p>
           </div>
@@ -181,6 +204,9 @@ export default function Awards() {
 
       {/* Infinite Continuous Sliding Carousel (No boxes, no year) */}
       <div className="relative w-full overflow-hidden">
+        {/* The White Base Surface (Horizon line starts behind the trophies; floor extends to bottom) */}
+        <div className="absolute inset-x-0 bottom-0 top-[160px] sm:top-[180px] bg-white border-t border-gray-200/90 shadow-[0_-4px_25px_rgba(0,0,0,0.03)] z-0 pointer-events-none" />
+
         <style>{`
           .awards-scroll-container::-webkit-scrollbar {
             display: none;
@@ -201,7 +227,7 @@ export default function Awards() {
           }
         `}</style>
 
-        <div className="awards-mask py-4">
+        <div className="awards-mask py-4 relative z-10">
           <div
             ref={scrollRef}
             onScroll={handleScroll}
@@ -222,25 +248,26 @@ export default function Awards() {
               <div
                 key={`${award.id}-${index}`}
                 onClick={() => handleCardClick(award)}
-                className="group flex flex-col items-center w-[220px] sm:w-[250px] md:w-[270px] shrink-0 cursor-pointer select-none px-2 transition-transform duration-300 hover:-translate-y-2 text-center"
+                className="group flex flex-col items-center w-[230px] sm:w-[260px] md:w-[280px] shrink-0 cursor-pointer select-none px-3 transition-transform duration-300 hover:-translate-y-2 text-center"
               >
-                {/* Trophy Image & Natural Stand/Shadow (No boxes!) */}
-                <div className="relative w-full h-56 sm:h-64 flex flex-col items-center justify-end pb-3">
+                {/* Trophy sitting firmly on the white surface */}
+                <div className="relative w-full h-[240px] sm:h-[270px] flex flex-col items-center justify-end pb-0">
+                  {/* Trophy Image with custom leveling */}
                   <img
                     src={award.image}
                     alt={award.title}
                     draggable={false}
-                    className="max-h-48 sm:max-h-56 w-auto object-contain drop-shadow-[0_12px_22px_rgba(0,0,0,0.18)] transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none"
+                    className={`max-h-[220px] sm:max-h-[250px] w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.08)] z-10 ${award.imgClassName || ''}`}
                   />
 
-                  {/* Natural Ground Contact Shadow */}
-                  <div className="w-24 h-2 bg-black/30 rounded-[100%] blur-[2px] -mt-1 transition-all duration-500 group-hover:w-20 group-hover:bg-black/20" />
-                  {/* Soft Ambient Ground Glow */}
-                  <div className="w-36 h-4 bg-black/15 rounded-[100%] blur-md -mt-3 transition-all duration-500 group-hover:w-40 group-hover:bg-[#f36f35]/20 group-hover:blur-lg" />
+                  {/* Realistic Ground Contact Shadow cast onto the white surface */}
+                  <div className={`${award.shadowWidth || 'w-28 sm:w-36'} h-2.5 bg-black/60 rounded-[100%] blur-[2px] -mt-1 z-10 transition-all duration-300 group-hover:scale-95 group-hover:bg-black/40`} />
+                  <div className="w-40 sm:w-48 h-4 bg-black/20 rounded-[100%] blur-md -mt-2 z-0 transition-all duration-300 group-hover:w-44" />
+                  <div className="w-48 sm:w-56 h-6 bg-[#f36f35]/15 rounded-[100%] blur-xl -mt-3 z-0" />
                 </div>
 
-                {/* Content below trophy (No boxes, no year) */}
-                <div className="mt-2 flex flex-col items-center max-w-[240px]">
+                {/* Content below trophy on the white surface */}
+                <div className="mt-4 pb-6 flex flex-col items-center max-w-[240px]">
                   <span className="font-badge text-[10.5px] font-bold uppercase tracking-wider text-[#f36f35] block mb-1">
                     {award.issuer}
                   </span>

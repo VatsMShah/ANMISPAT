@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ArrowDown, ArrowRight, BriefcaseBusiness, Compass, Handshake, Lightbulb, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PageHero from './PageHero.jsx';
 import teamImage from '../assets/images/core-values-engineers.png';
 
 const principles = [
@@ -31,31 +32,15 @@ export default function Careers() {
 
   return (
     <main className="overflow-hidden bg-white text-[#1f1f1f]">
-      <section className="relative isolate min-h-[550px] overflow-hidden bg-[#111923] px-6 py-20 sm:px-10 lg:min-h-[620px] lg:px-16">
-        <img src={teamImage} alt="Engineers collaborating on industrial work" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#111923]/95 via-[#111923]/80 to-[#111923]/35" />
-        <div className="mx-auto flex min-h-[410px] max-w-7xl items-center lg:min-h-[470px]">
-          <div className="max-w-3xl animate-[career-rise_700ms_cubic-bezier(.16,1,.3,1)_both]">
-            <p className="mb-5 flex items-center gap-3 font-badge text-xs font-bold uppercase tracking-[0.2em] text-white/75">
-              <span className="h-[2px] w-9 bg-[#f36f35]" />
-              Careers at ANM Ispat
-            </p>
-            <h1 className="font-heading text-4xl font-extrabold leading-[1.08] text-white sm:text-5xl lg:text-7xl">
-              Build work that <span className="text-[#f36f35]">moves industry.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-sm leading-7 text-white/75 sm:text-base">
-              Bring your perspective to a team focused on dependable steel solutions, strong partnerships, and work done with purpose.
-            </p>
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <a href="#opportunities" className="inline-flex w-fit items-center gap-3 bg-[#f36f35] px-6 py-3.5 font-badge text-xs font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-[#dc5d27]">
-                Explore opportunities <ArrowDown size={16} />
-              </a>
-              <span className="text-xs font-medium text-white/60">A team shaped by craft, care, and collaboration</span>
-            </div>
-          </div>
-        </div>
-        <span className="absolute bottom-0 left-0 h-1 w-full origin-left animate-[career-rule_1.1s_ease-out_forwards] bg-[#f36f35]" />
-      </section>
+      {/* Hero Section - Compact Banner Matching Reference Mockup */}
+      <PageHero
+        title="Careers"
+        subtitle="ANM ISPAT"
+        exploreText="Explore Careers"
+        exploreLink="/"
+        bgImage={teamImage}
+        imageAlt="Careers Banner"
+      />
 
       <section className="px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
