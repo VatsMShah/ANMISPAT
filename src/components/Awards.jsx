@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { X, Award, ArrowRight } from 'lucide-react';
+import { X, Award, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import award1Img from '../assets/awards-images/award-1.png';
 import award2Img from '../assets/awards-images/award-2.png';
@@ -64,39 +64,67 @@ export default function Awards() {
   const startXRef = useRef(0);
   const scrollLeftStartRef = useRef(0);
   const hasDraggedRef = useRef(false);
+  const scrollPosRef = useRef(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
   // Triple the awards array for seamless bidirectional infinite scrolling
   const displayedAwards = [...awardsData, ...awardsData, ...awardsData];
 
-  // Auto-scroll loop
+  // Auto-scroll loop using JS float accumulator to ensure smooth sliding on all displays
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
-    if (el.scrollLeft === 0) {
+    if (el.scrollLeft === 0 && el.scrollWidth > 0) {
       el.scrollLeft = el.scrollWidth / 3;
+      scrollPosRef.current = el.scrollLeft;
+    } else {
+      scrollPosRef.current = el.scrollLeft;
     }
 
     let animationFrameId;
-    const speed = 0.85;
+    let lastTime = performance.now();
+    // 38px/sec gives an elegant, readable sliding pace
+    const baseSpeed = 38;
 
-    const step = () => {
+    const step = (now) => {
+      const dt = Math.min((now - lastTime) / 1000, 0.05);
+      lastTime = now;
+
       if (!isDownRef.current && !isHovered && el) {
-        el.scrollLeft += speed;
+        scrollPosRef.current += baseSpeed * dt;
         const oneThird = el.scrollWidth / 3;
-        if (el.scrollLeft >= oneThird * 2) {
-          el.scrollLeft -= oneThird;
-        } else if (el.scrollLeft <= 0) {
-          el.scrollLeft += oneThird;
+
+        if (oneThird > 0) {
+          if (scrollPosRef.current >= oneThird * 2) {
+            scrollPosRef.current -= oneThird;
+          } else if (scrollPosRef.current <= 0) {
+            scrollPosRef.current += oneThird;
+          }
         }
+
+        el.scrollLeft = scrollPosRef.current;
       }
+
       animationFrameId = requestAnimationFrame(step);
     };
 
     animationFrameId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(animationFrameId);
+
+    const handleGlobalRelease = () => {
+      isDownRef.current = false;
+      setIsDragging(false);
+    };
+
+    window.addEventListener('mouseup', handleGlobalRelease);
+    window.addEventListener('touchend', handleGlobalRelease);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('mouseup', handleGlobalRelease);
+      window.removeEventListener('touchend', handleGlobalRelease);
+    };
   }, [isHovered]);
 
   // Infinite wrap-around check on manual scroll / wheel
@@ -104,40 +132,76 @@ export default function Awards() {
     const el = scrollRef.current;
     if (!el) return;
     const oneThird = el.scrollWidth / 3;
+    if (oneThird <= 0) return;
+
     if (el.scrollLeft >= oneThird * 2) {
       el.scrollLeft -= oneThird;
     } else if (el.scrollLeft <= 5) {
       el.scrollLeft += oneThird;
     }
+    scrollPosRef.current = el.scrollLeft;
   }, []);
 
-  // Mouse Drag handlers
-  const handleMouseDown = (e) => {
+  // Slide left or right by 1 award
+  const handleSlide = (direction) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardEl = el.querySelector('.award-card');
+    const stepAmount = cardEl ? cardEl.offsetWidth + 24 : 330;
+    scrollPosRef.current += direction * stepAmount;
+
+    const oneThird = el.scrollWidth / 3;
+    if (oneThird > 0) {
+      if (scrollPosRef.current >= oneThird * 2) {
+        scrollPosRef.current -= oneThird;
+      } else if (scrollPosRef.current <= 0) {
+        scrollPosRef.current += oneThird;
+      }
+    }
+
+    el.scrollTo({
+      left: scrollPosRef.current,
+      behavior: 'smooth',
+    });
+  };
+
+  // Pointer Drag handlers (unified for mouse & touch)
+  const handlePointerDown = (e) => {
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
     const el = scrollRef.current;
     if (!el) return;
     isDownRef.current = true;
     setIsDragging(true);
     startXRef.current = e.pageX - el.offsetLeft;
     scrollLeftStartRef.current = el.scrollLeft;
+    scrollPosRef.current = el.scrollLeft;
     hasDraggedRef.current = false;
   };
 
-  const handleMouseMove = (e) => {
+  const handlePointerMove = (e) => {
     if (!isDownRef.current) return;
     const el = scrollRef.current;
     if (!el) return;
-    e.preventDefault();
     const x = e.pageX - el.offsetLeft;
     const walk = (x - startXRef.current) * 1.6;
     if (Math.abs(walk) > 5) {
       hasDraggedRef.current = true;
     }
     el.scrollLeft = scrollLeftStartRef.current - walk;
+    scrollPosRef.current = el.scrollLeft;
   };
 
-  const handleMouseUpOrLeave = () => {
+  const handlePointerUpOrLeave = (e) => {
+    if (e?.pointerType !== 'touch') {
+      setIsHovered(false);
+    }
     isDownRef.current = false;
     setIsDragging(false);
+  };
+
+  const handlePointerEnter = (e) => {
+    if (e.pointerType === 'touch') return;
+    setIsHovered(true);
   };
 
   const handleCardClick = (award) => {
@@ -202,7 +266,7 @@ export default function Awards() {
 
       </div>
 
-      {/* Infinite Continuous Sliding Carousel (No boxes, no year) */}
+      {/* Infinite Continuous Sliding Carousel (In one frame exactly 4 awards) */}
       <div className="relative w-full overflow-hidden">
         {/* The White Base Surface (Horizon line starts behind the trophies; floor extends to bottom) */}
         <div className="absolute inset-x-0 bottom-0 top-[160px] sm:top-[180px] bg-white border-t border-gray-200/90 shadow-[0_-4px_25px_rgba(0,0,0,0.03)] z-0 pointer-events-none" />
@@ -216,8 +280,8 @@ export default function Awards() {
             scrollbar-width: none;
           }
           .awards-mask {
-            -webkit-mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
-            mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent);
+            mask-image: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent);
           }
           @media (max-width: 640px) {
             .awards-mask {
@@ -227,61 +291,81 @@ export default function Awards() {
           }
         `}</style>
 
-        <div className="awards-mask py-4 relative z-10">
-          <div
-            ref={scrollRef}
-            onScroll={handleScroll}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => {
-              setIsHovered(false);
-              handleMouseUpOrLeave();
-            }}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUpOrLeave}
-            className={`awards-scroll-container flex items-start gap-8 sm:gap-12 overflow-x-auto pl-6 sm:pl-8 cursor-grab ${
-              isDragging ? 'cursor-grabbing active:cursor-grabbing' : ''
-            }`}
-            style={{ willChange: 'scroll-position' }}
-          >
-            {displayedAwards.map((award, index) => (
+        {/* 4-Awards Constrained Frame */}
+        <div className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="relative">
+            {/* Carousel Navigation Arrow Controls */}
+            <button
+              type="button"
+              onClick={() => handleSlide(-1)}
+              aria-label="Previous award"
+              className="absolute -left-2 sm:-left-4 md:-left-5 top-[125px] sm:top-[140px] z-20 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-gray-200 bg-white/95 backdrop-blur-sm text-gray-700 shadow-md transition-all duration-200 hover:border-[#f36f35] hover:text-[#f36f35] hover:scale-105 hover:shadow-lg focus:outline-none cursor-pointer"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => handleSlide(1)}
+              aria-label="Next award"
+              className="absolute -right-2 sm:-right-4 md:-right-5 top-[125px] sm:top-[140px] z-20 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-gray-200 bg-white/95 backdrop-blur-sm text-gray-700 shadow-md transition-all duration-200 hover:border-[#f36f35] hover:text-[#f36f35] hover:scale-105 hover:shadow-lg focus:outline-none cursor-pointer"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+
+            <div className="awards-mask py-4 overflow-hidden">
               <div
-                key={`${award.id}-${index}`}
-                onClick={() => handleCardClick(award)}
-                className="group flex flex-col items-center w-[230px] sm:w-[260px] md:w-[280px] shrink-0 cursor-pointer select-none px-3 transition-transform duration-300 hover:-translate-y-2 text-center"
+                ref={scrollRef}
+                onScroll={handleScroll}
+                onPointerEnter={handlePointerEnter}
+                onPointerLeave={handlePointerUpOrLeave}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUpOrLeave}
+                className={`awards-scroll-container flex items-start gap-4 sm:gap-5 md:gap-6 lg:gap-6 overflow-x-auto cursor-grab ${
+                  isDragging ? 'cursor-grabbing active:cursor-grabbing' : ''
+                }`}
+                style={{ willChange: 'scroll-position' }}
               >
-                {/* Trophy sitting firmly on the white surface */}
-                <div className="relative w-full h-[240px] sm:h-[270px] flex flex-col items-center justify-end pb-0">
-                  {/* Trophy Image with custom leveling */}
-                  <img
-                    src={award.image}
-                    alt={award.title}
-                    draggable={false}
-                    className={`max-h-[220px] sm:max-h-[250px] w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.08)] z-10 ${award.imgClassName || ''}`}
-                  />
+                {displayedAwards.map((award, index) => (
+                  <div
+                    key={`${award.id}-${index}`}
+                    onClick={() => handleCardClick(award)}
+                    className="award-card group flex flex-col items-center w-[85%] sm:w-[calc((100%-20px)/2)] md:w-[calc((100%-48px)/3)] lg:w-[calc((100%-72px)/4)] shrink-0 cursor-pointer select-none px-2 transition-transform duration-300 hover:-translate-y-2 text-center"
+                  >
+                    {/* Trophy sitting firmly on the white surface */}
+                    <div className="relative w-full h-[240px] sm:h-[270px] flex flex-col items-center justify-end pb-0">
+                      {/* Trophy Image with custom leveling */}
+                      <img
+                        src={award.image}
+                        alt={award.title}
+                        draggable={false}
+                        className={`max-h-[220px] sm:max-h-[250px] w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.08)] z-10 ${award.imgClassName || ''}`}
+                      />
 
-                  {/* Realistic Ground Contact Shadow cast onto the white surface */}
-                  <div className={`${award.shadowWidth || 'w-28 sm:w-36'} h-2.5 bg-black/60 rounded-[100%] blur-[2px] -mt-1 z-10 transition-all duration-300 group-hover:scale-95 group-hover:bg-black/40`} />
-                  <div className="w-40 sm:w-48 h-4 bg-black/20 rounded-[100%] blur-md -mt-2 z-0 transition-all duration-300 group-hover:w-44" />
-                  <div className="w-48 sm:w-56 h-6 bg-[#f36f35]/15 rounded-[100%] blur-xl -mt-3 z-0" />
-                </div>
+                      {/* Realistic Ground Contact Shadow cast onto the white surface */}
+                      <div className={`${award.shadowWidth || 'w-28 sm:w-36'} h-2.5 bg-black/60 rounded-[100%] blur-[2px] -mt-1 z-10 transition-all duration-300 group-hover:scale-95 group-hover:bg-black/40`} />
+                      <div className="w-40 sm:w-48 h-4 bg-black/20 rounded-[100%] blur-md -mt-2 z-0 transition-all duration-300 group-hover:w-44" />
+                      <div className="w-48 sm:w-56 h-6 bg-[#f36f35]/15 rounded-[100%] blur-xl -mt-3 z-0" />
+                    </div>
 
-                {/* Content below trophy on the white surface */}
-                <div className="mt-4 pb-6 flex flex-col items-center max-w-[240px]">
-                  <span className="font-badge text-[10.5px] font-bold uppercase tracking-wider text-[#f36f35] block mb-1">
-                    {award.issuer}
-                  </span>
-                  
-                  <h3 className="font-heading text-base sm:text-lg font-black text-[#111827] leading-snug group-hover:text-[#f36f35] transition-colors line-clamp-2">
-                    {award.title}
-                  </h3>
-                  
-                  <p className="mt-1 font-body text-xs text-gray-500 line-clamp-2 leading-relaxed">
-                    {award.category}
-                  </p>
-                </div>
+                    {/* Content below trophy on the white surface */}
+                    <div className="mt-4 pb-6 flex flex-col items-center max-w-[260px]">
+                      <span className="font-badge text-[10.5px] font-bold uppercase tracking-wider text-[#f36f35] block mb-1">
+                        {award.issuer}
+                      </span>
+                      
+                      <h3 className="font-heading text-base sm:text-lg font-black text-[#111827] leading-snug group-hover:text-[#f36f35] transition-colors line-clamp-2">
+                        {award.title}
+                      </h3>
+                      
+                      <p className="mt-1 font-body text-xs text-gray-500 line-clamp-2 leading-relaxed">
+                        {award.category}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>

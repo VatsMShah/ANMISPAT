@@ -41,25 +41,31 @@ export default function MisVis() {
 
   return (
     <>
-    <section id="misvis" className="relative w-full bg-white overflow-hidden h-[640px]">
-      {/* Layer 1: Background columns split (Lowest: Left White, Right Orange) */}
+    <section
+      id="misvis"
+      className="relative w-full bg-white overflow-hidden pb-48 sm:pb-64 md:pb-0"
+      style={{
+        minHeight: 'clamp(660px, calc(33vw + 140px), 1150px)',
+      }}
+    >
+      {/* Layer 1: Background columns split (Left: White, Right: Brand Orange) */}
       <div className="absolute inset-0 z-0 grid grid-cols-1 md:grid-cols-2 h-full pointer-events-none">
         <div className="bg-white w-full h-full" />
-        <div className="bg-gradient-to-b from-[#f36f35] via-[#f36f35] to-[#f36f35] w-full h-full" />
+        <div className="bg-[#f36f35] w-full h-full hidden md:block" />
       </div>
 
-      {/* Layer 2: Factory Image (Above both columns, spanning end-to-end in full width) */}
+      {/* Layer 2: Factory Image (Spanning full width, anchored to bottom, full container height so apex/roof is never cut) */}
       <img
         src={missionVisionImg}
         alt="ANM Ispat Manufacturing Plant"
-        className="absolute bottom-0 left-0 w-full h-[360px] sm:h-[400px] lg:h-[430px] object-cover object-bottom pointer-events-none z-10 block"
+        className="absolute bottom-0 left-0 w-full h-full object-cover object-bottom pointer-events-none z-10 block"
       />
 
-      {/* Layer 3: Text content (Above image and columns, never obscured or camouflaged) */}
-      <div className="relative z-20 grid grid-cols-1 md:grid-cols-2 h-[640px]">
+      {/* Layer 3: Text content (Above image and backgrounds, with clean clearance) */}
+      <div className="relative z-20 grid grid-cols-1 md:grid-cols-2 h-full">
         {/* Left Column: Headline and Stats */}
-        <div className="flex flex-col items-start justify-start px-8 sm:px-14 lg:px-20 pt-8 sm:pt-10">
-          <h2 className="font-heading text-2xl sm:text-3xl lg:text-[2.1rem] font-extrabold text-[#3b52a4] leading-[1.18] tracking-tight text-left mb-6 drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
+        <div className="flex flex-col items-start justify-start px-6 sm:px-10 lg:px-16 xl:px-20 pt-8 sm:pt-10 lg:pt-12">
+          <h2 className="font-heading text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold text-[#3b52a4] leading-[1.18] tracking-tight text-left mb-6 drop-shadow-[0_1px_2px_rgba(255,255,255,0.95)]">
             Leading the Steel Industry
             <br />
             with Vision &amp; Excellence
@@ -80,24 +86,26 @@ export default function MisVis() {
         </div>
 
         {/* Right Column: Mission & Vision */}
-        <div className="flex flex-col justify-start gap-6 sm:gap-7 px-8 sm:px-14 lg:px-20 pt-8 sm:pt-10">
-          <div>
-            <span className="inline-block px-3 py-1 rounded bg-white/20 backdrop-blur-sm text-white text-xs font-bold tracking-widest uppercase font-badge mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
-              Our Mission
-            </span>
-            <p className="text-base sm:text-lg text-white font-semibold leading-relaxed max-w-md drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
-              Delivering reliable steel products and processing solutions
-              that power industry across India.
-            </p>
-          </div>
-          <div>
-            <span className="inline-block px-3 py-1 rounded bg-white/20 backdrop-blur-sm text-white text-xs font-bold tracking-widest uppercase font-badge mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
-              Our Vision
-            </span>
-            <p className="text-base sm:text-lg text-white font-semibold leading-relaxed max-w-md drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
-              To lead the industry with innovation, integrity, and
-              unmatched excellence in steel.
-            </p>
+        <div className="flex flex-col justify-start px-6 sm:px-10 lg:px-16 xl:px-20 pt-8 sm:pt-10 lg:pt-12">
+          <div className="flex flex-col gap-5 sm:gap-6 max-w-lg bg-[#f36f35] p-6 rounded-2xl text-white shadow-lg md:bg-transparent md:p-0 md:rounded-none md:shadow-none">
+            <div>
+              <span className="inline-block px-3 py-1 rounded bg-white/20 backdrop-blur-sm text-white text-xs font-bold tracking-widest uppercase font-badge mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+                Our Mission
+              </span>
+              <p className="text-base sm:text-lg text-white font-semibold leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
+                Delivering reliable steel products and processing solutions
+                that power industry across India.
+              </p>
+            </div>
+            <div>
+              <span className="inline-block px-3 py-1 rounded bg-white/20 backdrop-blur-sm text-white text-xs font-bold tracking-widest uppercase font-badge mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+                Our Vision
+              </span>
+              <p className="text-base sm:text-lg text-white font-semibold leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]">
+                To lead the industry with innovation, integrity, and
+                unmatched excellence in steel.
+              </p>
+            </div>
           </div>
         </div>
       </div>

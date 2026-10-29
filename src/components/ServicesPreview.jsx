@@ -26,40 +26,73 @@ export default function ServicesPreview() {
   const startXRef = useRef(0);
   const scrollLeftStartRef = useRef(0);
   const hasDraggedRef = useRef(false);
+  const scrollPosRef = useRef(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
   // Triple industries for infinite bidirectional scrolling
   const displayedIndustries = [...industries, ...industries, ...industries];
 
-  // Auto-scroll loop
+  // Auto-scroll loop using a float accumulator to guarantee advancement across all laptops & display scales (DPR 1x / 1.25x / 2x)
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
-    // Center scroll on middle set initially
-    if (el.scrollLeft === 0) {
-      el.scrollLeft = el.scrollWidth / 3;
-    }
+    // Center scroll on middle set initially if uninitialized
+    const initScroll = () => {
+      if (el && el.scrollWidth > 0 && el.scrollLeft === 0) {
+        el.scrollLeft = el.scrollWidth / 3;
+        scrollPosRef.current = el.scrollLeft;
+      } else if (el) {
+        scrollPosRef.current = el.scrollLeft;
+      }
+    };
+    initScroll();
 
     let animationFrameId;
-    const speed = 0.8;
+    let lastTime = performance.now();
+    // 45px per second gives a smooth, consistent pace across all screen refresh rates (60Hz / 120Hz / 144Hz)
+    const baseSpeed = 45;
 
-    const step = () => {
+    const step = (now) => {
+      const dt = Math.min((now - lastTime) / 1000, 0.05); // cap delta to avoid jumps on tab switch
+      lastTime = now;
+
       if (!isDownRef.current && !isHovered && el) {
-        el.scrollLeft += speed;
+        scrollPosRef.current += baseSpeed * dt;
         const oneThird = el.scrollWidth / 3;
-        if (el.scrollLeft >= oneThird * 2) {
-          el.scrollLeft -= oneThird;
-        } else if (el.scrollLeft <= 0) {
-          el.scrollLeft += oneThird;
+
+        if (oneThird > 0) {
+          if (scrollPosRef.current >= oneThird * 2) {
+            scrollPosRef.current -= oneThird;
+          } else if (scrollPosRef.current <= 0) {
+            scrollPosRef.current += oneThird;
+          }
         }
+
+        // Set the DOM scroll position from our JS float accumulator
+        el.scrollLeft = scrollPosRef.current;
       }
+
       animationFrameId = requestAnimationFrame(step);
     };
 
     animationFrameId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(animationFrameId);
+
+    // Global release handler so drag/touch never gets stuck if mouse is released outside window
+    const handleGlobalRelease = () => {
+      isDownRef.current = false;
+      setIsDragging(false);
+    };
+
+    window.addEventListener('mouseup', handleGlobalRelease);
+    window.addEventListener('touchend', handleGlobalRelease);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('mouseup', handleGlobalRelease);
+      window.removeEventListener('touchend', handleGlobalRelease);
+    };
   }, [isHovered]);
 
   // Infinite wrap-around check on manual scroll / wheel
@@ -67,40 +100,55 @@ export default function ServicesPreview() {
     const el = scrollRef.current;
     if (!el) return;
     const oneThird = el.scrollWidth / 3;
+    if (oneThird <= 0) return;
+
     if (el.scrollLeft >= oneThird * 2) {
       el.scrollLeft -= oneThird;
     } else if (el.scrollLeft <= 5) {
       el.scrollLeft += oneThird;
     }
+    scrollPosRef.current = el.scrollLeft;
   }, []);
 
-  // Mouse Drag handlers
-  const handleMouseDown = (e) => {
+  // Pointer drag handlers (unified for mouse & touch)
+  const handlePointerDown = (e) => {
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
     const el = scrollRef.current;
     if (!el) return;
     isDownRef.current = true;
     setIsDragging(true);
     startXRef.current = e.pageX - el.offsetLeft;
     scrollLeftStartRef.current = el.scrollLeft;
+    scrollPosRef.current = el.scrollLeft;
     hasDraggedRef.current = false;
   };
 
-  const handleMouseMove = (e) => {
+  const handlePointerMove = (e) => {
     if (!isDownRef.current) return;
     const el = scrollRef.current;
     if (!el) return;
-    e.preventDefault();
     const x = e.pageX - el.offsetLeft;
     const walk = (x - startXRef.current) * 1.6;
     if (Math.abs(walk) > 5) {
       hasDraggedRef.current = true;
     }
     el.scrollLeft = scrollLeftStartRef.current - walk;
+    scrollPosRef.current = el.scrollLeft;
   };
 
-  const handleMouseUpOrLeave = () => {
+  const handlePointerUpOrLeave = (e) => {
+    // Only clear hover if pointer is not a sticky touch tap
+    if (e?.pointerType !== 'touch') {
+      setIsHovered(false);
+    }
     isDownRef.current = false;
     setIsDragging(false);
+  };
+
+  const handlePointerEnter = (e) => {
+    // Prevent touch taps on touchscreen laptops from permanently setting isHovered to true
+    if (e.pointerType === 'touch') return;
+    setIsHovered(true);
   };
 
   const handleCardClick = (e) => {
@@ -166,14 +214,11 @@ export default function ServicesPreview() {
           <div
             ref={scrollRef}
             onScroll={handleScroll}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => {
-              setIsHovered(false);
-              handleMouseUpOrLeave();
-            }}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUpOrLeave}
+            onPointerEnter={handlePointerEnter}
+            onPointerLeave={handlePointerUpOrLeave}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUpOrLeave}
             className={`industry-scroll-container flex gap-5 overflow-x-auto pl-4 cursor-grab ${
               isDragging ? 'cursor-grabbing active:cursor-grabbing' : ''
             }`}

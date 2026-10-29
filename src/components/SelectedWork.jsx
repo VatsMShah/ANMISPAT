@@ -130,7 +130,7 @@ export default function SelectedWork() {
 
   return (
     <section id="our-range" className="bg-brand-footer pt-10 md:pt-14 pb-16 md:pb-20 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="w-full max-w-[1380px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12 md:mb-14">
           <span className="block w-[42px] h-[3px] bg-brand-orange rounded-[20px] mx-auto mb-5" />
@@ -147,7 +147,7 @@ export default function SelectedWork() {
           <MagneticProductsButton />
         </div>
 
-        <div className="relative mx-auto max-w-[1120px]">
+        <div className="relative mx-auto w-full max-w-[1380px] px-2 sm:px-4">
           <div
             role="region"
             aria-roledescription="carousel"
@@ -158,7 +158,7 @@ export default function SelectedWork() {
             onPointerCancel={() => {
               dragStartX.current = null;
             }}
-            className="flex h-[450px] md:h-[475px] cursor-grab touch-pan-y select-none items-center justify-center gap-3 overflow-hidden px-1 py-4 active:cursor-grabbing md:gap-4"
+            className="flex h-[450px] md:h-[475px] cursor-grab touch-pan-y select-none items-center justify-center gap-3 overflow-hidden px-1 py-4 active:cursor-grabbing md:gap-4 lg:gap-5"
           >
             {[-2, -1, 0, 1, 2].map((offset) => {
               const projectIndex =
@@ -181,8 +181,8 @@ export default function SelectedWork() {
                   aria-current={isActive ? 'true' : undefined}
                   className={`group ${visibility} h-[410px] md:h-[435px] min-w-0 shrink-0 flex-col overflow-hidden rounded-[22px] border border-brand-border/70 bg-white shadow-[0_8px_28px_rgba(31,31,31,0.07)] transition-[transform,opacity,box-shadow,width] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
                     isActive
-                      ? 'z-10 w-[min(78vw,300px)] scale-100 shadow-[0_20px_48px_rgba(31,31,31,0.15)] ring-2 ring-brand-orange/20'
-                      : 'w-[26%] scale-[0.92] opacity-80 hover:opacity-100 lg:w-[15%] xl:w-[17%]'
+                      ? 'z-10 w-[min(82vw,330px)] scale-100 shadow-[0_20px_48px_rgba(31,31,31,0.15)] ring-2 ring-brand-orange/20'
+                      : 'w-[28%] scale-[0.92] opacity-80 hover:opacity-100 lg:w-[17%] xl:w-[18%]'
                   }`}
                 >
                   <div className="relative mx-3 mt-3 flex h-[150px] md:h-[160px] shrink-0 items-center justify-center overflow-hidden rounded-[15px] bg-[#f4f5f7]">
@@ -252,7 +252,7 @@ export default function SelectedWork() {
             type="button"
             aria-label="Previous product"
             onClick={() => moveCarousel(-1)}
-            className="absolute left-0 top-1/2 z-20 flex h-10 w-10 -translate-x-1/4 -translate-y-1/2 items-center justify-center rounded-full border border-brand-border bg-white text-brand-dark shadow-md transition hover:border-brand-orange hover:text-brand-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange md:-translate-x-1/2"
+            className="absolute left-0 top-1/2 z-20 flex h-10 w-10 -translate-x-1/4 -translate-y-1/2 items-center justify-center rounded-full border border-brand-border bg-white text-brand-dark shadow-md transition hover:border-brand-orange hover:text-brand-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange md:-translate-x-1/2 cursor-pointer"
           >
             <ChevronLeft aria-hidden="true" className="h-5 w-5" />
           </button>
@@ -260,7 +260,7 @@ export default function SelectedWork() {
             type="button"
             aria-label="Next product"
             onClick={() => moveCarousel(1)}
-            className="absolute right-0 top-1/2 z-20 flex h-10 w-10 translate-x-1/4 -translate-y-1/2 items-center justify-center rounded-full border border-brand-border bg-white text-brand-dark shadow-md transition hover:border-brand-orange hover:text-brand-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange md:translate-x-1/2"
+            className="absolute right-0 top-1/2 z-20 flex h-10 w-10 translate-x-1/4 -translate-y-1/2 items-center justify-center rounded-full border border-brand-border bg-white text-brand-dark shadow-md transition hover:border-brand-orange hover:text-brand-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange md:translate-x-1/2 cursor-pointer"
           >
             <ChevronRight aria-hidden="true" className="h-5 w-5" />
           </button>
