@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import productsCta from '../assets/images/products-cta.jpg';
+import quoteBgVideo from '../assets/images/anm-background-video.mp4';
 
 export default function QuoteSection() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    service: '',
+    product: '',
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -23,26 +24,31 @@ export default function QuoteSection() {
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({ name: '', phone: '', service: '' });
+      setFormData({ name: '', phone: '', product: '' });
     }, 4000);
   };
 
   return (
     <section className="relative isolate overflow-hidden py-16 sm:py-20 lg:py-24 text-white">
-      {/* Background Image with Lighter Dark Tone Overlay (70% light dark tone, 30% normal image) */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <img
-          src={productsCta}
-          alt="Steel warehouse and coils"
-          loading="lazy"
+      {/* Background Video with Gradient Overlay */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={productsCta}
           className="h-full w-full object-cover object-[center_40%]"
-        />
-        {/* 70% lighter dark tone on left for clean legibility, transitioning to 30% normal unshaded image on right */}
+        >
+          <source src={quoteBgVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {/* Lighter Dark Tone Overlay for clean legibility */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to right, rgba(8, 12, 22, 0.52) 0%, rgba(8, 12, 22, 0.40) 55%, rgba(8, 12, 22, 0.20) 72%, rgba(8, 12, 22, 0.05) 85%, transparent 100%)',
+              'linear-gradient(to right, rgba(8, 12, 22, 0.60) 0%, rgba(8, 12, 22, 0.45) 55%, rgba(8, 12, 22, 0.25) 72%, rgba(8, 12, 22, 0.10) 85%, transparent 100%)',
           }}
         />
       </div>
@@ -115,19 +121,19 @@ export default function QuoteSection() {
                   />
                 </div>
 
-                {/* Service Type */}
+                {/* Select Product */}
                 <div className="flex flex-col">
                   <label className="mb-1.5 text-[11px] sm:text-xs font-semibold text-white tracking-wide">
-                    Service Type:
+                    Select product
                   </label>
                   <div className="relative">
                     <select
-                      name="service"
-                      value={formData.service}
+                      name="product"
+                      value={formData.product}
                       onChange={handleChange}
                       className="h-[44px] w-full appearance-none rounded-[2px] bg-white px-3.5 pr-8 text-xs sm:text-[13.5px] text-gray-700 outline-none focus:ring-2 focus:ring-black/40 transition-all shadow-sm cursor-pointer"
                     >
-                      <option value="">-- Select your service --</option>
+                      <option value="">Select your product type</option>
                       <option value="Hot Rolled (HR) Coil">Hot Rolled (HR) Coil</option>
                       <option value="HR Sheet/Plate">HR Sheet/Plate</option>
                       <option value="HRPO Coil">HRPO Coil</option>

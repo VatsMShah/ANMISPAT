@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Award, CheckCircle2, ShieldCheck, FileCheck, X, ArrowRight } from 'lucide-react';
-import logisticsImg from '../assets/images/logistics.png';
 
 const certifications = [
   {
@@ -58,20 +57,8 @@ export default function Certifications() {
   return (
     <section
       id="certifications"
-      className="relative isolate overflow-hidden bg-[#3b52a4] px-6 py-16 text-white sm:px-10 lg:px-16 lg:py-20 select-none"
+      className="relative isolate overflow-hidden bg-[#f8fafc] border-t border-b border-gray-200/80 px-6 py-16 text-[#1f1f1f] sm:px-10 lg:px-16 lg:py-20 select-none"
     >
-      {/* Background image & gradient overlay matching ANM logo blue (#3b52a4) */}
-      <img
-        src={logisticsImg}
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-25"
-      />
-      <div
-        className="absolute inset-0 -z-10 bg-gradient-to-br from-[#3b52a4]/95 via-[#344994]/95 to-[#24346e]/95"
-        aria-hidden="true"
-      />
-
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
@@ -79,22 +66,20 @@ export default function Certifications() {
             <p className="mb-2.5 font-badge text-xs font-bold uppercase tracking-[0.2em] text-[#f36f35]">
               ANM ISPAT
             </p>
-            <h2 className="font-heading text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">
-              Global Standards, Industry Recognition
+            <h2 className="font-heading text-2xl font-black tracking-tight text-[#111827] sm:text-3xl lg:text-4xl">
+              Global Standards, <span className="text-[#f36f35]">Industry Recognition</span>
             </h2>
-            <p className="mt-2 text-sm text-blue-100/80 max-w-xl">
+            <p className="mt-2 text-sm text-[#555555] max-w-xl">
               Ensuring certified grade integrity, strict traceability, and ISO-compliant operations at every stage.
             </p>
           </div>
 
           <a
             href="/achievements"
-            className="inline-flex w-fit items-center gap-3 rounded-full border border-white/60 bg-white/10 px-5 py-2.5 font-heading text-xs font-bold text-white backdrop-blur-sm transition-all hover:bg-white hover:text-[#3b52a4] shadow-md shrink-0"
+            className="inline-flex w-fit items-center gap-2.5 rounded-full border border-gray-300 bg-white px-5 py-2.5 font-badge text-xs font-bold text-[#111827] shadow-sm hover:border-[#f36f35] hover:text-[#f36f35] hover:shadow-md transition-all duration-300 shrink-0 cursor-pointer"
           >
             <span>View All Certifications</span>
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-sm text-[#3b52a4]">
-              &rarr;
-            </span>
+            <ArrowRight size={14} className="text-[#f36f35]" />
           </a>
         </div>
 
@@ -105,7 +90,7 @@ export default function Certifications() {
             return (
               <article
                 key={cert.id}
-                className="group relative cursor-pointer rounded-2xl bg-white p-6 text-left text-[#1f1f1f] shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_35px_rgba(0,0,0,0.25)] flex flex-col justify-between"
+                className="group relative cursor-pointer rounded-2xl bg-white p-6 text-left text-[#1f1f1f] shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-200/90 transition-all duration-300 hover:-translate-y-2 hover:border-[#f36f35]/60 hover:shadow-[0_20px_40px_rgba(243,111,53,0.12)] flex flex-col justify-between"
                 onClick={() => setSelectedCertification(cert)}
                 role="button"
                 tabIndex={0}
@@ -119,21 +104,21 @@ export default function Certifications() {
                 <div>
                   {/* Top Bar: Icon + Code Badge */}
                   <div className="flex items-center justify-between gap-3 mb-5">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#eef2ff] text-[#3b52a4] transition-colors group-hover:bg-[#3b52a4] group-hover:text-white">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#fff1ea] text-[#f36f35] transition-colors duration-300 group-hover:bg-[#f36f35] group-hover:text-white">
                       <Icon size={22} strokeWidth={2.2} />
                     </div>
-                    <span className="rounded-full bg-blue-50 px-2.5 py-1 font-badge text-[10px] font-extrabold uppercase tracking-wider text-[#3b52a4]">
+                    <span className="rounded-full bg-gray-100 border border-gray-200/80 px-2.5 py-1 font-badge text-[10px] font-extrabold uppercase tracking-wider text-gray-600 transition-colors duration-300 group-hover:bg-[#fff1ea] group-hover:border-[#fbd5c0] group-hover:text-[#f36f35]">
                       {cert.year}
                     </span>
                   </div>
 
                   {/* Code Tag */}
-                  <span className="font-badge text-[11px] font-bold uppercase tracking-wider text-[#f36f35] block mb-1">
+                  <span className="font-badge text-[11px] font-bold uppercase tracking-wider text-[#f36f35] block mb-1.5">
                     {cert.code}
                   </span>
 
                   {/* Title */}
-                  <h3 className="font-heading text-lg font-black text-[#111827] leading-snug group-hover:text-[#3b52a4] transition-colors mb-2">
+                  <h3 className="font-heading text-lg font-black text-[#111827] leading-snug group-hover:text-[#f36f35] transition-colors mb-2">
                     {cert.title}
                   </h3>
 
@@ -149,7 +134,7 @@ export default function Certifications() {
                 </div>
 
                 {/* Bottom link prompt */}
-                <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-[#3b52a4] text-xs font-bold group-hover:text-[#f36f35] transition-colors">
+                <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-[#f36f35] text-xs font-bold group-hover:text-[#111827] transition-colors">
                   <span>View Details</span>
                   <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
                 </div>
@@ -174,7 +159,7 @@ export default function Certifications() {
             <button
               type="button"
               onClick={() => setSelectedCertification(null)}
-              className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-all hover:bg-[#3b52a4] hover:text-white"
+              className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-all hover:bg-[#f36f35] hover:text-white cursor-pointer"
               aria-label="Close certificate preview"
             >
               <X size={18} />
@@ -182,7 +167,7 @@ export default function Certifications() {
 
             {/* Certificate Header Banner */}
             <div className="border-b border-gray-100 pb-5 mb-5 flex items-center gap-4">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#eef2ff] text-[#3b52a4]">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#fff1ea] text-[#f36f35]">
                 <selectedCertification.icon size={30} strokeWidth={2.2} />
               </div>
               <div>
@@ -215,8 +200,8 @@ export default function Certifications() {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-blue-100 bg-blue-50/60 p-4 text-xs text-[#24346e] flex items-center gap-3">
-                <CheckCircle2 size={20} className="shrink-0 text-[#3b52a4]" />
+              <div className="rounded-xl border border-orange-100 bg-[#fff8f4] p-4 text-xs text-gray-800 flex items-center gap-3">
+                <CheckCircle2 size={20} className="shrink-0 text-[#f36f35]" />
                 <p>
                   Official documentation, test certificates, and compliance reports are supplied directly with every dispatch.
                 </p>
@@ -227,7 +212,7 @@ export default function Certifications() {
               <button
                 type="button"
                 onClick={() => setSelectedCertification(null)}
-                className="rounded-lg bg-[#3b52a4] px-5 py-2.5 font-badge text-xs font-bold text-white transition-colors hover:bg-[#2e4082]"
+                className="rounded-lg bg-[#f36f35] px-5 py-2.5 font-badge text-xs font-bold text-white transition-colors hover:bg-[#e0561e] cursor-pointer"
               >
                 Close Preview
               </button>
