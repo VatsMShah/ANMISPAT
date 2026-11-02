@@ -78,23 +78,23 @@ export default function Achievements() {
             </p>
           </div>
 
-          <div className="grid overflow-hidden border border-[#dfe3e7] lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="grid overflow-hidden border border-[#dfe3e7] lg:grid-cols-2">
             {/* Left Column: Active Trophy Photo & Details */}
-            <div className="relative flex min-h-[460px] sm:min-h-[520px] lg:min-h-[560px] items-center justify-center overflow-hidden bg-[#f4f5f7] p-8 sm:p-10">
+            <div className="relative flex min-h-[520px] sm:min-h-[580px] lg:min-h-[640px] items-center justify-center overflow-hidden bg-[#f4f5f7] p-8 sm:p-10">
               <div className="absolute inset-0 opacity-50" style={{ backgroundImage: 'linear-gradient(rgba(31,31,31,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(31,31,31,.045) 1px, transparent 1px)', backgroundSize: '38px 38px' }} />
               
-              <div className="absolute left-8 top-8 flex items-center gap-2 font-badge text-[10px] font-bold uppercase tracking-[0.16em] text-[#747b83]">
+              <div className="absolute left-6 top-6 sm:left-8 sm:top-8 flex items-center gap-2 font-badge text-[10px] font-bold uppercase tracking-[0.16em] text-[#747b83] z-20">
                 <Award size={15} className="text-[#f36f35]" />
                 Featured recognition
               </div>
 
-              <div key={activeItem.id} className="relative flex w-full flex-col items-center text-center animate-[achievement-rise_450ms_cubic-bezier(.16,1,.3,1)_both]">
-                {/* Trophy Photo Showcase */}
-                <div className="mb-5 flex h-36 w-36 sm:h-44 sm:w-44 items-center justify-center rounded-full border border-[#f36f35]/25 bg-gradient-to-t from-[#fff0ea] via-white to-white shadow-[0_16px_40px_rgba(243,111,53,0.12)]">
+              <div key={activeItem.id} className="relative z-10 flex w-full flex-col items-center text-center animate-[achievement-rise_450ms_cubic-bezier(.16,1,.3,1)_both] pt-6 pb-4 sm:pt-4 sm:pb-2">
+                {/* Trophy Photo Showcase - Independent Big Showcase */}
+                <div className="relative mb-6 flex h-64 sm:h-72 lg:h-80 w-full items-center justify-center">
                   <img
                     src={activeItem.image}
                     alt={activeItem.title}
-                    className="h-28 w-28 sm:h-36 sm:w-36 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.18)] transition-transform duration-500 hover:scale-105"
+                    className="h-full w-auto max-w-[85%] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.22)] transition-transform duration-500 ease-out hover:scale-105 select-none"
                   />
                 </div>
 
@@ -112,7 +112,7 @@ export default function Achievements() {
               </div>
 
               {/* Counter Indicator */}
-              <span className="absolute bottom-7 right-7 font-badge text-xs font-semibold tabular-nums text-[#90969c]">
+              <span className="absolute bottom-6 right-6 sm:bottom-7 sm:right-7 font-badge text-xs font-semibold tabular-nums text-[#90969c] z-20">
                 {String(activeRecognition + 1).padStart(2, '0')} <span className="mx-1 text-[#f36f35]">/</span> {String(recognitions.length).padStart(2, '0')}
               </span>
             </div>
